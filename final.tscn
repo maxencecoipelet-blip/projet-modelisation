@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjfd6r28c58vr"]
+
+[ext_resource type="PackedScene" uid="uid://60ajcwcosu0l" path="res://joueur.tscn" id="1_h0aww"]
+[ext_resource type="PackedScene" uid="uid://bhwifpx5nd2j4" path="res://robot.tscn" id="2_tvybu"]
+
+[sub_resource type="Environment" id="Environment_edh6e"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h0aww"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_edh6e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tvybu"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_edh6e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.07544859, 0.9971497, 0, -0.9971497, 0.07544859, 0, 1.7028298, 0)
+
+[node name="joueur" parent="." instance=ExtResource("1_h0aww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9405782, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(22.669384, 0, 0, 0, 1, 0, 0, 0, 29.564863, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000005, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_h0aww")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+mesh = SubResource("PlaneMesh_edh6e")
+skeleton = NodePath("../..")
+
+[node name="robot" parent="." instance=ExtResource("2_tvybu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5066738, -16.935314)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50586987, -1.6789932)
+mesh = SubResource("BoxMesh_tvybu")
