@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cjfd6r28c58vr"]
+
+[ext_resource type="PackedScene" uid="uid://60ajcwcosu0l" path="res://joueur.tscn" id="1_h0aww"]
+[ext_resource type="PackedScene" uid="uid://bhwifpx5nd2j4" path="res://robot.tscn" id="2_tvybu"]
+[ext_resource type="Script" uid="uid://b8ml2tlmh5kha" path="res://time_label.gd" id="3_qt6nr"]
+[ext_resource type="PackedScene" uid="uid://cad1ov2isdvy8" path="res://menu_pause.tscn" id="4_7678y"]
+
+[sub_resource type="Environment" id="Environment_edh6e"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h0aww"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_edh6e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tvybu"]
+
+[node name="Node3D" type="Node3D" unique_id=1112313551]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1091100920]
+environment = SubResource("Environment_edh6e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1360801333]
+transform = Transform3D(1, 0, 0, 0, 0.07544859, 0.9971497, 0, -0.9971497, 0.07544859, 0, 1.7028298, 0)
+
+[node name="joueur" parent="." unique_id=978163497 instance=ExtResource("1_h0aww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9405782, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1651205275]
+transform = Transform3D(22.669384, 0, 0, 0, 1, 0, 0, 0, 29.564863, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1517524426]
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000005, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_h0aww")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2110152383]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+mesh = SubResource("PlaneMesh_edh6e")
+skeleton = NodePath("../..")
+
+[node name="robot" parent="." unique_id=647590461 instance=ExtResource("2_tvybu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5066738, -16.935314)
+time_active = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=494410284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50586987, -1.6789932)
+mesh = SubResource("BoxMesh_tvybu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2081836797]
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer" unique_id=13316805]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_qt6nr")
+
+[node name="CanvasLayer2" parent="." unique_id=1561442245 instance=ExtResource("4_7678y")]
+visible = false

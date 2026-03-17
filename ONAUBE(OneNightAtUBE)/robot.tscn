@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bhwifpx5nd2j4"]
+
+[ext_resource type="Script" uid="uid://5n3c6f87emve" path="res://robot.gd" id="1_3cn6f"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gv0v2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gv0v2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gv0v2"]
+radius = 6.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3cn6f"]
+radius = 12.228
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1102538343]
+script = ExtResource("1_3cn6f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=78086509]
+mesh = SubResource("CapsuleMesh_gv0v2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=642985935]
+shape = SubResource("CapsuleShape3D_gv0v2")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=867660188]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1427283359]
+shape = SubResource("SphereShape3D_gv0v2")
+
+[node name="Area3D2" type="Area3D" parent="." unique_id=57160904]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2" unique_id=568759182]
+shape = SubResource("SphereShape3D_3cn6f")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D2" to="." method="_on_area_3d_2_body_exited"]
