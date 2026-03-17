@@ -1,0 +1,5 @@
+CanvasLayer
+Label      - Matches the "text" keyword.
+CollisionShape3D
+Area3D
+Node3D

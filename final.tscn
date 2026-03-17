@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjfd6r28c58vr"]
+[gd_scene load_steps=8 format=3 uid="uid://cjfd6r28c58vr"]
 
 [ext_resource type="PackedScene" uid="uid://60ajcwcosu0l" path="res://joueur.tscn" id="1_h0aww"]
 [ext_resource type="PackedScene" uid="uid://bhwifpx5nd2j4" path="res://robot.tscn" id="2_tvybu"]
+[ext_resource type="Script" uid="uid://b8ml2tlmh5kha" path="res://time_label.gd" id="3_qt6nr"]
 
 [sub_resource type="Environment" id="Environment_edh6e"]
 
@@ -41,3 +42,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5066738, -16.935314)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50586987, -1.6789932)
 mesh = SubResource("BoxMesh_tvybu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_qt6nr")

@@ -15,6 +15,14 @@ run/main_scene="uid://cjfd6r28c58vr"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameState="*res://gameState.gd"
+
+[filesystem]
+
+import/blender/enabled=false
+
 [global_group]
 
 player=""

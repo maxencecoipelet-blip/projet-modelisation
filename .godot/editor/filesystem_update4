@@ -1,0 +1,8 @@
+res://joueur.tscn
+res://robot.tscn
+res://robot.gd
+res://character_body_3d.gd
+res://final.tscn
+res://gameState.gd
+res://label.gd
+res://time_label.gd
