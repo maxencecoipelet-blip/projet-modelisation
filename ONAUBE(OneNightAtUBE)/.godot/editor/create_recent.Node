@@ -1,7 +1,8 @@
-Window
-ColorRect
+Label
 TextureButton
 VBoxContainer
+Window
+ColorRect
 Button
 HBoxContainer
 NinePatchRect

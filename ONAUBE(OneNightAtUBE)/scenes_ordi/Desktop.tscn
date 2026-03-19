@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://brqxluhax66mh"]
+[gd_scene load_steps=8 format=3 uid="uid://brqxluhax66mh"]
 
 [ext_resource type="Script" uid="uid://bw2b6iy1qyft0" path="res://scenes_ordi/Desktop.gd" id="1_f0eep"]
 [ext_resource type="Texture2D" uid="uid://cixg1ujirfs8o" path="res://scenes_ordi/Flag.png" id="2_isxv6"]
+[ext_resource type="Texture2D" uid="uid://bf7dt22u304mh" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(1).jpg" id="3_tp1l6"]
+[ext_resource type="Texture2D" uid="uid://k3yinifcu1my" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(3).jpg" id="4_0h6bp"]
+[ext_resource type="Texture2D" uid="uid://p714u1xw3cp1" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(4).jpg" id="5_6pycw"]
 
 [sub_resource type="Shader" id="7"]
 code = "shader_type canvas_item;
@@ -28,13 +31,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_f0eep")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0, 0.501961, 0.501961, 1)
+color = Color(3.4172833e-06, 0.51753, 0.51753014, 1)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -92,6 +96,38 @@ text = "12:30 PM"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 186.0
+offset_bottom = 528.0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_tp1l6")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Robots"
+horizontal_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_0h6bp")
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Caméras"
+horizontal_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_6pycw")
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Mini-jeu"
+horizontal_alignment = 1
+
 [node name="ScanLines" type="ColorRect" parent="."]
 material = SubResource("8")
 layout_mode = 1
@@ -100,3 +136,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureButton3" to="." method="_on_texture_button_3_pressed"]
