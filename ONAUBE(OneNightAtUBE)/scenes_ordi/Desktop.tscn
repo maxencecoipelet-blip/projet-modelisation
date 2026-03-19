@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=3 uid="uid://brqxluhax66mh"]
+
+[ext_resource type="Script" uid="uid://bw2b6iy1qyft0" path="res://scenes_ordi/Desktop.gd" id="1_f0eep"]
+[ext_resource type="Texture2D" uid="uid://cixg1ujirfs8o" path="res://scenes_ordi/Flag.png" id="2_isxv6"]
+
+[sub_resource type="Shader" id="7"]
+code = "shader_type canvas_item;
+
+uniform float SCREEN_HEIGHT = 240.0;
+
+void fragment() {
+	int y_pixel = int(UV.y * SCREEN_HEIGHT);
+	if (y_pixel % 2 == 0) {
+		COLOR.a = 0.0;
+	} else {
+		COLOR.a = 0.05;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="8"]
+shader = SubResource("7")
+shader_parameter/SCREEN_HEIGHT = 240.0
+
+[node name="Desktop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f0eep")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0.501961, 0.501961, 1)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Line" type="Panel" parent="Panel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect2" type="ColorRect" parent="Panel/Line"]
+custom_minimum_size = Vector2(1000000, 0)
+layout_mode = 0
+offset_top = -49.0
+offset_right = 1152.0
+color = Color(0.28311273, 0.28311273, 0.28311273, 1)
+
+[node name="Flag" type="Sprite2D" parent="Panel/Line"]
+position = Vector2(15.000002, -24)
+scale = Vector2(1.9666667, 2.2272727)
+texture = ExtResource("2_isxv6")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -43.0
+offset_right = 83.0
+offset_bottom = -6.0
+grow_vertical = 2
+focus_mode = 0
+text = "Start"
+
+[node name="Time" type="Panel" parent="Panel"]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="Panel/Time"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -39.0
+offset_right = -11.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "12:30 PM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScanLines" type="ColorRect" parent="."]
+material = SubResource("8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
