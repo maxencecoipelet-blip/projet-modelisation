@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmi13rv5x8557"]
+
+[ext_resource type="PackedScene" uid="uid://bhh87tt7a2sc2" path="res://echapPC.tscn" id="1_vhvpd"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Control" parent="." instance=ExtResource("1_vhvpd")]

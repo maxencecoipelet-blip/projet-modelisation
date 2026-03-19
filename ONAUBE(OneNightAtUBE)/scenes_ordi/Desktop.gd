@@ -6,12 +6,18 @@ func _ready():
 
 
 func _on_texture_button_pressed() -> void:
-	print("hey")
+	get_tree().change_scene_to_file("res://scenes_ordi/UIRobots.tscn")
 
 
 func _on_texture_button_2_pressed() -> void:
-	pass 
+	get_tree().change_scene_to_file("res://scenes_ordi/caméras.tscn")
 
 
 func _on_texture_button_3_pressed() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scenes_ordi/minijeu.tscn")
+	
+
+		
+		
+		
+		

@@ -16,6 +16,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_in_range=true
 		player = body
+		GameState.on_pc=true
 		call_deferred("open_computer")
 		print(player)
 
@@ -23,6 +24,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		GameState.on_pc=false
 		player_in_range=false
 		
 
