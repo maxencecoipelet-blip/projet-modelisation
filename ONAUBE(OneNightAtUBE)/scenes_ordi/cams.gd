@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	
 func next():
 	if compteur%2:
-		texture=viewport.get_texture()
-	else:
 		texture=viewport2.get_texture()
+	else:
+		texture=viewport.get_texture()
 	

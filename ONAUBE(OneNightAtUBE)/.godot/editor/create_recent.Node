@@ -1,14 +1,14 @@
+ColorRect
 TextureRect
+GridContainer
 CanvasLayer
+Control
 Camera3D
 SubViewport
 Node3D
-GridContainer
-Control
 SubViewportContainer
 Label
 TextureButton
 VBoxContainer
 Window
-ColorRect
 Button

@@ -3,6 +3,7 @@ var player
 
 @onready var desktop=$Desktop
 @onready var cams=$Desktop/cams
+@onready var robots=$Desktop/Robots
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -13,6 +14,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and GameState.on_pc:
 		desktop.visible=false
 		cams.visible=false
+		robots.visible=false
+		
 		GameState.on_pc=false
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	

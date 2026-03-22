@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cad1ov2isdvy8" path="res://menu_pause.tscn" id="4_7678y"]
 [ext_resource type="PackedScene" uid="uid://cey3n5yukyw83" path="res://ordi.tscn" id="5_fp1em"]
 [ext_resource type="PackedScene" uid="uid://brqxluhax66mh" path="res://scenes_ordi/Desktop.tscn" id="6_6gx7d"]
-[ext_resource type="Script" uid="uid://bipip80yhumin" path="res://texture_rect.gd" id="7_bhfh8"]
+[ext_resource type="Script" uid="uid://bipip80yhumin" path="res://scenes_ordi/cams.gd" id="7_bhfh8"]
+[ext_resource type="Texture2D" uid="uid://k3yinifcu1my" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(3).jpg" id="8_awkn3"]
+[ext_resource type="Texture2D" uid="uid://p714u1xw3cp1" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(4).jpg" id="9_iquii"]
 
 [sub_resource type="Environment" id="Environment_edh6e"]
 
@@ -16,6 +18,24 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 [sub_resource type="PlaneMesh" id="PlaneMesh_edh6e"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tvybu"]
+
+[sub_resource type="Shader" id="7"]
+code = "shader_type canvas_item;
+
+uniform float SCREEN_HEIGHT = 240.0;
+
+void fragment() {
+	int y_pixel = int(UV.y * SCREEN_HEIGHT);
+	if (y_pixel % 2 == 0) {
+		COLOR.a = 0.0;
+	} else {
+		COLOR.a = 0.05;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_awkn3"]
+shader = SubResource("7")
+shader_parameter/SCREEN_HEIGHT = 240.0
 
 [node name="Node3D" type="Node3D" unique_id=571075242]
 
@@ -51,8 +71,12 @@ mesh = SubResource("BoxMesh_tvybu")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1412745373]
 
 [node name="TimeLabel" type="Label" parent="CanvasLayer" unique_id=15791412]
-offset_right = 40.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
 offset_bottom = 23.0
+grow_horizontal = 0
 script = ExtResource("3_qt6nr")
 
 [node name="CanvasLayer2" parent="." unique_id=1193391187 instance=ExtResource("4_7678y")]
@@ -74,6 +98,54 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_bhfh8")
+
+[node name="Robots" type="CanvasLayer" parent="ordinateur/Desktop" unique_id=1214567738]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="ordinateur/Desktop/Robots" unique_id=447293086]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(2.9359758e-06, 0.5202834, 0.53325206, 1)
+
+[node name="GridContainer" type="GridContainer" parent="ordinateur/Desktop/Robots" unique_id=273688870]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="ordinateur/Desktop/Robots/GridContainer" unique_id=1731347663]
+layout_mode = 2
+texture = ExtResource("8_awkn3")
+
+[node name="TextureRect2" type="TextureRect" parent="ordinateur/Desktop/Robots/GridContainer" unique_id=1026242025]
+layout_mode = 2
+texture = ExtResource("9_iquii")
+
+[node name="TextureRect3" type="TextureRect" parent="ordinateur/Desktop/Robots/GridContainer" unique_id=2040228828]
+layout_mode = 2
+texture = ExtResource("9_iquii")
+
+[node name="TextureRect4" type="TextureRect" parent="ordinateur/Desktop/Robots/GridContainer" unique_id=1853209522]
+layout_mode = 2
+texture = ExtResource("8_awkn3")
+
+[node name="TextureRect5" type="TextureRect" parent="ordinateur/Desktop/Robots/GridContainer" unique_id=1607334250]
+layout_mode = 2
+texture = ExtResource("9_iquii")
+
+[node name="ScanLines" type="ColorRect" parent="ordinateur/Desktop/Robots" unique_id=1892694775]
+material = SubResource("ShaderMaterial_awkn3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="cam1" type="Node3D" parent="." unique_id=1519529835]
 
