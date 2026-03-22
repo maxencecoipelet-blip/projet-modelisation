@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://buvavhxtfj1a6"]
+[gd_scene format=3 uid="uid://buvavhxtfj1a6"]
 
-[ext_resource type="PackedScene" uid="uid://bhh87tt7a2sc2" path="res://echapPC.tscn" id="1_38x4q"]
+[ext_resource type="Script" uid="uid://brsvd4bp8nmac" path="res://scenes_ordi/caméras.gd" id="1_38x4q"]
 
-[node name="Node3D" type="Node3D"]
+[node name="SurveillanceSystem" type="Node3D" unique_id=353786791]
+script = ExtResource("1_38x4q")
 
-[node name="Control" parent="." instance=ExtResource("1_38x4q")]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=604196248]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1209965502]

@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 			time+=delta
 	else:
 		win_game()
-	print(get_current_hour())
+	
+	print(on_pc)
 	
 	
 		

@@ -1,7 +1,8 @@
 extends Node3D
 var player
-var player_in_range=false
 
+@onready var desktop=$Desktop
+@onready var cams=$Desktop/cams
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -9,15 +10,21 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("pause") and GameState.on_pc:
+		desktop.visible=false
+		cams.visible=false
+		GameState.on_pc=false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+		
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		player_in_range=true
 		player = body
 		GameState.on_pc=true
 		call_deferred("open_computer")
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		print(player)
 
 
@@ -25,9 +32,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		GameState.on_pc=false
-		player_in_range=false
+		
 		
 
 func open_computer():
-	get_tree().change_scene_to_file("res://scenes_ordi/Desktop.tscn")
+	$Desktop.visible=true
 	

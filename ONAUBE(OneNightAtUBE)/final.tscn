@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjfd6r28c58vr"]
+[gd_scene format=3 uid="uid://cjfd6r28c58vr"]
 
 [ext_resource type="PackedScene" uid="uid://60ajcwcosu0l" path="res://joueur.tscn" id="1_h0aww"]
 [ext_resource type="PackedScene" uid="uid://bhwifpx5nd2j4" path="res://robot.tscn" id="2_tvybu"]
 [ext_resource type="Script" uid="uid://b8ml2tlmh5kha" path="res://time_label.gd" id="3_qt6nr"]
 [ext_resource type="PackedScene" uid="uid://cad1ov2isdvy8" path="res://menu_pause.tscn" id="4_7678y"]
 [ext_resource type="PackedScene" uid="uid://cey3n5yukyw83" path="res://ordi.tscn" id="5_fp1em"]
+[ext_resource type="PackedScene" uid="uid://brqxluhax66mh" path="res://scenes_ordi/Desktop.tscn" id="6_6gx7d"]
+[ext_resource type="Script" uid="uid://bipip80yhumin" path="res://texture_rect.gd" id="7_bhfh8"]
 
 [sub_resource type="Environment" id="Environment_edh6e"]
 
@@ -15,46 +17,79 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_tvybu"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=571075242]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1120125339]
 environment = SubResource("Environment_edh6e")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.07544859, 0.9971497, 0, -0.9971497, 0.07544859, 0, 1.7028298, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1596484262]
+transform = Transform3D(1, 0, 0, 0, -0.87166756, 0.49009758, 0, -0.49009758, -0.87166756, 0, 4.600267, 0)
 
-[node name="joueur" parent="." instance=ExtResource("1_h0aww")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5525, 1.9405782, -13.670105)
+[node name="joueur" parent="." unique_id=1410063770 instance=ExtResource("1_h0aww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22233582, 1.2038853, 0.009435177)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=956862575]
 transform = Transform3D(22.669384, 0, 0, 0, 1, 0, 0, 0, 29.564863, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1816071136]
 transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000005, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_h0aww")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1194237569]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 mesh = SubResource("PlaneMesh_edh6e")
 skeleton = NodePath("../..")
 
-[node name="robot" parent="." instance=ExtResource("2_tvybu")]
+[node name="robot" parent="." unique_id=538969851 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5066738, -16.935314)
 time_active = 3
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=428380246]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50586987, -1.6789932)
 mesh = SubResource("BoxMesh_tvybu")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1412745373]
 
-[node name="TimeLabel" type="Label" parent="CanvasLayer"]
+[node name="TimeLabel" type="Label" parent="CanvasLayer" unique_id=15791412]
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("3_qt6nr")
 
-[node name="CanvasLayer2" parent="." instance=ExtResource("4_7678y")]
+[node name="CanvasLayer2" parent="." unique_id=1193391187 instance=ExtResource("4_7678y")]
 visible = false
 
-[node name="ordinateur" parent="." instance=ExtResource("5_fp1em")]
+[node name="ordinateur" parent="." unique_id=793953710 instance=ExtResource("5_fp1em")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.0107827)
+
+[node name="Desktop" parent="ordinateur" unique_id=1676753499 instance=ExtResource("6_6gx7d")]
+visible = false
+
+[node name="cams" type="CanvasLayer" parent="ordinateur/Desktop" unique_id=1917759378]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="ordinateur/Desktop/cams" unique_id=1271467765]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_bhfh8")
+
+[node name="cam1" type="Node3D" parent="." unique_id=1519529835]
+
+[node name="SubViewport" type="SubViewport" parent="cam1" unique_id=1353739870]
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="cam1/SubViewport" unique_id=57539863]
+transform = Transform3D(0.33229282, -0.6475541, 0.68575156, 0, 0.72706616, 0.6865674, -0.94317627, -0.22814143, 0.24159886, 4.2253394, 5.2528424, -12.829972)
+current = true
+
+[node name="cam2" type="Node3D" parent="." unique_id=693677788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4553716, 2.772935, 0)
+
+[node name="SubViewport" type="SubViewport" parent="cam2" unique_id=647909626]
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="cam2/SubViewport" unique_id=98995594]
+transform = Transform3D(1, 0, 0, 0, 0.72706616, 0.6865674, 0, -0.6865674, 0.72706616, 0, 5.2528424, 6.658082)
+current = true
