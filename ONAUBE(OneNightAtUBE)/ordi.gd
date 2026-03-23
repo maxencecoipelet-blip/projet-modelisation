@@ -4,6 +4,7 @@ var player
 @onready var desktop=$Desktop
 @onready var cams=$Desktop/cams
 @onready var robots=$Desktop/Robots
+@onready var minijeu=$Desktop/MJ
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -15,7 +16,10 @@ func _process(delta: float) -> void:
 		desktop.visible=false
 		cams.visible=false
 		robots.visible=false
+		minijeu.visible=false
 		
+		
+		GameState.IG=false
 		GameState.on_pc=false
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -27,7 +31,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		player = body
 		GameState.on_pc=true
 		call_deferred("open_computer")
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		if !GameState.IG:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		print(player)
 
 

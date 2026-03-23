@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bipip80yhumin" path="res://scenes_ordi/cams.gd" id="7_bhfh8"]
 [ext_resource type="Texture2D" uid="uid://k3yinifcu1my" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(3).jpg" id="8_awkn3"]
 [ext_resource type="Texture2D" uid="uid://p714u1xw3cp1" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(4).jpg" id="9_iquii"]
+[ext_resource type="Script" uid="uid://cvealnp2qgajv" path="res://sub_viewport_container.gd" id="12_i6nld"]
 
 [sub_resource type="Environment" id="Environment_edh6e"]
 
@@ -146,6 +147,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="MJ" type="CanvasLayer" parent="ordinateur/Desktop" unique_id=1962013571]
+visible = false
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ordinateur/Desktop/MJ" unique_id=1764216566]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_i6nld")
+
+[node name="SubViewport" type="SubViewport" parent="ordinateur/Desktop/MJ/SubViewportContainer" unique_id=1780988809]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
 
 [node name="cam1" type="Node3D" parent="." unique_id=1519529835]
 

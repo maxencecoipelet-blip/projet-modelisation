@@ -19,8 +19,11 @@ func _process(delta: float) -> void:
 			time+=delta
 	else:
 		win_game()
+		
 	
-	print(on_pc)
+	
+	
+	
 	
 	
 		

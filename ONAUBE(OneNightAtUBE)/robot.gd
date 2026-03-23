@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 	if GameState.get_current_hour()>=time_active:
 		is_active=true
 	
+	
 func _ready():
 	choose_random_position()
 

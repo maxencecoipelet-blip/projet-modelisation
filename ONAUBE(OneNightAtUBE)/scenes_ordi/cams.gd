@@ -3,6 +3,7 @@ extends TextureRect
 @onready var viewport = get_node("../../../../cam1/SubViewport")
 @onready var viewport2 = get_node("../../../../cam2/SubViewport")
 var compteur=0
+var total=2
 
 func _ready():
 	
@@ -14,8 +15,8 @@ func _process(delta: float) -> void:
 		next()
 	
 func next():
-	if compteur%2:
-		texture=viewport2.get_texture()
-	else:
+	if compteur%total==0:
 		texture=viewport.get_texture()
+	elif compteur%total==1 :
+		texture=viewport2.get_texture()
 	
