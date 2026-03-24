@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://do6oovjv1v3gk"]
+
+[ext_resource type="Script" uid="uid://d1f0iwppxijw0" path="res://ecran_win.gd" id="1_jvpi0"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=448874651]
+script = ExtResource("1_jvpi0")
+
+[node name="Label" type="Label" parent="." unique_id=156139532]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = -238.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 54
+text = "Vous avez survécu !"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Button2" type="Button" parent="." unique_id=1730741390]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 1.0
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_left = -13.200005
+offset_top = -152.0
+offset_right = -13.199951
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "MENU PRINCIPAL"
+
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

@@ -3,6 +3,7 @@ var time=0
 var night_duration=60
 var win=false
 var IG=false
+var loose=false
 var on_pc=false
 
 # Called when the node enters the scene tree for the first time.
@@ -18,15 +19,11 @@ func _process(delta: float) -> void:
 		else:
 			time+=delta
 	else:
-		win_game()
+		if !win:
+			win=true
+			call_deferred("win_game")
 		
-	
-	
-	
-	
-	
-	
-		
+
 func get_current_hour():
 	var ratio = time / night_duration
 	var hour = int(ratio * 6)
@@ -35,5 +32,6 @@ func get_current_hour():
 	
 	
 func win_game():
-	win=true
+	if !loose:
+		get_tree().change_scene_to_file("res://ecran_win.tscn")
 	

@@ -33,7 +33,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		call_deferred("open_computer")
 		if !GameState.IG:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		print(player)
+		
 
 
 

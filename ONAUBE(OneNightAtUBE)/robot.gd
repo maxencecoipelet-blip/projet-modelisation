@@ -57,3 +57,13 @@ func _on_area_3d_2_body_exited(body: Node3D) -> void:
 			choose_random_position()
 			
 			player=null
+
+
+func _on_area_3d_3_body_entered(body: Node3D) -> void:
+	if is_active:
+		if body.is_in_group("player"):
+			GameState.loose=true
+			call_deferred("triggerMort")
+			
+func triggerMort():
+	get_tree().change_scene_to_file("res://ecran_mort.tscn")

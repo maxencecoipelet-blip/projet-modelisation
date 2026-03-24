@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cjfd6r28c58vr"]
 
 [ext_resource type="PackedScene" uid="uid://60ajcwcosu0l" path="res://joueur.tscn" id="1_h0aww"]
+[ext_resource type="Script" uid="uid://16s73dtowb2r" path="res://final.gd" id="1_xethn"]
 [ext_resource type="PackedScene" uid="uid://bhwifpx5nd2j4" path="res://robot.tscn" id="2_tvybu"]
 [ext_resource type="Script" uid="uid://b8ml2tlmh5kha" path="res://time_label.gd" id="3_qt6nr"]
 [ext_resource type="PackedScene" uid="uid://cad1ov2isdvy8" path="res://menu_pause.tscn" id="4_7678y"]
@@ -39,6 +40,7 @@ shader = SubResource("7")
 shader_parameter/SCREEN_HEIGHT = 240.0
 
 [node name="Node3D" type="Node3D" unique_id=571075242]
+script = ExtResource("1_xethn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1120125339]
 environment = SubResource("Environment_edh6e")
@@ -68,17 +70,6 @@ time_active = 3
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=428380246]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50586987, -1.6789932)
 mesh = SubResource("BoxMesh_tvybu")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1412745373]
-
-[node name="TimeLabel" type="Label" parent="CanvasLayer" unique_id=15791412]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
-grow_horizontal = 0
-script = ExtResource("3_qt6nr")
 
 [node name="CanvasLayer2" parent="." unique_id=1193391187 instance=ExtResource("4_7678y")]
 visible = false
@@ -184,3 +175,14 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="cam2/SubViewport" unique_id=98995594]
 transform = Transform3D(1, 0, 0, 0, 0.72706616, 0.6865674, 0, -0.6865674, 0.72706616, 0, 5.2528424, 6.658082)
 current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1412745373]
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer" unique_id=15791412]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+script = ExtResource("3_qt6nr")

@@ -8,7 +8,7 @@ const JUMP_VELOCITY = 2.5
 @export var rotationstep=-0.05
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	print("Camera pivot =", camera_pivot)
+	
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
