@@ -8,11 +8,10 @@ var active=false
 
 func set_active(value):
 	active = value
-	GameState.IG=true
-	
+	GameState.IGV=true
 	
 func _physics_process(delta: float) -> void:
-	if GameState.IG:
+	if GameState.IGV:
 		# Add the gravity.
 		if not is_on_floor():
 			velocity += get_gravity() * delta

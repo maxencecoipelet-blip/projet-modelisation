@@ -3,16 +3,16 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+
 var active=false
 
 
 func set_active(value):
 	active = value
-	GameState.IG=true
-	
+	GameState.IGJ=true
 	
 func _physics_process(delta: float) -> void:
-	if GameState.IG:
+	if GameState.IGJ:
 		# Add the gravity.
 		if not is_on_floor():
 			velocity += get_gravity() * delta

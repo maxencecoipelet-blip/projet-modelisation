@@ -9,6 +9,7 @@ func _ready() -> void:
 	GameState.win=false
 	GameState.on_pc=false
 	
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

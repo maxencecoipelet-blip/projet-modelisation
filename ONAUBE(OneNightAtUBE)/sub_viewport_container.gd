@@ -1,17 +1,26 @@
 extends SubViewportContainer
 
+@export var scene: PackedScene
 var mini_game_instance = null
 
 func open_minigame():
-	# Instancier une seule fois
 	if mini_game_instance == null:
-		mini_game_instance = preload("res://MJ/mini_jeu.tscn").instantiate()
-		
-		# Active la caméra du mini-jeu si elle existe
-		var cam = mini_game_instance.get_node_or_null("Camera3D")
-		if cam:
-			cam.current = true
-		# Ajouter le mini-jeu au viewport
+		mini_game_instance = scene.instantiate()
 		$SubViewport.add_child(mini_game_instance)
 	
-	visible = true  # rend le panel visible
+	_activate_only_this()
+	
+	
+
+
+func _activate_only_this():
+
+	for child in mini_game_instance.get_children():
+		if child.has_method("set_active"):
+			child.set_active(true)
+			print("test")
+	
+	# Active la caméra
+	var cam = mini_game_instance.get_node_or_null("Camera3D")
+	if cam:
+		cam.current = true

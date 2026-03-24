@@ -3,6 +3,10 @@ var time=0
 var night_duration=60
 var win=false
 var IG=false
+var IGJ=false
+var IGV=false
+var IGC=false
+
 var loose=false
 var on_pc=false
 
@@ -14,15 +18,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if time<=night_duration:
-		if IG==true:
-			time+=delta*2
-		else:
-			time+=delta
+		time+=delta
 	else:
 		if !win:
 			win=true
 			call_deferred("win_game")
-		
+	print(IG, IGV, IGJ)
 
 func get_current_hour():
 	var ratio = time / night_duration

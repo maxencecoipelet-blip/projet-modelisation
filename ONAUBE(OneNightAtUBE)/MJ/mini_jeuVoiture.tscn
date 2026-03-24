@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dcn6epxvxjunb"]
+
+[ext_resource type="Script" uid="uid://dt7n4baubk0ys" path="res://MJ/joueurMJVoiture.gd" id="1_kkuv8"]
+
+[sub_resource type="Environment" id="Environment_mrmgt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mrmgt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7j6f4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2tm7w"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6wvun"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="Node3D" type="Node3D" unique_id=1819507674]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=704198207]
+environment = SubResource("Environment_mrmgt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=975759067]
+transform = Transform3D(1, 0, 0, 0, -0.7463478, 0.66555613, 0, -0.66555613, -0.7463478, 0, 0.4224003, -0.7078806)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1473770958]
+transform = Transform3D(1, 0, 0, 0, 0.8581464, 0, 0, 0, 0.8197598, 0, 0.42589742, 0)
+script = ExtResource("1_kkuv8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=687692509]
+transform = Transform3D(0.3339269, 0, 0, 0, 0.34215772, 0, 0, 0, 0.42991096, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_mrmgt")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=880395749]
+transform = Transform3D(1, 0, 0, 0, 1.0572654, 0.49417046, 0, -0.49814263, 1.1116879, 0, 0.559899, 0.7209638)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1976432092]
+shape = SubResource("CapsuleShape3D_7j6f4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2126606590]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=567793872]
+mesh = SubResource("PlaneMesh_2tm7w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=730086449]
+shape = SubResource("ConcavePolygonShape3D_6wvun")

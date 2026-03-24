@@ -10,7 +10,12 @@
 [ext_resource type="Script" uid="uid://bipip80yhumin" path="res://scenes_ordi/cams.gd" id="7_bhfh8"]
 [ext_resource type="Texture2D" uid="uid://k3yinifcu1my" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(3).jpg" id="8_awkn3"]
 [ext_resource type="Texture2D" uid="uid://p714u1xw3cp1" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(4).jpg" id="9_iquii"]
+[ext_resource type="Script" uid="uid://cvvc0fwmjkjdt" path="res://ordiSecondaire.gd" id="11_i6nld"]
 [ext_resource type="Script" uid="uid://cvealnp2qgajv" path="res://sub_viewport_container.gd" id="12_i6nld"]
+[ext_resource type="PackedScene" uid="uid://ds3xcj35uqffd" path="res://MJ/mini_jeu.tscn" id="12_lo1d8"]
+[ext_resource type="PackedScene" uid="uid://b8h30rfig0361" path="res://MJ/mini_jeuJetpack.tscn" id="13_572a1"]
+[ext_resource type="PackedScene" uid="uid://dcn6epxvxjunb" path="res://MJ/mini_jeuVoiture.tscn" id="13_m4l06"]
+[ext_resource type="PackedScene" uid="uid://cmyufcwuppvt4" path="res://MJ/mini_jeuCulture.tscn" id="15_3fwds"]
 
 [sub_resource type="Environment" id="Environment_edh6e"]
 
@@ -150,6 +155,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_i6nld")
+scene = ExtResource("12_lo1d8")
 
 [node name="SubViewport" type="SubViewport" parent="ordinateur/Desktop/MJ/SubViewportContainer" unique_id=1780988809]
 own_world_3d = true
@@ -175,6 +181,75 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="cam2/SubViewport" unique_id=98995594]
 transform = Transform3D(1, 0, 0, 0, 0.72706616, 0.6865674, 0, -0.6865674, 0.72706616, 0, 5.2528424, 6.658082)
 current = true
+
+[node name="ordinateur2" parent="." unique_id=547112757 instance=ExtResource("5_fp1em")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.024212, 0, 17.928867)
+script = ExtResource("11_i6nld")
+
+[node name="MJ" type="CanvasLayer" parent="ordinateur2" unique_id=552275237]
+visible = false
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ordinateur2/MJ" unique_id=516271652]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_i6nld")
+scene = ExtResource("13_572a1")
+
+[node name="SubViewport" type="SubViewport" parent="ordinateur2/MJ/SubViewportContainer" unique_id=1972315506]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
+
+[node name="ordinateur3" parent="." unique_id=811746658 instance=ExtResource("5_fp1em")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.493877, 0, 17.928867)
+script = ExtResource("11_i6nld")
+
+[node name="MJ" type="CanvasLayer" parent="ordinateur3" unique_id=1345878182]
+visible = false
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ordinateur3/MJ" unique_id=1840972012]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_i6nld")
+scene = ExtResource("13_m4l06")
+
+[node name="SubViewport" type="SubViewport" parent="ordinateur3/MJ/SubViewportContainer" unique_id=1374129598]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
+
+[node name="ordinateur4" parent="." unique_id=2111980412 instance=ExtResource("5_fp1em")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.211094, 0, -28.094273)
+script = ExtResource("11_i6nld")
+
+[node name="MJ" type="CanvasLayer" parent="ordinateur4" unique_id=285417217]
+visible = false
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ordinateur4/MJ" unique_id=1906203350]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_i6nld")
+scene = ExtResource("15_3fwds")
+
+[node name="SubViewport" type="SubViewport" parent="ordinateur4/MJ/SubViewportContainer" unique_id=1077277931]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1412745373]
 

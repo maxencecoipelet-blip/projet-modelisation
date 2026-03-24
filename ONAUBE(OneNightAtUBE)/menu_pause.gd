@@ -5,6 +5,7 @@ func _input(event):
 	if event.is_action_pressed("pause") and !GameState.on_pc:
 		toggle_pause()
 		
+		
 	
 
 func toggle_pause():
@@ -36,5 +37,5 @@ func _on_reprendre_pressed() -> void:
 
 func _on_paramètres_pressed() -> void:
 	toggle_pause()
-	#GameState.IG=true
+	
 	get_tree().change_scene_to_file("res://SettingsMenu.tscn")
