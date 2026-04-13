@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cad1ov2isdvy8"]
+
+[ext_resource type="Script" uid="uid://dxfchy52xhc5" path="res://menu_pause.gd" id="1_nhsed"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1152501987]
+process_mode = 3
+script = ExtResource("1_nhsed")
+
+[node name="Label" type="Label" parent="." unique_id=1716483596]
+offset_right = 1152.0
+offset_bottom = 161.0
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Label" unique_id=147750086]
+layout_mode = 1
+offset_top = 214.0
+offset_right = 1144.0
+offset_bottom = 649.0
+
+[node name="Reprendre" type="Button" parent="Label/VBoxContainer" unique_id=116931426]
+layout_mode = 2
+text = "Reprendre
+"
+
+[node name="Paramètres" type="Button" parent="Label/VBoxContainer" unique_id=1206995169]
+layout_mode = 2
+text = "Paramètres"
+
+[node name="Main" type="Button" parent="Label/VBoxContainer" unique_id=1484105855]
+layout_mode = 2
+text = "Menu principal"
+
+[connection signal="pressed" from="Label/VBoxContainer/Reprendre" to="." method="_on_reprendre_pressed"]
+[connection signal="pressed" from="Label/VBoxContainer/Paramètres" to="." method="_on_paramètres_pressed"]
+[connection signal="pressed" from="Label/VBoxContainer/Main" to="." method="_on_main_pressed"]
