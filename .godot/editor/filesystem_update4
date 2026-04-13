@@ -1,8 +1,0 @@
-res://final.tscn
-res://robot.tscn
-res://robot.gd
-res://ecran_mort.tscn
-res://menu_pause.tscn
-res://gameState.gd
-res://menu_pause.gd
-res://character_body_3d.gd

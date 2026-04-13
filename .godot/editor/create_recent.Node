@@ -1,7 +1,0 @@
-Button
-VBoxContainer
-Label
-CanvasLayer
-CollisionShape3D
-Area3D
-Node3D
