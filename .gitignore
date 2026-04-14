@@ -1,2 +1,5 @@
-ONAUBONAUBE(OneNightAtUBE)/.godot/
+# Godot editor and import artifacts
+.godot/
+.import/
+ONAUBE(OneNightAtUBE)/.godot/
 ONAUBE(OneNightAtUBE)/.import/
