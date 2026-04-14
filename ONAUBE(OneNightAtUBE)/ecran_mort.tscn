@@ -64,13 +64,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Hint" type="Label" parent="CenterPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.909804, 0.486275, 0.533333, 1)
-theme_override_font_sizes/font_size = 18
-text = "Le couloir t'a garde."
-horizontal_alignment = 1
-
 [node name="Button" type="Button" parent="CenterPanel/VBoxContainer" unique_id=1073124198]
 custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
