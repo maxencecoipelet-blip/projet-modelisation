@@ -1,29 +1,82 @@
-[gd_scene format=3 uid="uid://dc5e0krx7rvxr"]
+[gd_scene load_steps=4 format=3 uid="uid://dc5e0krx7rvxr"]
 
 [ext_resource type="Script" uid="uid://bljxw85hmdexw" path="res://ecran_mort.gd" id="1_dld5a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.0705882, 0.0235294, 0.0392157, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.760784, 0.160784, 0.192157, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.180392, 0.0627451, 0.0862745, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.909804, 0.247059, 0.282353, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1429889200]
 script = ExtResource("1_dld5a")
 
-[node name="Label" type="Label" parent="." unique_id=1207081358]
-offset_right = 1150.0
-offset_bottom = 644.0
-theme_override_font_sizes/font_size = 54
-text = "Vous êtes Mort"
+[node name="Backdrop" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0196078, 0.0156863, 0.0235294, 1)
+
+[node name="CenterPanel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -190.0
+offset_right = 280.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CenterPanel/VBoxContainer" unique_id=1207081358]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.862745, 0.862745, 1)
+theme_override_font_sizes/font_size = 46
+text = "VOUS ETES MORT"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Button" type="Button" parent="." unique_id=1073124198]
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 1.0
-anchor_right = 0.9
-anchor_bottom = 1.0
-offset_top = -233.0
-offset_bottom = -105.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Hint" type="Label" parent="CenterPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.909804, 0.486275, 0.533333, 1)
+theme_override_font_sizes/font_size = 18
+text = "Le couloir t'a garde."
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CenterPanel/VBoxContainer" unique_id=1073124198]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 text = "Rejouer"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CenterPanel/VBoxContainer/Button" to="." method="_on_button_pressed"]

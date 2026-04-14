@@ -1,37 +1,106 @@
-[gd_scene format=3 uid="uid://cad1ov2isdvy8"]
+[gd_scene load_steps=6 format=3 uid="uid://cad1ov2isdvy8"]
 
 [ext_resource type="Script" uid="uid://dxfchy52xhc5" path="res://menu_pause.gd" id="1_nhsed"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.0392157, 0.0470588, 0.0627451, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.541176, 0.121569, 0.145098, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.117647, 0.129412, 0.164706, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.541176, 0.121569, 0.145098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.231373, 0.117647, 0.145098, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.862745, 0.239216, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1152501987]
 process_mode = 3
 script = ExtResource("1_nhsed")
 
-[node name="Label" type="Label" parent="." unique_id=1716483596]
-offset_right = 1152.0
-offset_bottom = 161.0
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.72)
+
+[node name="CenterPanel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -180.0
+offset_right = 250.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MenuVBox" type="VBoxContainer" parent="CenterPanel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterPanel/MenuVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_font_sizes/font_size = 34
 text = "PAUSE"
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Label" unique_id=147750086]
-layout_mode = 1
-offset_top = 214.0
-offset_right = 1144.0
-offset_bottom = 649.0
-
-[node name="Reprendre" type="Button" parent="Label/VBoxContainer" unique_id=116931426]
+[node name="Reprendre" type="Button" parent="CenterPanel/MenuVBox"]
+custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
-text = "Reprendre
-"
+theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "Reprendre"
 
-[node name="Paramètres" type="Button" parent="Label/VBoxContainer" unique_id=1206995169]
+[node name="Parametres" type="Button" parent="CenterPanel/MenuVBox"]
+custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "Paramètres"
 
-[node name="Main" type="Button" parent="Label/VBoxContainer" unique_id=1484105855]
+[node name="Main" type="Button" parent="CenterPanel/MenuVBox"]
+custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "Menu principal"
 
-[connection signal="pressed" from="Label/VBoxContainer/Reprendre" to="." method="_on_reprendre_pressed"]
-[connection signal="pressed" from="Label/VBoxContainer/Paramètres" to="." method="_on_paramètres_pressed"]
-[connection signal="pressed" from="Label/VBoxContainer/Main" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="CenterPanel/MenuVBox/Reprendre" to="." method="_on_reprendre_pressed"]
+[connection signal="pressed" from="CenterPanel/MenuVBox/Parametres" to="." method="_on_parametres_pressed"]
+[connection signal="pressed" from="CenterPanel/MenuVBox/Main" to="." method="_on_main_pressed"]

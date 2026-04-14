@@ -1,7 +1,9 @@
-extends VBoxContainer
+extends Control
+
+@onready var new_game_button: Button = $CenterPanel/MenuVBox/NewGame
 
 func _ready() -> void:
-	$NewGame.grab_focus()
+	new_game_button.grab_focus()
 func _on_nouvelle_partie_pressed():
 	get_tree().change_scene_to_file("res://final.tscn")
 	

@@ -1,29 +1,150 @@
-[gd_scene load_steps=2 format=3 uid="uid://dndrkhg6aphv6"]
+[gd_scene format=3 uid="uid://dndrkhg6aphv6"]
 
 [ext_resource type="Script" uid="uid://bhm7d4ae576si" path="res://main_menu.gd" id="1_i26rj"]
 
-[node name="VBoxContainer" type="VBoxContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.0588235, 0.0705882, 0.0901961, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.447059, 0.0862745, 0.105882, 0.9)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.101961, 0.113725, 0.145098, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.431373, 0.0784314, 0.101961, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
+bg_color = Color(0.321569, 0.0784314, 0.101961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.941176, 0.301961, 0.337255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.196078, 0.109804, 0.129412, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.768627, 0.160784, 0.192157, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MainMenu" type="Control" unique_id=696246386]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i26rj")
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=1318769311]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0392157, 0.0470588, 0.0627451, 1)
+
+[node name="RedGlow" type="ColorRect" parent="." unique_id=928737444]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -577.0
-offset_top = -324.5
-offset_right = 577.0
-offset_bottom = 324.5
+offset_left = -420.0
+offset_top = -260.0
+offset_right = 420.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
-script = ExtResource("1_i26rj")
+color = Color(0.301961, 0.0470588, 0.0823529, 0.18)
 
-[node name="NewGame" type="Button" parent="."]
+[node name="CenterPanel" type="PanelContainer" parent="." unique_id=852496423]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -220.0
+offset_right = 290.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MenuVBox" type="VBoxContainer" parent="CenterPanel" unique_id=1204024868]
 layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="CenterPanel/MenuVBox" unique_id=1963888232]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_font_sizes/font_size = 42
+text = "ONE NIGHT AT UBE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterPanel/MenuVBox" unique_id=176813393]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.780392, 0.313726, 0.352941, 1)
+theme_override_font_sizes/font_size = 18
+text = "Reste en vie jusqu'au matin."
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterPanel/MenuVBox" unique_id=793703505]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="NewGame" type="Button" parent="CenterPanel/MenuVBox" unique_id=1079499850]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "NOUVELLE PARTIE"
 
-[node name="Quit" type="Button" parent="."]
+[node name="Quit" type="Button" parent="CenterPanel/MenuVBox" unique_id=333009330]
+custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "QUITTER"
 
-[connection signal="pressed" from="NewGame" to="." method="_on_nouvelle_partie_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quitter_pressed"]
+[connection signal="pressed" from="CenterPanel/MenuVBox/NewGame" to="." method="_on_nouvelle_partie_pressed"]
+[connection signal="pressed" from="CenterPanel/MenuVBox/Quit" to="." method="_on_quitter_pressed"]
