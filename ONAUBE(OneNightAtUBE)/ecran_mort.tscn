@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc5e0krx7rvxr"]
+[gd_scene format=3 uid="uid://dc5e0krx7rvxr"]
 
 [ext_resource type="Script" uid="uid://bljxw85hmdexw" path="res://ecran_mort.gd" id="1_dld5a"]
 
@@ -29,7 +29,7 @@ corner_radius_bottom_left = 12
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1429889200]
 script = ExtResource("1_dld5a")
 
-[node name="Backdrop" type="ColorRect" parent="."]
+[node name="Backdrop" type="ColorRect" parent="." unique_id=2052152200]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,7 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0196078, 0.0156863, 0.0235294, 1)
 
-[node name="CenterPanel" type="PanelContainer" parent="."]
+[node name="CenterPanel" type="PanelContainer" parent="." unique_id=542221727]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -51,7 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterPanel" unique_id=1738983285]
 layout_mode = 2
 theme_override_constants/separation = 20
 

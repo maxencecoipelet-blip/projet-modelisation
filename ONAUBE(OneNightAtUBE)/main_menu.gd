@@ -4,6 +4,9 @@ extends Control
 
 func _ready() -> void:
 	new_game_button.grab_focus()
+	GameState.en_menu=true
+	
+	
 func _on_nouvelle_partie_pressed():
 	get_tree().change_scene_to_file("res://final.tscn")
 	

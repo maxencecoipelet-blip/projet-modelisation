@@ -8,10 +8,6 @@ func _ready() -> void:
 	GameState.loose=false
 	GameState.win=false
 	GameState.on_pc=false
+	GameState.en_menu=false
 	
 	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
