@@ -13,7 +13,14 @@ var on_pc=false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	call_deferred("_configure_window")
+
+func _configure_window() -> void:
+	var root_window := get_tree().root
+	root_window.content_scale_size = Vector2i(1920, 1080)
+	root_window.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+	root_window.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
+	root_window.mode = Window.MODE_MAXIMIZED
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
