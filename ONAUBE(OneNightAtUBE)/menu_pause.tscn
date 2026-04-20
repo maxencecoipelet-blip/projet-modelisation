@@ -58,48 +58,61 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -180.0
-offset_right = 250.0
-offset_bottom = 180.0
+offset_left = -290.0
+offset_top = -220.0
+offset_right = 290.0
+offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="MenuVBox" type="VBoxContainer" parent="CenterPanel"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 18
 
 [node name="Title" type="Label" parent="CenterPanel/MenuVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 42
 text = "PAUSE"
 horizontal_alignment = 1
 
+[node name="Spacer" type="Control" parent="CenterPanel/MenuVBox"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
 [node name="Reprendre" type="Button" parent="CenterPanel/MenuVBox"]
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-text = "Reprendre"
+text = "REPRENDRE"
 
 [node name="Parametres" type="Button" parent="CenterPanel/MenuVBox"]
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-text = "Paramètres"
+text = "PARAMÈTRES"
 
 [node name="Main" type="Button" parent="CenterPanel/MenuVBox"]
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94902, 0.913725, 0.894118, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-text = "Menu principal"
+text = "MENU PRINCIPAL"
 
 [connection signal="pressed" from="CenterPanel/MenuVBox/Reprendre" to="." method="_on_reprendre_pressed"]
 [connection signal="pressed" from="CenterPanel/MenuVBox/Parametres" to="." method="_on_parametres_pressed"]
