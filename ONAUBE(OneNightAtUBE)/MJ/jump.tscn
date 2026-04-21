@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c44ej3w7dm3wo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uts1x"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wspun"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4620314, 3.3955455, 14.524256)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06600189, -0.52986956, 10.506782)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="sol" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sol"]
+transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("BoxShape3D_uts1x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="sol"]
+transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_wspun")
