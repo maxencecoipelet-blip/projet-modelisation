@@ -1,25 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://c44ej3w7dm3wo"]
+[gd_scene format=3 uid="uid://c44ej3w7dm3wo"]
+
+[ext_resource type="Script" uid="uid://b7xoxc050ryxe" path="res://MJ/joueurJump.gd" id="1_wspun"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uts1x"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wspun"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uts1x"]
+albedo_color = Color(18.892157, 18.892157, 18.892157, 1)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4620314, 3.3955455, 14.524256)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wspun"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_05uvi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wspun"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_05uvi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6x0o"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kaylv"]
+
+[node name="Node3D" type="Node3D" unique_id=2025118441]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1302458303]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06600189, -0.52986956, 10.506782)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=593460805]
 
-[node name="sol" type="StaticBody3D" parent="."]
+[node name="sol" type="StaticBody3D" parent="." unique_id=1027527132]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="sol"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sol" unique_id=1200139765]
 transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("BoxShape3D_uts1x")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="sol"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="sol" unique_id=44063221]
 transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("BoxMesh_wspun")
+surface_material_override/0 = SubResource("StandardMaterial3D_uts1x")
+
+[node name="JoueurJump" type="CharacterBody3D" parent="." unique_id=1393673360]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_wspun")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JoueurJump" unique_id=1200561383]
+shape = SubResource("CapsuleShape3D_wspun")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="JoueurJump" unique_id=1891783470]
+mesh = SubResource("CapsuleMesh_05uvi")
+surface_material_override/0 = SubResource("StandardMaterial3D_wspun")
+
+[node name="Head" type="Node3D" parent="JoueurJump" unique_id=522037342]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1095784, -0.6237956)
+
+[node name="Camera3D" type="Camera3D" parent="JoueurJump/Head" unique_id=1867951182]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11489487, 0)
+
+[node name="Platform1" type="StaticBody3D" parent="." unique_id=1737009503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0417511, -7.1553497)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform1" unique_id=1387989525]
+transform = Transform3D(2, 0, 0, 0, 0.1, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("BoxMesh_05uvi")
+surface_material_override/0 = SubResource("StandardMaterial3D_s6x0o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform1" unique_id=1265567228]
+transform = Transform3D(2, 0, 0, 0, 0.1, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_kaylv")
