@@ -10,9 +10,9 @@
 [ext_resource type="Script" uid="uid://bipip80yhumin" path="res://scenes_ordi/cams.gd" id="7_bhfh8"]
 [ext_resource type="Texture2D" uid="uid://k3yinifcu1my" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(3).jpg" id="8_awkn3"]
 [ext_resource type="Texture2D" uid="uid://p714u1xw3cp1" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(4).jpg" id="9_iquii"]
+[ext_resource type="PackedScene" uid="uid://c44ej3w7dm3wo" path="res://MJ/jump.tscn" id="11_3fwds"]
 [ext_resource type="Script" uid="uid://cvvc0fwmjkjdt" path="res://ordiSecondaire.gd" id="11_i6nld"]
 [ext_resource type="Script" uid="uid://cvealnp2qgajv" path="res://sub_viewport_container.gd" id="12_i6nld"]
-[ext_resource type="PackedScene" uid="uid://ds3xcj35uqffd" path="res://MJ/mini_jeu.tscn" id="12_lo1d8"]
 [ext_resource type="PackedScene" uid="uid://b8h30rfig0361" path="res://MJ/mini_jeuJetpack.tscn" id="13_572a1"]
 [ext_resource type="PackedScene" uid="uid://dcn6epxvxjunb" path="res://MJ/mini_jeuVoiture.tscn" id="13_m4l06"]
 [ext_resource type="PackedScene" uid="uid://cmyufcwuppvt4" path="res://MJ/mini_jeuCulture.tscn" id="15_3fwds"]
@@ -155,7 +155,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_i6nld")
-scene = ExtResource("12_lo1d8")
+scene = ExtResource("11_3fwds")
 
 [node name="SubViewport" type="SubViewport" parent="ordinateur/Desktop/MJ/SubViewportContainer" unique_id=1780988809]
 own_world_3d = true

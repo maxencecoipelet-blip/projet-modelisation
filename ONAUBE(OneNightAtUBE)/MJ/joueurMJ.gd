@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 4.5
 var active=false
 
 
+
 func set_active(value):
 	active = value
 	GameState.IG=true

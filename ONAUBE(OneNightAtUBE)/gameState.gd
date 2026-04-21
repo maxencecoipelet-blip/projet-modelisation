@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 		if !win and !en_menu:
 			win=true
 			call_deferred("win_game")
-	print(" ")
+	#print(on_pc,IG)
 
 func get_current_hour():
 	var ratio = time / night_duration

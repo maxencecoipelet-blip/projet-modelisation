@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 			robots.visible=false
 			minijeu.visible=false
 			GameState.IG=false
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			
 			
 		else:

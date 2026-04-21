@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 		
 		move_and_slide()
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and !GameState.on_pc:
 		# Rotation gauche / droite (joueur)
 		rotate_y(-event.relative.x * mouse_sensitivity)
 
