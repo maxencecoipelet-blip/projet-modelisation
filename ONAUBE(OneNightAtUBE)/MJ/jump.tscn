@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://b6f5y2fipoa6h" path="res://MJ/moving_platform.gd" id="2_05uvi"]
 [ext_resource type="Script" uid="uid://c5p8457nn6duv" path="res://MJ/moving_platform_2.gd" id="3_s6x0o"]
 [ext_resource type="Script" uid="uid://y5u6hao5q0f3" path="res://MJ/movingwall_1.gd" id="4_kaylv"]
+[ext_resource type="PackedScene" uid="uid://dkv6bi6qy43y7" path="res://triggerDesacRobot.tscn" id="5_h7s17"]
+[ext_resource type="Script" uid="uid://c657npph1lph3" path="res://trigger_desac_robot.gd" id="6_4g58u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uts1x"]
 
@@ -32,8 +34,6 @@ albedo_color = Color(1, 0, 1, 1)
 albedo_color = Color(0.92908424, 0.0007023239, 0.92907804, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h7s17"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_kaylv"]
 
 [node name="Node3D" type="Node3D" unique_id=2025118441]
 
@@ -209,9 +209,6 @@ transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("BoxMesh_wspun")
 surface_material_override/0 = SubResource("StandardMaterial3D_uts1x")
 
-[node name="triggerdesacrobot" type="Area3D" parent="." unique_id=1675320394]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3670464, 7.085805, -52.496975)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggerdesacrobot" unique_id=1588453264]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-shape = SubResource("SphereShape3D_kaylv")
+[node name="triggerdesacrobot" parent="." unique_id=816027573 instance=ExtResource("5_h7s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3670464, 7.2334814, -52.496975)
+script = ExtResource("6_4g58u")
