@@ -33,6 +33,8 @@ albedo_color = Color(0.92908424, 0.0007023239, 0.92907804, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h7s17"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_kaylv"]
+
 [node name="Node3D" type="Node3D" unique_id=2025118441]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1302458303]
@@ -40,13 +42,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06600189, -0.52986956, 10.5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=593460805]
 
-[node name="sol" type="StaticBody3D" parent="." unique_id=1027527132]
+[node name="départ" type="StaticBody3D" parent="." unique_id=1027527132]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="sol" unique_id=1200139765]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="départ" unique_id=1200139765]
 transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("BoxShape3D_uts1x")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="sol" unique_id=44063221]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="départ" unique_id=44063221]
 transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("BoxMesh_wspun")
 surface_material_override/0 = SubResource("StandardMaterial3D_uts1x")
@@ -194,3 +196,22 @@ surface_material_override/0 = SubResource("StandardMaterial3D_kaylv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Movingwall1" unique_id=1513417697]
 transform = Transform3D(2, 0, 0, 0, 0.1, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("BoxShape3D_h7s17")
+
+[node name="arrivée" type="StaticBody3D" parent="." unique_id=2001544211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3670464, 6.273362, -50.829613)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="arrivée" unique_id=1687828611]
+transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("BoxShape3D_uts1x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="arrivée" unique_id=2129445286]
+transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_wspun")
+surface_material_override/0 = SubResource("StandardMaterial3D_uts1x")
+
+[node name="triggerdesacrobot" type="Area3D" parent="." unique_id=1675320394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3670464, 7.085805, -52.496975)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="triggerdesacrobot" unique_id=1588453264]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("SphereShape3D_kaylv")
