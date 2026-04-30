@@ -43,20 +43,22 @@ func choose_random_position():
 	)
 
 func _on_area_3d_body_entered(body):
-	if is_active:
-		if body.is_in_group("player"):
-			player = body
+	if is_active and body.is_in_group("player"):
+		player = body
+		if not chasing:
 			chasing = true
+			AudioManager.notify_robot_started_chase()
+
 
 
 func _on_area_3d_2_body_exited(body: Node3D) -> void:
-	if is_active:
-		if body.is_in_group("player"):
-			
-			chasing=false
-			choose_random_position()
-			
-			player=null
+	if is_active and body.is_in_group("player"):
+		if chasing:
+			chasing = false
+			AudioManager.notify_robot_stopped_chase()
+		choose_random_position()
+		player = null
+
 
 
 func _on_area_3d_3_body_entered(body: Node3D) -> void:
@@ -66,4 +68,7 @@ func _on_area_3d_3_body_entered(body: Node3D) -> void:
 			call_deferred("triggerMort")
 			
 func triggerMort():
+	if chasing:
+		chasing = false
+		AudioManager.notify_robot_stopped_chase()
 	get_tree().change_scene_to_file("res://ecran_mort.tscn")

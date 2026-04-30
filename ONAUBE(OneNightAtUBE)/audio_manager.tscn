@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://by2oh75485yrw"]
+
+[ext_resource type="Script" uid="uid://bsymi20qnmguy" path="res://audio_manager.gd" id="1_5olve"]
+[ext_resource type="AudioStream" uid="uid://dykqtikmr3piq" path="res://MJ/leberch-survival-horror-263069.ogg" id="1_jisk1"]
+[ext_resource type="AudioStream" uid="uid://b3b70vwc4wl6u" path="res://MJ/clic.mp3" id="3_5olve"]
+[ext_resource type="AudioStream" uid="uid://c4rirfwvqgbp4" path="res://chasse.mp3" id="3_nhx87"]
+
+[node name="AudioManager" type="Node" unique_id=1602212922]
+script = ExtResource("1_5olve")
+
+[node name="MusiqueAmbiance" type="AudioStreamPlayer" parent="." unique_id=744021321]
+stream = ExtResource("1_jisk1")
+volume_db = -35.0
+
+[node name="MusiqueChasse" type="AudioStreamPlayer" parent="." unique_id=1506966421]
+stream = ExtResource("3_nhx87")
+volume_db = -16.566
+
+[node name="ClicMenu" type="AudioStreamPlayer" parent="." unique_id=1840308378]
+stream = ExtResource("3_5olve")
+
+[node name="GameOver" type="AudioStreamPlayer" parent="." unique_id=1109693559]
