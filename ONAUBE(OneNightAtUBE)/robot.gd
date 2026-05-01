@@ -5,23 +5,34 @@ var player = null
 var chasing = false
 var target_position = Vector3.ZERO
 @export var time_active=0
+@export var robot_id := ""
 var is_active=false
+var is_disabled := false
 var robot_move_threshold := 0.15
 var robot_stop_delay := 0.6
 var robot_stop_timer := 0.0
 
-@onready var bruit_robot = $BruitRobot1
+@onready var bruit_robot = $BruitRobot
 
 
 func _process(delta: float) -> void:
+	if is_disabled:
+		return
 	if GameState.get_current_hour()>=time_active:
 		is_active=true
 	
 	
 func _ready():
+	if robot_id.is_empty():
+		robot_id = name
+	if GameState.is_robot_disabled(robot_id):
+		disable_robot()
+		return
 	choose_random_position()
 
 func _physics_process(delta):
+	if is_disabled:
+		return
 
 	if chasing and player and is_active:
 		target_position = player.global_position
@@ -49,6 +60,8 @@ func choose_random_position():
 	)
 
 func _on_area_3d_body_entered(body):
+	if is_disabled:
+		return
 	if is_active and body.is_in_group("player"):
 		player = body
 		if not chasing:
@@ -58,6 +71,8 @@ func _on_area_3d_body_entered(body):
 
 
 func _on_area_3d_2_body_exited(body: Node3D) -> void:
+	if is_disabled:
+		return
 	if is_active and body.is_in_group("player"):
 		if chasing:
 			chasing = false
@@ -68,6 +83,8 @@ func _on_area_3d_2_body_exited(body: Node3D) -> void:
 
 
 func _on_area_3d_3_body_entered(body: Node3D) -> void:
+	if is_disabled:
+		return
 	if is_active:
 		if body.is_in_group("player"):
 			GameState.loose=true
@@ -93,5 +110,34 @@ func _update_robot_audio(delta: float) -> void:
 			bruit_robot.play()
 	else:
 		robot_stop_timer = max(robot_stop_timer - delta, 0.0)
-		if bruit_robot.playing and robot_stop_timer <= 0.0:
+		if bruit_robot.plsaying and robot_stop_timer <= 0.0:
 			bruit_robot.stop()
+
+func disable_robot() -> void:
+	if is_disabled:
+		return
+	var was_chasing: bool = chasing
+	is_disabled = true
+	is_active = false
+	chasing = false
+	player = null
+	velocity = Vector3.ZERO
+	robot_stop_timer = 0.0
+	if was_chasing:
+		AudioManager.notify_robot_stopped_chase()
+	if bruit_robot.playing:
+		bruit_robot.stop()
+	for area_name in ["Area3D", "Area3D2", "Area3D3"]:
+		var area = get_node_or_null(area_name)
+		if area:
+			area.set_deferred("monitoring", false)
+			area.set_deferred("monitorable", false)
+			var area_shape = area.get_node_or_null("CollisionShape3D")
+			if area_shape:
+				area_shape.set_deferred("disabled", true)
+	var body_shape = get_node_or_null("CollisionShape3D")
+	if body_shape:
+		body_shape.set_deferred("disabled", true)
+	set_deferred("visible", false)
+	set_process(false)
+	set_physics_process(false)

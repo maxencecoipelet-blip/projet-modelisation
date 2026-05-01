@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://dkv6bi6qy43y7"]
 
+[ext_resource type="Script" uid="uid://c657npph1lph3" path="res://trigger_desac_robot.gd" id="1_6x76f"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_kaylv"]
 
 [node name="triggerdesacrobot" type="Area3D" unique_id=816027573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3670464, 7.085805, -52.496975)
+script = ExtResource("1_6x76f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1154484110]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)

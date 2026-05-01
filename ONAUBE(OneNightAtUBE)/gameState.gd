@@ -1,12 +1,13 @@
 extends Node
 var time=0
-var night_duration=60
+var night_duration=120
 var win=false
 var IG=false
 var IGJ=false
 var IGV=false
 var IGC=false
 var en_menu=false
+var disabled_robots := {}
 
 var loose=false
 var on_pc=false
@@ -38,6 +39,17 @@ func get_current_hour():
 	var hour = int(ratio * 6)
 	return clamp(hour, 0, 6)
 	
+func disable_robot(robot_name: String) -> void:
+	disabled_robots[robot_name] = true
+	var current_scene := get_tree().current_scene
+	if not current_scene:
+		return
+	var robot = current_scene.get_node_or_null(robot_name)
+	if robot and robot.has_method("disable_robot"):
+		robot.disable_robot()
+
+func is_robot_disabled(robot_name: String) -> bool:
+	return disabled_robots.get(robot_name, false)
 	
 	
 func win_game():

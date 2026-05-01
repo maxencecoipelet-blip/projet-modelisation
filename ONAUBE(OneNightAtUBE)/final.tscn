@@ -4,9 +4,13 @@
 [ext_resource type="Script" uid="uid://16s73dtowb2r" path="res://final.gd" id="1_xethn"]
 [ext_resource type="PackedScene" uid="uid://bhwifpx5nd2j4" path="res://robot.tscn" id="2_tvybu"]
 [ext_resource type="Script" uid="uid://b8ml2tlmh5kha" path="res://time_label.gd" id="3_qt6nr"]
+[ext_resource type="AudioStream" uid="uid://b3ocgxqj75lod" path="res://audio/robot/step robot.mp3" id="4_77v52"]
 [ext_resource type="PackedScene" uid="uid://cad1ov2isdvy8" path="res://menu_pause.tscn" id="4_7678y"]
 [ext_resource type="PackedScene" uid="uid://cey3n5yukyw83" path="res://ordi.tscn" id="5_fp1em"]
+[ext_resource type="AudioStream" uid="uid://cejhkbcsypwwq" path="res://audio/robot/robot2.mp3" id="5_ijprh"]
+[ext_resource type="AudioStream" uid="uid://uoofeg1v3oyy" path="res://audio/robot/robot3.mp3" id="6_0n1jq"]
 [ext_resource type="PackedScene" uid="uid://brqxluhax66mh" path="res://scenes_ordi/Desktop.tscn" id="6_6gx7d"]
+[ext_resource type="AudioStream" uid="uid://d1pc5voohv8lk" path="res://audio/robot/robot4.mp3" id="6_tc1ei"]
 [ext_resource type="Script" uid="uid://bipip80yhumin" path="res://scenes_ordi/cams.gd" id="7_bhfh8"]
 [ext_resource type="Texture2D" uid="uid://k3yinifcu1my" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(3).jpg" id="8_awkn3"]
 [ext_resource type="Texture2D" uid="uid://p714u1xw3cp1" path="res://assets/windows-95-app-icons-pack-preview-2-scaled(4).jpg" id="9_iquii"]
@@ -16,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://b8h30rfig0361" path="res://MJ/mini_jeuJetpack.tscn" id="13_572a1"]
 [ext_resource type="PackedScene" uid="uid://dcn6epxvxjunb" path="res://MJ/mini_jeuVoiture.tscn" id="13_m4l06"]
 [ext_resource type="PackedScene" uid="uid://cmyufcwuppvt4" path="res://MJ/jeu_cultureG/mini_jeuCulture.tscn" id="15_3fwds"]
-
 
 [sub_resource type="Environment" id="Environment_edh6e"]
 
@@ -71,7 +74,36 @@ skeleton = NodePath("../..")
 
 [node name="robot" parent="." unique_id=538969851 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5066738, -16.935314)
+time_active = 1
+
+[node name="BruitRobot" parent="robot" index="5" unique_id=1052473452]
+stream = ExtResource("4_77v52")
+
+[node name="robot2" parent="." unique_id=538969852 instance=ExtResource("2_tvybu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1.5066738, -14.5)
 time_active = 2
+
+[node name="BruitRobot" parent="robot2" index="5" unique_id=1052473452]
+stream = ExtResource("5_ijprh")
+
+[node name="robot3" parent="." unique_id=538969853 instance=ExtResource("2_tvybu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.5066738, -14.5)
+time_active = 3
+
+[node name="BruitRobot" parent="robot3" index="5" unique_id=1052473452]
+stream = ExtResource("6_0n1jq")
+volume_db = -8.0
+unit_size = 3.0
+max_distance = 16.0
+
+[node name="robot4" parent="." unique_id=538969854 instance=ExtResource("2_tvybu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5066738, 14.5)
+time_active = 4
+
+[node name="BruitRobot" parent="robot4" index="5" unique_id=1052473452]
+stream = ExtResource("6_tc1ei")
+unit_size = 3.0
+max_distance = 16.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=428380246]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50586987, -1.6789932)
@@ -262,3 +294,8 @@ offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
 script = ExtResource("3_qt6nr")
+
+[editable path="robot"]
+[editable path="robot2"]
+[editable path="robot3"]
+[editable path="robot4"]

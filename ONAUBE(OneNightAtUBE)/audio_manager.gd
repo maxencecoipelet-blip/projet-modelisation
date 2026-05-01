@@ -15,6 +15,7 @@ var volume_tween: Tween
 var room_ambience_tween: Tween
 var room_ambience_enabled := false
 var random_ambience_loop_started := false
+var random_ambience_players: Array[AudioStreamPlayer] = []
 
 @onready var musique_ambiance = $MusiqueAmbiance
 @onready var musique_chasse = $MusiqueChasse
@@ -26,14 +27,11 @@ var random_ambience_loop_started := false
 @onready var ventilo = get_node_or_null("Ventilo")
 @onready var buzz_electrique = get_node_or_null("BuzzElectrique")
 @onready var craquement_electrique = get_node_or_null("CraquementElectrique")
-@onready var ambience_event_1 = get_node_or_null("AmbienceEvent1")
-@onready var ambience_event_2 = get_node_or_null("AmbienceEvent2")
-@onready var ambience_event_3 = get_node_or_null("AmbienceEvent3")
-@onready var ambience_event_4 = get_node_or_null("AmbienceEvent4")
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	randomize()
+	_collect_random_ambience_players()
 	ambience_base_volume = musique_ambiance.volume_db
 	chase_base_volume = musique_chasse.volume_db
 	menu_base_volume = musique_menu.volume_db
@@ -164,14 +162,7 @@ func _random_ambience_loop() -> void:
 
 func _play_random_ambience_event() -> void:
 	var available_players: Array[AudioStreamPlayer] = []
-	for player in [
-		buzz_electrique,
-		craquement_electrique,
-		ambience_event_1,
-		ambience_event_2,
-		ambience_event_3,
-		ambience_event_4,
-	]:
+	for player in random_ambience_players:
 		if player and player.stream and not player.playing:
 			available_players.append(player)
 
@@ -192,14 +183,7 @@ func _start_room_ambience() -> void:
 func _stop_room_ambience() -> void:
 	if ventilo and ventilo.playing:
 		ventilo.stop()
-	for player in [
-		buzz_electrique,
-		craquement_electrique,
-		ambience_event_1,
-		ambience_event_2,
-		ambience_event_3,
-		ambience_event_4,
-	]:
+	for player in random_ambience_players:
 		if player and player.playing:
 			player.stop()
 
@@ -218,3 +202,9 @@ func _restore_room_ambience_after_chase() -> void:
 func _stop_room_ambience_tween() -> void:
 	if room_ambience_tween and room_ambience_tween.is_valid():
 		room_ambience_tween.kill()
+
+func _collect_random_ambience_players() -> void:
+	random_ambience_players.clear()
+	for child in get_children():
+		if child is AudioStreamPlayer and (child.name == "BuzzElectrique" or child.name == "CraquementElectrique" or child.name.begins_with("AmbienceEvent")):
+			random_ambience_players.append(child)

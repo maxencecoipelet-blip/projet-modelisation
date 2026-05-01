@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dsjwwygmykse0"
+path="res://.godot/imported/electric sparkle.mp3-02e547162589d2e08442ca337df9a9e7.mp3str"
+
+[deps]
+
+source_file="res://audio/ambience/electric sparkle.mp3"
+dest_files=["res://.godot/imported/electric sparkle.mp3-02e547162589d2e08442ca337df9a9e7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
