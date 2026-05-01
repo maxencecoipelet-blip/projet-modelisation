@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 
 GameState="*res://gameState.gd"
 AudioManager="*uid://by2oh75485yrw"
+GameManager="*uid://b4a7kt1xwrnpv"
 
 [display]
 

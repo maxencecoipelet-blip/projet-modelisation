@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://chhsngxx6xevj"]
+
+[ext_resource type="Texture2D" uid="uid://ckcsnifqrua82" path="res://MJ/jeu_cultureG/textures/velour_velvet_diff_2k.jpg" id="1_88w2n"]
+[ext_resource type="Texture2D" uid="uid://hhnyptnhe0b8" path="res://MJ/jeu_cultureG/textures/velour_velvet_ao_2k.jpg" id="2_bycwi"]
+[ext_resource type="Texture2D" uid="uid://bl8gu60tcjdiu" path="res://MJ/jeu_cultureG/textures/velour_velvet_metal_2k.jpg" id="3_41t3y"]
+[ext_resource type="Texture2D" uid="uid://bywkbyfrh3ms7" path="res://MJ/jeu_cultureG/textures/velour_velvet_rough_2k.jpg" id="4_57bne"]
+[ext_resource type="Script" uid="uid://b0sd5j1fqcbfh" path="res://Door.gd" id="5_4t1jj"]
+[ext_resource type="Script" uid="uid://dr2p8xlsi43he" path="res://Player.gd" id="6_47q24"]
+[ext_resource type="Script" uid="uid://bk0hdyu54eduo" path="res://UI.gd" id="7_bgnhv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="Sky_1"]
+
+[sub_resource type="Sky" id="Sky_2"]
+sky_material = SubResource("Sky_1")
+
+[sub_resource type="Environment" id="Env_1"]
+background_mode = 2
+sky = SubResource("Sky_2")
+ambient_light_source = 3
+ambient_light_color = Color(0.7, 0.7, 0.8, 1)
+ambient_light_energy = 0.6
+
+[sub_resource type="BoxMesh" id="Mesh_floor_ceiling"]
+size = Vector3(6, 0.2, 30)
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor"]
+albedo_texture = ExtResource("1_88w2n")
+metallic = 1.0
+metallic_texture = ExtResource("3_41t3y")
+roughness_texture = ExtResource("4_57bne")
+ao_enabled = true
+ao_texture = ExtResource("2_bycwi")
+
+[sub_resource type="BoxShape3D" id="Shape_floor_ceiling"]
+size = Vector3(6, 0.2, 30)
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling"]
+albedo_color = Color(0.85, 0.85, 0.85, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_wall_side"]
+size = Vector3(0.2, 4, 30)
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall"]
+albedo_color = Color(0.7, 0.7, 0.7, 1)
+
+[sub_resource type="BoxShape3D" id="Shape_wall_side"]
+size = Vector3(0.2, 4, 30)
+
+[sub_resource type="BoxMesh" id="Mesh_wall_back"]
+size = Vector3(6, 4, 0.2)
+
+[sub_resource type="BoxShape3D" id="Shape_wall_back"]
+size = Vector3(6, 4, 0.2)
+
+[sub_resource type="BoxMesh" id="Mesh_door"]
+size = Vector3(2, 3, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="Mat_red"]
+albedo_color = Color(0.9, 0.2, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="Shape_door_area"]
+size = Vector3(2, 3, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="Mat_blue"]
+albedo_color = Color(0.2, 0.4, 0.9, 1)
+
+[sub_resource type="CapsuleShape3D" id="Capsule_player"]
+radius = 0.4
+height = 1.8
+
+[node name="Main" type="Node3D" unique_id=1819274864]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1079957854]
+transform = Transform3D(0.86602527, -0.3535533, 0.35355377, -0.37043762, 0.021232545, 0.9286146, -0.33582166, -0.9351734, -0.11258143, 0, 3.519384, -3.0900834)
+light_energy = 9.105
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1621155290]
+environment = SubResource("Env_1")
+
+[node name="Corridor" type="Node3D" parent="." unique_id=938252334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 1.5017934)
+
+[node name="Floor" type="StaticBody3D" parent="Corridor" unique_id=2135157208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/Floor" unique_id=1223756176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005405426, -0.009318352, 0.010530472)
+mesh = SubResource("Mesh_floor_ceiling")
+surface_material_override/0 = SubResource("Mat_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor/Floor" unique_id=1364015781]
+shape = SubResource("Shape_floor_ceiling")
+
+[node name="Ceiling" type="StaticBody3D" parent="Corridor" unique_id=1931693128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/Ceiling" unique_id=764793890]
+mesh = SubResource("Mesh_floor_ceiling")
+surface_material_override/0 = SubResource("Mat_ceiling")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor/Ceiling" unique_id=1812009348]
+shape = SubResource("Shape_floor_ceiling")
+
+[node name="WallLeft" type="StaticBody3D" parent="Corridor" unique_id=1456022454]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/WallLeft" unique_id=1057054089]
+mesh = SubResource("Mesh_wall_side")
+surface_material_override/0 = SubResource("Mat_wall")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor/WallLeft" unique_id=664744451]
+shape = SubResource("Shape_wall_side")
+
+[node name="WallRight" type="StaticBody3D" parent="Corridor" unique_id=689491096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/WallRight" unique_id=1363296046]
+mesh = SubResource("Mesh_wall_side")
+surface_material_override/0 = SubResource("Mat_wall")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor/WallRight" unique_id=409213482]
+shape = SubResource("Shape_wall_side")
+
+[node name="BackWall" type="StaticBody3D" parent="Corridor" unique_id=686854668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -30)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/BackWall" unique_id=1784342954]
+mesh = SubResource("Mesh_wall_back")
+surface_material_override/0 = SubResource("Mat_wall")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor/BackWall" unique_id=372443631]
+shape = SubResource("Shape_wall_back")
+
+[node name="BackWall2" type="StaticBody3D" parent="Corridor" unique_id=1110133880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.0416708)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/BackWall2" unique_id=119853831]
+mesh = SubResource("Mesh_wall_back")
+surface_material_override/0 = SubResource("Mat_wall")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor/BackWall2" unique_id=1713278911]
+shape = SubResource("Shape_wall_back")
+
+[node name="DoorA" type="Area3D" parent="Corridor" unique_id=580582548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -29.5)
+script = ExtResource("5_4t1jj")
+door_choice = "a"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/DoorA" unique_id=1291740388]
+mesh = SubResource("Mesh_door")
+surface_material_override/0 = SubResource("Mat_red")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor/DoorA" unique_id=976770439]
+shape = SubResource("Shape_door_area")
+
+[node name="DoorB" type="Area3D" parent="Corridor" unique_id=505676223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -29.5)
+script = ExtResource("5_4t1jj")
+door_choice = "b"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/DoorB" unique_id=369062568]
+mesh = SubResource("Mesh_door")
+surface_material_override/0 = SubResource("Mat_blue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor/DoorB" unique_id=1560716330]
+shape = SubResource("Shape_door_area")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Corridor" unique_id=1430044825]
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1516170241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("6_47q24")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=305218004]
+shape = SubResource("Capsule_player")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=1088935992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=836337127]
+script = ExtResource("7_bgnhv")
+
+[node name="QuestionLabel" type="Label" parent="UI" unique_id=638707883]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 20.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="AnswerALabel" type="Label" parent="UI" unique_id=440957956]
+offset_left = 20.0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 22
+
+[node name="AnswerBLabel" type="Label" parent="UI" unique_id=724534797]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_top = 100.0
+offset_right = -20.0
+offset_bottom = 140.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 2
+
+[node name="CounterLabel" type="Label" parent="UI" unique_id=354723505]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+
+[node name="MessageLabel" type="Label" parent="UI" unique_id=1103675242]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -30.0
+offset_right = 300.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
