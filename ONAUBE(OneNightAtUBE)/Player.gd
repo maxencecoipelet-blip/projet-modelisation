@@ -6,7 +6,7 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $Camera3D
 
 func _ready():
-	add_to_group("player")
+	add_to_group("culture_player")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event):

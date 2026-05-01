@@ -26,7 +26,7 @@ func _on_question_changed(q):
 	answer_b_label.text = "Porte B (droite) : " + q.b
 	counter_label.text = "Question %d / %d" % [GameManager.current_index + 1, GameManager.TOTAL_QUESTIONS]
 	# Teleporte le joueur au debut du couloir a chaque nouvelle question
-	get_tree().call_group("player", "reset_position")
+	get_tree().call_group("culture_player", "reset_position")
 
 func _on_game_won():
 	question_label.text = "VICTOIRE ! Tu as repondu juste 10 fois !"

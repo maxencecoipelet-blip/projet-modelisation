@@ -27,6 +27,7 @@ const TOTAL_QUESTIONS = 10
 
 var current_questions = []
 var current_index = 0
+var game_finished = false
 
 signal question_changed(question_data)
 signal game_won
@@ -41,16 +42,28 @@ func start_new_game():
 	current_questions.shuffle()
 	current_questions = current_questions.slice(0, TOTAL_QUESTIONS)
 	current_index = 0
+	game_finished = false
 	emit_signal("question_changed", get_current())
 
 func get_current():
+	if current_questions.is_empty():
+		return {}
+	if current_index < 0 or current_index >= current_questions.size():
+		return {}
 	return current_questions[current_index]
 
 func answer(choice: String):
+	if game_finished:
+		return
+
 	var current = get_current()
+	if current.is_empty():
+		return
+
 	if choice == current.correct:
 		current_index += 1
 		if current_index >= TOTAL_QUESTIONS:
+			game_finished = true
 			emit_signal("game_won")
 		else:
 			emit_signal("question_changed", get_current())

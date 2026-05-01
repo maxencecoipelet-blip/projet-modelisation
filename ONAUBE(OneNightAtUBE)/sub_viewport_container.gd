@@ -21,6 +21,17 @@ func _activate_only_this():
 			print("test")
 	
 	# Active la caméra
-	var cam = mini_game_instance.get_node_or_null("Camera3D")
+	var cam = _find_first_camera(mini_game_instance)
 	if cam:
 		cam.current = true
+
+func _find_first_camera(node: Node) -> Camera3D:
+	if node is Camera3D:
+		return node
+
+	for child in node.get_children():
+		var cam = _find_first_camera(child)
+		if cam:
+			return cam
+
+	return null
