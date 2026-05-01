@@ -6,6 +6,11 @@ var chasing = false
 var target_position = Vector3.ZERO
 @export var time_active=0
 var is_active=false
+var robot_move_threshold := 0.15
+var robot_stop_delay := 0.6
+var robot_stop_timer := 0.0
+
+@onready var bruit_robot = $BruitRobot1
 
 
 func _process(delta: float) -> void:
@@ -34,6 +39,7 @@ func _physics_process(delta):
 	if global_position.distance_to(target_position) < 1.5 and !chasing:
 		choose_random_position()
 	move_and_slide()
+	_update_robot_audio(delta)
 	
 func choose_random_position():
 	target_position = Vector3(
@@ -72,3 +78,20 @@ func triggerMort():
 		chasing = false
 		AudioManager.notify_robot_stopped_chase()
 	get_tree().change_scene_to_file("res://ecran_mort.tscn")
+
+func _update_robot_audio(delta: float) -> void:
+	if not is_active:
+		if bruit_robot.playing:
+			bruit_robot.stop()
+		robot_stop_timer = 0.0
+		return
+
+	var is_moving := Vector2(velocity.x, velocity.z).length() > robot_move_threshold
+	if is_moving:
+		robot_stop_timer = robot_stop_delay
+		if not bruit_robot.playing:
+			bruit_robot.play()
+	else:
+		robot_stop_timer = max(robot_stop_timer - delta, 0.0)
+		if bruit_robot.playing and robot_stop_timer <= 0.0:
+			bruit_robot.stop()

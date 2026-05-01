@@ -1,22 +1,75 @@
 [gd_scene format=3 uid="uid://by2oh75485yrw"]
 
 [ext_resource type="Script" uid="uid://bsymi20qnmguy" path="res://audio_manager.gd" id="1_5olve"]
-[ext_resource type="AudioStream" uid="uid://dykqtikmr3piq" path="res://assets/leberch-survival-horror-263069.ogg" id="1_jisk1"]
+[ext_resource type="AudioStream" uid="uid://cl7ufgb014ew5" path="res://ambient.mp3" id="2_l55mp"]
 [ext_resource type="AudioStream" uid="uid://b3b70vwc4wl6u" path="res://assets/clic.mp3" id="3_5olve"]
 [ext_resource type="AudioStream" uid="uid://c4rirfwvqgbp4" path="res://assets/chasse.mp3" id="3_nhx87"]
+[ext_resource type="AudioStream" uid="uid://cj2ohm5pb7vjw" path="res://MJ/game over.mp3" id="5_l2k84"]
+[ext_resource type="AudioStream" uid="uid://ceq6hu87u6rlx" path="res://menu.mp3" id="5_nhx87"]
+[ext_resource type="AudioStream" uid="uid://hhlf47vc3p7l" path="res://Victoire.wav" id="7_l55mp"]
+[ext_resource type="AudioStream" uid="uid://da0ll1p7ojupv" path="res://heart beat .mp3" id="8_v0gdi"]
+[ext_resource type="AudioStream" uid="uid://b5gb2dr7pvmlk" path="res://ventilateur.mp3" id="9_7fh0q"]
+[ext_resource type="AudioStream" uid="uid://dxav1vps80k86" path="res://electric buzz.mp3" id="10_wby2p"]
+[ext_resource type="AudioStream" uid="uid://c71mieoa45jhs" path="res://electric sparkle.mp3" id="11_wby2p"]
+[ext_resource type="AudioStream" uid="uid://x0p0bmfmh03t" path="res://bruitambiant1.mp3" id="12_86pii"]
+[ext_resource type="AudioStream" uid="uid://dhqxv7djtbh0a" path="res://bruitambiant2.mp3" id="13_mfnxe"]
+[ext_resource type="AudioStream" uid="uid://clkly036ukh38" path="res://bruitambiant3.mp3" id="14_astvc"]
+[ext_resource type="AudioStream" uid="uid://cp5l3knpwqya3" path="res://bruitambiant4.mp3" id="15_ma34g"]
 
 [node name="AudioManager" type="Node" unique_id=1602212922]
 script = ExtResource("1_5olve")
 
 [node name="MusiqueAmbiance" type="AudioStreamPlayer" parent="." unique_id=744021321]
-stream = ExtResource("1_jisk1")
-volume_db = -35.0
+stream = ExtResource("2_l55mp")
+volume_db = -14.0
 
 [node name="MusiqueChasse" type="AudioStreamPlayer" parent="." unique_id=1506966421]
 stream = ExtResource("3_nhx87")
-volume_db = -16.566
+volume_db = -20.0
 
 [node name="ClicMenu" type="AudioStreamPlayer" parent="." unique_id=1840308378]
 stream = ExtResource("3_5olve")
+volume_db = -10.0
 
 [node name="GameOver" type="AudioStreamPlayer" parent="." unique_id=1109693559]
+stream = ExtResource("5_l2k84")
+volume_db = -15.646
+
+[node name="MusiqueMenu" type="AudioStreamPlayer" parent="." unique_id=1144482400]
+stream = ExtResource("5_nhx87")
+volume_db = -15.0
+
+[node name="Victoire" type="AudioStreamPlayer" parent="." unique_id=1817576739]
+stream = ExtResource("7_l55mp")
+volume_db = -20.0
+
+[node name="SonChasse" type="AudioStreamPlayer" parent="." unique_id=1125145947]
+stream = ExtResource("8_v0gdi")
+volume_db = -5.0
+
+[node name="Ventilo" type="AudioStreamPlayer" parent="." unique_id=1478211549]
+stream = ExtResource("9_7fh0q")
+volume_db = -11.0
+
+[node name="BuzzElectrique" type="AudioStreamPlayer" parent="." unique_id=556264971]
+stream = ExtResource("10_wby2p")
+
+[node name="CraquementElectrique" type="AudioStreamPlayer" parent="." unique_id=312061882]
+stream = ExtResource("11_wby2p")
+volume_db = -10.0
+
+[node name="AmbienceEvent1" type="AudioStreamPlayer" parent="." unique_id=1669834501]
+stream = ExtResource("12_86pii")
+volume_db = -12.0
+
+[node name="AmbienceEvent2" type="AudioStreamPlayer" parent="." unique_id=959205114]
+stream = ExtResource("13_mfnxe")
+volume_db = -12.0
+
+[node name="AmbienceEvent3" type="AudioStreamPlayer" parent="." unique_id=1286327410]
+stream = ExtResource("14_astvc")
+volume_db = -12.0
+
+[node name="AmbienceEvent4" type="AudioStreamPlayer" parent="." unique_id=1773048822]
+stream = ExtResource("15_ma34g")
+volume_db = -12.0

@@ -9,5 +9,6 @@ func _ready() -> void:
 	GameState.win=false
 	GameState.on_pc=false
 	GameState.en_menu=false
+	AudioManager.start_game_music()
 	
 	

@@ -70,7 +70,7 @@ skeleton = NodePath("../..")
 
 [node name="robot" parent="." unique_id=538969851 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5066738, -16.935314)
-time_active = 3
+time_active = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=428380246]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50586987, -1.6789932)

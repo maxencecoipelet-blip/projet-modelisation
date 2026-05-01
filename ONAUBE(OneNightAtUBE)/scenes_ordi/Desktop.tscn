@@ -106,6 +106,7 @@ offset_bottom = 528.0
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer" unique_id=174769887]
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("3_tp1l6")
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=341974880]
@@ -115,6 +116,7 @@ horizontal_alignment = 1
 
 [node name="TextureButton2" type="TextureButton" parent="VBoxContainer" unique_id=970394177]
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("4_0h6bp")
 
 [node name="Label2" type="Label" parent="VBoxContainer" unique_id=385801332]
@@ -124,6 +126,7 @@ horizontal_alignment = 1
 
 [node name="TextureButton3" type="TextureButton" parent="VBoxContainer" unique_id=473735021]
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("5_6pycw")
 
 [node name="Label3" type="Label" parent="VBoxContainer" unique_id=1036259785]

@@ -4,7 +4,12 @@ var camera_x_rotation := 0.0
 const SPEED = 4
 const JUMP_VELOCITY = 2.5
 
+var step_timer := 0.0
+var step_interval := 0.7
+
+
 @onready var camera_pivot = get_node("CameraPivot")
+@onready var bruit_pas = $"../BruitPas"
 @export var rotationstep=-0.05
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -32,7 +37,11 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 		
+		_handle_footsteps(delta, input_dir)
 		move_and_slide()
+	else:
+		step_timer = 0.0
+
 func _input(event):
 	if event is InputEventMouseMotion and !GameState.on_pc:
 		# Rotation gauche / droite (joueur)
@@ -43,4 +52,14 @@ func _input(event):
 		camera_x_rotation = clamp(camera_x_rotation, deg_to_rad(-80), deg_to_rad(80))
 
 		camera_pivot.rotation.x = camera_x_rotation
+
+func _handle_footsteps(delta: float, input_dir: Vector2) -> void:
+	if not is_on_floor() or input_dir == Vector2.ZERO:
+		step_timer = 0.0
+		return
+
+	step_timer -= delta
+	if step_timer <= 0.0:
+		bruit_pas.play()
+		step_timer = step_interval
 	
