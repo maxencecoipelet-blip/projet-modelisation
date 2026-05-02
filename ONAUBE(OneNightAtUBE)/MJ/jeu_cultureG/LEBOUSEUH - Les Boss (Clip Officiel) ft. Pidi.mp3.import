@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d3owo44mmfx7q"
+path="res://.godot/imported/LEBOUSEUH - Les Boss (Clip Officiel) ft. Pidi.mp3-66f6d132a5f21585b8e71717b7586a45.mp3str"
+
+[deps]
+
+source_file="res://MJ/jeu_cultureG/LEBOUSEUH - Les Boss (Clip Officiel) ft. Pidi.mp3"
+dest_files=["res://.godot/imported/LEBOUSEUH - Les Boss (Clip Officiel) ft. Pidi.mp3-66f6d132a5f21585b8e71717b7586a45.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
