@@ -29,6 +29,7 @@ func _on_question_changed(q):
 	get_tree().call_group("culture_player", "reset_position")
 
 func _on_game_won():
+	$uiroot/fin.visible = true
 	question_label.text = "VICTOIRE ! Tu as repondu juste 10 fois !"
 	answer_a_label.text = ""
 	answer_b_label.text = ""

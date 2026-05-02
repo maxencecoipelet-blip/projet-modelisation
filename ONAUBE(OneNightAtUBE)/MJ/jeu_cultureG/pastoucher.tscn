@@ -5,9 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bl8gu60tcjdiu" path="res://MJ/jeu_cultureG/textures/velour_velvet_metal_2k.jpg" id="3_41t3y"]
 [ext_resource type="Texture2D" uid="uid://bywkbyfrh3ms7" path="res://MJ/jeu_cultureG/textures/velour_velvet_rough_2k.jpg" id="4_57bne"]
 [ext_resource type="Script" uid="uid://b0sd5j1fqcbfh" path="res://Door.gd" id="5_4t1jj"]
+[ext_resource type="Texture2D" uid="uid://3l5mq586w2kn" path="res://MJ/jeu_cultureG/textures/Texturelabs_Sky_143S.jpg" id="5_57bne"]
+[ext_resource type="Texture2D" uid="uid://c24a8x7q8153d" path="res://MJ/jeu_cultureG/textures/Texturelabs_Sky_143L.jpg" id="6_4t1jj"]
 [ext_resource type="Script" uid="uid://dr2p8xlsi43he" path="res://Player.gd" id="6_47q24"]
 [ext_resource type="Script" uid="uid://bk0hdyu54eduo" path="res://UI.gd" id="7_bgnhv"]
 [ext_resource type="AudioStream" uid="uid://dyg6vad8l8tpy" path="res://audio/player/footstep.mp3" id="8_q7utl"]
+[ext_resource type="Texture2D" uid="uid://cpq71gb2xbe0q" path="res://assets/fondEcran1.png" id="11_4t1jj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="Sky_1"]
 
@@ -37,12 +40,13 @@ size = Vector3(6, 0.2, 30)
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling"]
 albedo_color = Color(0.85, 0.85, 0.85, 1)
+albedo_texture = ExtResource("5_57bne")
 
 [sub_resource type="BoxMesh" id="Mesh_wall_side"]
 size = Vector3(0.2, 4, 30)
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall"]
-albedo_color = Color(0.7, 0.7, 0.7, 1)
+albedo_texture = ExtResource("6_4t1jj")
 
 [sub_resource type="BoxShape3D" id="Shape_wall_side"]
 size = Vector3(0.2, 4, 30)
@@ -72,8 +76,8 @@ height = 1.8
 [node name="Main" type="Node3D" unique_id=1819274864]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1079957854]
-transform = Transform3D(0.86602527, -0.3535533, 0.35355377, -0.37043762, 0.021232545, 0.9286146, -0.33582166, -0.9351734, -0.11258143, 0, 3.519384, -3.0900834)
-light_energy = 9.105
+transform = Transform3D(-0.9805588, -0.19558872, 0.015790284, 0.002993271, 0.06555166, 0.99784464, -0.19620225, 0.97849274, -0.063691795, 0, 3.519384, -3.0900834)
+light_energy = 6.579
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1621155290]
@@ -117,6 +121,7 @@ shape = SubResource("Shape_wall_side")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -15)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/WallRight" unique_id=1363296046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00079393387, -0.0054688454, 0.011385918)
 mesh = SubResource("Mesh_wall_side")
 surface_material_override/0 = SubResource("Mat_wall")
 
@@ -127,6 +132,7 @@ shape = SubResource("Shape_wall_side")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -30)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/BackWall" unique_id=1784342954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.008164883, 0)
 mesh = SubResource("Mesh_wall_back")
 surface_material_override/0 = SubResource("Mat_wall")
 
@@ -146,7 +152,6 @@ shape = SubResource("Shape_wall_back")
 [node name="DoorA" type="Area3D" parent="Corridor" unique_id=580582548]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -29.5)
 script = ExtResource("5_4t1jj")
-door_choice = "a"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Corridor/DoorA" unique_id=1291740388]
 mesh = SubResource("Mesh_door")
@@ -154,6 +159,12 @@ surface_material_override/0 = SubResource("Mat_red")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor/DoorA" unique_id=976770439]
 shape = SubResource("Shape_door_area")
+
+[node name="Label3D" type="Label3D" parent="Corridor/DoorA" unique_id=27991952]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9116855, -0.11201477)
+billboard = 1
+text = "A"
+font_size = 120
 
 [node name="DoorB" type="Area3D" parent="Corridor" unique_id=505676223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -29.5)
@@ -166,6 +177,12 @@ surface_material_override/0 = SubResource("Mat_blue")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Corridor/DoorB" unique_id=1560716330]
 shape = SubResource("Shape_door_area")
+
+[node name="Label3D" type="Label3D" parent="Corridor/DoorB" unique_id=601775685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.912, -0.079)
+billboard = 1
+text = "B"
+font_size = 120
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Corridor" unique_id=1430044825]
 
@@ -240,3 +257,23 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
+
+[node name="uiroot" type="Control" parent="UI" unique_id=1117724339]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fin" type="TextureRect" parent="UI/uiroot" unique_id=1379207249]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_4t1jj")
+expand_mode = 1
+stretch_mode = 6
