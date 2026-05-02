@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://dr2p8xlsi43he" path="res://Player.gd" id="6_47q24"]
 [ext_resource type="Script" uid="uid://bk0hdyu54eduo" path="res://UI.gd" id="7_bgnhv"]
 [ext_resource type="AudioStream" uid="uid://dyg6vad8l8tpy" path="res://audio/player/footstep.mp3" id="8_q7utl"]
-[ext_resource type="Texture2D" uid="uid://cpq71gb2xbe0q" path="res://assets/fondEcran1.png" id="11_4t1jj"]
+[ext_resource type="Texture2D" uid="uid://cbi5fgqesxyif" path="res://MJ/jeu_cultureG/textures/Capture d'écran 2026-05-02 205710.png" id="11_4t1jj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="Sky_1"]
 
@@ -271,7 +271,11 @@ visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 1.031
+offset_left = 6.0
+offset_top = -71.0
+offset_right = 6.0
+offset_bottom = -22.47998
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("11_4t1jj")
