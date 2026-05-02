@@ -13,6 +13,8 @@ var robot_stop_delay := 0.6
 var robot_stop_timer := 0.0
 
 @onready var bruit_robot = $BruitRobot
+@onready var shutdown_sound = get_node_or_null("ShutdownSound")
+@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 
 
 func _process(delta: float) -> void:
@@ -23,6 +25,7 @@ func _process(delta: float) -> void:
 	
 	
 func _ready():
+	_restore_default_visual()
 	if robot_id.is_empty():
 		robot_id = name
 	if GameState.is_robot_disabled(robot_id):
@@ -110,7 +113,7 @@ func _update_robot_audio(delta: float) -> void:
 			bruit_robot.play()
 	else:
 		robot_stop_timer = max(robot_stop_timer - delta, 0.0)
-		if bruit_robot.plsaying and robot_stop_timer <= 0.0:
+		if bruit_robot.playing and robot_stop_timer <= 0.0:
 			bruit_robot.stop()
 
 func disable_robot() -> void:
@@ -127,6 +130,8 @@ func disable_robot() -> void:
 		AudioManager.notify_robot_stopped_chase()
 	if bruit_robot.playing:
 		bruit_robot.stop()
+	if shutdown_sound:
+		shutdown_sound.play()
 	for area_name in ["Area3D", "Area3D2", "Area3D3"]:
 		var area = get_node_or_null(area_name)
 		if area:
@@ -135,9 +140,23 @@ func disable_robot() -> void:
 			var area_shape = area.get_node_or_null("CollisionShape3D")
 			if area_shape:
 				area_shape.set_deferred("disabled", true)
-	var body_shape = get_node_or_null("CollisionShape3D")
-	if body_shape:
-		body_shape.set_deferred("disabled", true)
-	set_deferred("visible", false)
 	set_process(false)
 	set_physics_process(false)
+	_apply_disabled_visual()
+
+func can_be_disabled_by_minigame() -> bool:
+	return is_active and not is_disabled
+
+func _apply_disabled_visual() -> void:
+	if not mesh_instance:
+		return
+	var disabled_material := StandardMaterial3D.new()
+	disabled_material.albedo_color = Color(0.9, 0.15, 0.15, 1.0)
+	disabled_material.emission_enabled = true
+	disabled_material.emission = Color(0.55, 0.05, 0.05, 1.0)
+	disabled_material.emission_energy_multiplier = 1.2
+	mesh_instance.material_override = disabled_material
+
+func _restore_default_visual() -> void:
+	if mesh_instance:
+		mesh_instance.material_override = null

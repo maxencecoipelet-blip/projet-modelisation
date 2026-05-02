@@ -8,6 +8,7 @@ var IGV=false
 var IGC=false
 var en_menu=false
 var disabled_robots := {}
+var completed_minigames := {}
 
 var loose=false
 var on_pc=false
@@ -50,6 +51,41 @@ func disable_robot(robot_name: String) -> void:
 
 func is_robot_disabled(robot_name: String) -> bool:
 	return disabled_robots.get(robot_name, false)
+
+func disable_random_active_robot() -> String:
+	var current_scene := get_tree().current_scene
+	if not current_scene:
+		return ""
+
+	var candidates: Array[Node] = []
+	for child in current_scene.get_children():
+		if child.has_method("can_be_disabled_by_minigame") and child.can_be_disabled_by_minigame():
+			candidates.append(child)
+
+	if candidates.is_empty():
+		return ""
+
+	var chosen: Node = candidates.pick_random()
+	disabled_robots[chosen.name] = true
+	if chosen.has_method("disable_robot"):
+		chosen.disable_robot()
+	return chosen.name
+
+func is_minigame_completed(minigame_id: String) -> bool:
+	return completed_minigames.get(minigame_id, false)
+
+func complete_minigame_and_disable_robot(minigame_id: String, target_robot_name: String = "") -> String:
+	if is_minigame_completed(minigame_id):
+		return ""
+
+	completed_minigames[minigame_id] = true
+	if target_robot_name.strip_edges().is_empty():
+		return disable_random_active_robot()
+	return _disable_specific_robot_once(target_robot_name)
+
+func _disable_specific_robot_once(robot_name: String) -> String:
+	disable_robot(robot_name)
+	return robot_name
 	
 	
 func win_game():

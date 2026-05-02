@@ -2,8 +2,13 @@ extends CharacterBody3D
 
 @export var speed: float = 8.0
 @export var mouse_sensitivity: float = 0.002
+var step_timer := 0.0
+var step_interval := 0.7
+var step_restart_delay := 0.12
+var was_walking := false
 
 @onready var camera: Camera3D = $Camera3D
+@onready var bruit_pas = $BruitPas
 
 func _ready():
 	add_to_group("culture_player")
@@ -32,9 +37,34 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
+	_handle_footsteps(delta)
 
 func reset_position():
 	global_position = Vector3(0, 1, 0)
 	rotation = Vector3.ZERO
 	camera.rotation = Vector3.ZERO
 	velocity = Vector3.ZERO
+	step_timer = 0.0
+	was_walking = false
+
+func _handle_footsteps(delta: float) -> void:
+	var real_velocity := get_real_velocity()
+	var horizontal_speed := Vector2(real_velocity.x, real_velocity.z).length()
+	var is_walking := is_on_floor() and horizontal_speed > 0.02
+	if not is_walking:
+		if was_walking:
+			step_timer = min(step_timer if step_timer > 0.0 else step_restart_delay, step_restart_delay)
+		was_walking = false
+		return
+
+	if not was_walking and step_timer <= 0.0:
+		bruit_pas.play()
+		step_timer = step_interval
+		was_walking = true
+		return
+
+	was_walking = true
+	step_timer -= delta
+	if step_timer <= 0.0:
+		bruit_pas.play()
+		step_timer = step_interval

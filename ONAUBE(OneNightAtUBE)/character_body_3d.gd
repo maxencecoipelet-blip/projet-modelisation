@@ -5,7 +5,9 @@ const SPEED = 4
 const JUMP_VELOCITY = 2.5
 
 var step_timer := 0.0
-var step_interval := 0.7
+var step_interval := 0.9
+var step_restart_delay := 0.12
+var was_walking := false
 
 
 @onready var camera_pivot = get_node("CameraPivot")
@@ -37,10 +39,12 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 		
-		_handle_footsteps(delta, input_dir)
 		move_and_slide()
+		_handle_footsteps(delta)
 	else:
-		step_timer = 0.0
+		if was_walking:
+			step_timer = step_restart_delay
+		was_walking = false
 
 func _input(event):
 	if event is InputEventMouseMotion and !GameState.on_pc:
@@ -53,11 +57,23 @@ func _input(event):
 
 		camera_pivot.rotation.x = camera_x_rotation
 
-func _handle_footsteps(delta: float, input_dir: Vector2) -> void:
-	if not is_on_floor() or input_dir == Vector2.ZERO:
-		step_timer = 0.0
+func _handle_footsteps(delta: float) -> void:
+	var real_velocity := get_real_velocity()
+	var horizontal_speed := Vector2(real_velocity.x, real_velocity.z).length()
+	var is_walking := is_on_floor() and horizontal_speed > 0.02
+	if not is_walking:
+		if was_walking:
+			step_timer = min(step_timer if step_timer > 0.0 else step_restart_delay, step_restart_delay)
+		was_walking = false
 		return
 
+	if not was_walking and step_timer <= 0.0:
+		bruit_pas.play()
+		step_timer = step_interval
+		was_walking = true
+		return
+
+	was_walking = true
 	step_timer -= delta
 	if step_timer <= 0.0:
 		bruit_pas.play()

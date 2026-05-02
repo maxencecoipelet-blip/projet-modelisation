@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bpaikdo6xb8ff"
+path="res://.godot/imported/shut down.mp3-3255261e631b0e69304f81bf9b005b47.mp3str"
+
+[deps]
+
+source_file="res://audio/robot/shut down.mp3"
+dest_files=["res://.godot/imported/shut down.mp3-3255261e631b0e69304f81bf9b005b47.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

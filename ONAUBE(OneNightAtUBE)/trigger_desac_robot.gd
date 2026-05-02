@@ -1,5 +1,6 @@
 extends Area3D
-@export var target_robot_name := "robot"
+@export var target_robot_name := ""
+@export var minigame_id := "jump"
 
 var triggered := false
 
@@ -13,6 +14,6 @@ func _on_body_entered(body: Node3D) -> void:
 	if not body is CharacterBody3D:
 		return
 	triggered = true
-	GameState.disable_robot(target_robot_name)
+	GameState.complete_minigame_and_disable_robot(minigame_id, target_robot_name)
 	set_deferred("monitoring", false)
 	call_deferred("queue_free")

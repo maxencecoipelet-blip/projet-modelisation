@@ -64,6 +64,7 @@ func answer(choice: String):
 		current_index += 1
 		if current_index >= TOTAL_QUESTIONS:
 			game_finished = true
+			GameState.complete_minigame_and_disable_robot("culture_g")
 			emit_signal("game_won")
 		else:
 			emit_signal("question_changed", get_current())

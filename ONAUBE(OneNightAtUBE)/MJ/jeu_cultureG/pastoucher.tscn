@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b0sd5j1fqcbfh" path="res://Door.gd" id="5_4t1jj"]
 [ext_resource type="Script" uid="uid://dr2p8xlsi43he" path="res://Player.gd" id="6_47q24"]
 [ext_resource type="Script" uid="uid://bk0hdyu54eduo" path="res://UI.gd" id="7_bgnhv"]
+[ext_resource type="AudioStream" uid="uid://dyg6vad8l8tpy" path="res://audio/player/footstep.mp3" id="8_q7utl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="Sky_1"]
 
@@ -177,6 +178,10 @@ shape = SubResource("Capsule_player")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=1088935992]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="BruitPas" type="AudioStreamPlayer" parent="Player" unique_id=1088935993]
+stream = ExtResource("8_q7utl")
+volume_db = -12.0
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=836337127]
 script = ExtResource("7_bgnhv")

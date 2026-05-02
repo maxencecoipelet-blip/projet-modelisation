@@ -7,6 +7,12 @@ const MOUSE_SENSITIVITY = 0.002
 
 var respawn_position = Vector3(0, 2, 0)
 var active = false
+var step_timer := 0.0
+var step_interval := 0.7
+var step_restart_delay := 0.12
+var was_walking := false
+
+@onready var bruit_pas = $BruitPas
 
 
 func _ready():
@@ -25,6 +31,7 @@ func set_active(value: bool) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not active or not GameState.IGJ:
+		was_walking = false
 		return
 
 	if not is_on_floor():
@@ -47,6 +54,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector3.ZERO
 
 	move_and_slide()
+	_handle_footsteps(delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -60,3 +68,25 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		$Head.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		$Head.rotation.x = clamp($Head.rotation.x, deg_to_rad(-80), deg_to_rad(80))
+
+func _handle_footsteps(delta: float) -> void:
+	var real_velocity := get_real_velocity()
+	var horizontal_speed := Vector2(real_velocity.x, real_velocity.z).length()
+	var is_walking := is_on_floor() and horizontal_speed > 0.02
+	if not is_walking:
+		if was_walking:
+			step_timer = min(step_timer if step_timer > 0.0 else step_restart_delay, step_restart_delay)
+		was_walking = false
+		return
+
+	if not was_walking and step_timer <= 0.0:
+		bruit_pas.play()
+		step_timer = step_interval
+		was_walking = true
+		return
+
+	was_walking = true
+	step_timer -= delta
+	if step_timer <= 0.0:
+		bruit_pas.play()
+		step_timer = step_interval

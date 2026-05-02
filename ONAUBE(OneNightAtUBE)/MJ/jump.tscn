@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://y5u6hao5q0f3" path="res://MJ/movingwall_1.gd" id="4_kaylv"]
 [ext_resource type="PackedScene" uid="uid://dkv6bi6qy43y7" path="res://triggerDesacRobot.tscn" id="5_h7s17"]
 [ext_resource type="Script" uid="uid://c657npph1lph3" path="res://trigger_desac_robot.gd" id="6_4g58u"]
+[ext_resource type="AudioStream" uid="uid://dyg6vad8l8tpy" path="res://audio/player/footstep.mp3" id="7_k1d9r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uts1x"]
 
@@ -69,6 +70,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1095784, -0.6237956)
 
 [node name="Camera3D" type="Camera3D" parent="JoueurJump/Head" unique_id=1867951182]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11489487, 0)
+
+[node name="BruitPas" type="AudioStreamPlayer" parent="JoueurJump" unique_id=1867951183]
+stream = ExtResource("7_k1d9r")
+volume_db = -12.0
 
 [node name="Platform1" type="StaticBody3D" parent="." unique_id=1737009503]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62812304, -8.002653)

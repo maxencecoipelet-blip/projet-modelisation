@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bhwifpx5nd2j4"]
 
 [ext_resource type="Script" uid="uid://5n3c6f87emve" path="res://robot.gd" id="1_3cn6f"]
+[ext_resource type="AudioStream" uid="uid://bpaikdo6xb8ff" path="res://audio/robot/shut down.mp3" id="2_0m4qx"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv0v2"]
 
@@ -43,6 +44,11 @@ shape = SubResource("CapsuleShape3D_3cn6f")
 volume_db = -6.0
 unit_size = 6.0
 max_distance = 22.0
+
+[node name="ShutdownSound" type="AudioStreamPlayer3D" parent="." unique_id=1052473453]
+stream = ExtResource("2_0m4qx")
+volume_db = -2.0
+max_distance = 35.0
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D2" to="." method="_on_area_3d_2_body_exited"]
