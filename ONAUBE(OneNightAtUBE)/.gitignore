@@ -1,0 +1,4 @@
+# Fichiers temporaires / locaux à ne jamais versionner
+*.tmp
+*.lnk
+*.blend1
