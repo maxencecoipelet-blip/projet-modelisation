@@ -6,7 +6,13 @@ var chasing = false
 var target_position = Vector3.ZERO
 @export var time_active=0
 @export var robot_id := ""
+
+
 var is_active=false
+#detecte la premiere fois que is_active passe en true
+var has_activated=false
+
+
 var is_disabled := false
 var robot_move_threshold := 0.15
 var robot_stop_delay := 0.6
@@ -20,8 +26,19 @@ var robot_stop_timer := 0.0
 func _process(delta: float) -> void:
 	if is_disabled:
 		return
-	if GameState.get_current_hour()>=time_active:
-		is_active=true
+
+	if GameState.get_current_hour() >= time_active and !has_activated:
+		is_active = true
+		has_activated = true
+		
+		#  Tirage aléatoire UNE SEULE FOIS
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		var nombre = rng.randi_range(1, 4)
+		while nombre in GameState.activated_minigames:
+			nombre = rng.randi_range(1, 4)
+		GameState.activated_minigames.append(nombre)
+		print(GameState.activated_minigames)
 	
 	
 func _ready():
@@ -57,10 +74,15 @@ func _physics_process(delta):
 	
 func choose_random_position():
 	target_position = Vector3(
-		randf_range(-5,5),
+		randf_range(-10,10),
 		global_position.y,
-		randf_range(-5,5)
+		randf_range(-10,10)
 	)
+	
+	
+	
+	
+	
 
 func _on_area_3d_body_entered(body):
 	if is_disabled:
@@ -93,6 +115,11 @@ func _on_area_3d_3_body_entered(body: Node3D) -> void:
 			GameState.loose=true
 			call_deferred("triggerMort")
 			
+			
+			
+			
+			
+			
 func triggerMort():
 	if chasing:
 		chasing = false
@@ -115,6 +142,9 @@ func _update_robot_audio(delta: float) -> void:
 		robot_stop_timer = max(robot_stop_timer - delta, 0.0)
 		if bruit_robot.playing and robot_stop_timer <= 0.0:
 			bruit_robot.stop()
+			
+			
+			
 
 func disable_robot() -> void:
 	if is_disabled:

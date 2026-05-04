@@ -15,3 +15,4 @@ func _reset_game_state() -> void:
 	GameState.en_menu = false
 	GameState.disabled_robots.clear()
 	GameState.completed_minigames.clear()
+	GameState.activated_minigames.clear()
