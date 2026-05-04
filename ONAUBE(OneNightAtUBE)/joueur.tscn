@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://60ajcwcosu0l"]
 
 [ext_resource type="Script" uid="uid://byb4y0peix03j" path="res://character_body_3d.gd" id="1_2d0qe"]
-[ext_resource type="AudioStream" uid="uid://b3f0dke7gynis" path="res://audio/player/footstep.mp3" id="2_mc3kx"]
+[ext_resource type="AudioStream" uid="uid://dyg6vad8l8tpy" path="res://audio/player/footstep.mp3" id="2_mc3kx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r0tex"]
 
@@ -21,7 +21,7 @@ mesh = SubResource("CapsuleMesh_2d0qe")
 [node name="CameraPivot" type="Node3D" parent="CharacterBody3D" unique_id=934361839]
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraPivot" unique_id=1921990]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54034543, -0.07143724)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75634444, -0.07143724)
 
 [node name="BruitPas" type="AudioStreamPlayer" parent="." unique_id=490146521]
 stream = ExtResource("2_mc3kx")
