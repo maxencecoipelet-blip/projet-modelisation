@@ -1,6 +1,8 @@
 extends Node3D
 var player
 
+
+
 @onready var desktop=$Desktop
 @onready var cams=$Desktop/cams
 @onready var robots=$Desktop/Robots
@@ -12,6 +14,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	if Input.is_action_just_pressed("pause") and GameState.on_pc and player:
 		if cams.visible or robots.visible or minijeu.visible:
 			desktop.visible=true
@@ -27,10 +30,15 @@ func _process(delta: float) -> void:
 			GameState.on_pc=false
 			GameState.IG=false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	elif player and Input.is_action_just_pressed("interagir"):
+		interact()
 
 		
 		
-		
+func interact():
+	GameState.on_pc=true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	call_deferred("open_computer")	
 	
 		
 
@@ -38,9 +46,7 @@ func _process(delta: float) -> void:
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player = body
-		GameState.on_pc=true
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		call_deferred("open_computer")
+		
 		
 			
 		
