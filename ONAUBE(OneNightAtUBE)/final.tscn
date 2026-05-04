@@ -20,15 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://b8h30rfig0361" path="res://MJ/mini_jeuJetpack.tscn" id="13_572a1"]
 [ext_resource type="PackedScene" uid="uid://dcn6epxvxjunb" path="res://MJ/mini_jeuVoiture.tscn" id="13_m4l06"]
 [ext_resource type="PackedScene" uid="uid://cmyufcwuppvt4" path="res://MJ/jeu_cultureG/mini_jeuCulture.tscn" id="15_3fwds"]
+[ext_resource type="PackedScene" uid="uid://ulbomcb5wbwx" path="res://assets/projet.glb" id="21_0n1jq"]
 
 [sub_resource type="Environment" id="Environment_edh6e"]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h0aww"]
-data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_edh6e"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_tvybu"]
 
 [sub_resource type="Shader" id="7"]
 code = "shader_type canvas_item;
@@ -58,22 +52,10 @@ environment = SubResource("Environment_edh6e")
 transform = Transform3D(1, 0, 0, 0, -0.87166756, 0.49009758, 0, -0.49009758, -0.87166756, 0, 4.600267, 0)
 
 [node name="joueur" parent="." unique_id=1410063770 instance=ExtResource("1_h0aww")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22233582, 1.2038853, 0.009435177)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=956862575]
-transform = Transform3D(22.669384, 0, 0, 0, 1, 0, 0, 0, 29.564863, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1816071136]
-transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000005, 0, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_h0aww")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1194237569]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
-mesh = SubResource("PlaneMesh_edh6e")
-skeleton = NodePath("../..")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.446573, 4.03508, 32.684826)
 
 [node name="robot" parent="." unique_id=538969851 instance=ExtResource("2_tvybu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5066738, -16.935314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.411053, -5.02202, -3.4925122)
 time_active = 1
 
 [node name="BruitRobot" parent="robot" index="5" unique_id=1052473452]
@@ -87,7 +69,7 @@ time_active = 2
 stream = ExtResource("5_ijprh")
 
 [node name="robot3" parent="." unique_id=538969853 instance=ExtResource("2_tvybu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.5066738, -14.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 21.600697, -14.5)
 time_active = 3
 
 [node name="BruitRobot" parent="robot3" index="5" unique_id=1052473452]
@@ -97,7 +79,7 @@ unit_size = 3.0
 max_distance = 16.0
 
 [node name="robot4" parent="." unique_id=538969854 instance=ExtResource("2_tvybu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5066738, 14.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.8525734, 11.964203)
 time_active = 4
 
 [node name="BruitRobot" parent="robot4" index="5" unique_id=1052473452]
@@ -105,15 +87,11 @@ stream = ExtResource("6_tc1ei")
 unit_size = 3.0
 max_distance = 16.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=428380246]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50586987, -1.6789932)
-mesh = SubResource("BoxMesh_tvybu")
-
 [node name="CanvasLayer2" parent="." unique_id=1193391187 instance=ExtResource("4_7678y")]
 visible = false
 
 [node name="ordinateur" parent="." unique_id=793953710 instance=ExtResource("5_fp1em")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.0107827)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.704742, 5.0107827)
 
 [node name="Desktop" parent="ordinateur" unique_id=1676753499 instance=ExtResource("6_6gx7d")]
 visible = false
@@ -202,7 +180,7 @@ render_target_update_mode = 0
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="cam1/SubViewport" unique_id=57539863]
-transform = Transform3D(0.33229282, -0.6475541, 0.68575156, 0, 0.72706616, 0.6865674, -0.94317627, -0.22814143, 0.24159886, 4.2253394, 5.2528424, -12.829972)
+transform = Transform3D(-0.6764951, 0.49084994, -0.549018, 0.036305893, 0.76681733, 0.6408377, 0.7355517, 0.41359097, -0.536569, 4.2253394, 4.941866, -12.829972)
 current = true
 
 [node name="cam2" type="Node3D" parent="." unique_id=693677788]
@@ -297,6 +275,9 @@ offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
 script = ExtResource("3_qt6nr")
+
+[node name="projet" parent="." unique_id=388085181 instance=ExtResource("21_0n1jq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.1003513, 0)
 
 [editable path="robot"]
 [editable path="robot2"]
