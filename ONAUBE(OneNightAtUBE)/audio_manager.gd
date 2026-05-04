@@ -10,7 +10,7 @@ var ventilo_chase_volume := -28.0
 var fade_duration := 1.2
 var room_ambience_fade_duration := 0.35
 var random_ambience_delay_min := 5.0
-var random_ambience_delay_max := 20.0
+var random_ambience_delay_max := 20
 var volume_tween: Tween
 var room_ambience_tween: Tween
 var room_ambience_enabled := false

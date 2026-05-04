@@ -21,10 +21,14 @@ func _on_texture_button_2_pressed() -> void:
 
 # Bouton mini-jeu
 func _on_texture_button_3_pressed() -> void:
-	AudioManager.play_ui_click()
-	var focus_owner := get_viewport().gui_get_focus_owner()
-	if focus_owner:
-		focus_owner.release_focus()
-	minijeu.visible = true
-	subMJ.open_minigame()
-	GameState.IG=true
+	if 1 in GameState.activated_minigames:
+		AudioManager.play_ui_click()
+		var focus_owner := get_viewport().gui_get_focus_owner()
+		if focus_owner:
+			focus_owner.release_focus()
+
+		minijeu.visible = true
+		subMJ.open_minigame()
+		GameState.IG=true
+	else:
+		print("MJ non disponible")

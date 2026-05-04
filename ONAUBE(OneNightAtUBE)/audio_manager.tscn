@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bi5d770qgefxw" path="res://audio/ambience/bruitambiant2.mp3" id="13_mfnxe"]
 [ext_resource type="AudioStream" uid="uid://rpbdo2t4l7ti" path="res://audio/ambience/bruitambiant3.mp3" id="14_astvc"]
 [ext_resource type="AudioStream" uid="uid://d2bhf0lals7ry" path="res://audio/ambience/bruitambiant4.mp3" id="15_ma34g"]
-[ext_resource type="AudioStream" uid="uid://bjiogesy8sb2v" path="res://audio/ambience/5.mp3" id="16_8o77j"]
+[ext_resource type="AudioStream" uid="uid://dgfwfgyd022kg" path="res://audio/ambience/5.mp3" id="16_8o77j"]
 [ext_resource type="AudioStream" uid="uid://bvgwf60qxqr1a" path="res://audio/ambience/6.mp3" id="17_jklj1"]
 [ext_resource type="AudioStream" uid="uid://v0m0tnvublkg" path="res://audio/ambience/7.mp3" id="18_pil3g"]
 [ext_resource type="AudioStream" uid="uid://bwyblmksp03nj" path="res://audio/ambience/8.mp3" id="19_evv53"]
@@ -36,6 +36,8 @@
 [ext_resource type="AudioStream" uid="uid://n6e1eyrq54yq" path="res://audio/ambience/23.mp3" id="34_ex434"]
 [ext_resource type="AudioStream" uid="uid://io28wi5s1ex" path="res://audio/ambience/24.mp3" id="35_l4ljp"]
 [ext_resource type="AudioStream" uid="uid://g1ie7cxumft1" path="res://audio/ambience/25.mp3" id="36_0o4ia"]
+[ext_resource type="AudioStream" uid="uid://drsc733x682j4" path="res://audio/ambience/26.mp3" id="37_pil3g"]
+[ext_resource type="AudioStream" uid="uid://dpdbc40nes2q8" path="res://audio/ambience/27.mp3" id="38_evv53"]
 
 [node name="AudioManager" type="Node" unique_id=1602212922]
 script = ExtResource("1_5olve")
@@ -74,26 +76,27 @@ volume_db = -11.0
 
 [node name="BuzzElectrique" type="AudioStreamPlayer" parent="." unique_id=556264971]
 stream = ExtResource("10_wby2p")
+volume_db = -5.0
 
 [node name="CraquementElectrique" type="AudioStreamPlayer" parent="." unique_id=312061882]
 stream = ExtResource("11_wby2p")
-volume_db = -10.0
+volume_db = -12.0
 
 [node name="AmbienceEvent1" type="AudioStreamPlayer" parent="." unique_id=1669834501]
 stream = ExtResource("12_86pii")
-volume_db = -9.0
+volume_db = -12.0
 
 [node name="AmbienceEvent2" type="AudioStreamPlayer" parent="." unique_id=959205114]
 stream = ExtResource("13_mfnxe")
-volume_db = -9.0
+volume_db = -12.0
 
 [node name="AmbienceEvent3" type="AudioStreamPlayer" parent="." unique_id=1286327410]
 stream = ExtResource("14_astvc")
-volume_db = -9.0
+volume_db = -13.0
 
 [node name="AmbienceEvent4" type="AudioStreamPlayer" parent="." unique_id=1773048822]
 stream = ExtResource("15_ma34g")
-volume_db = -9.0
+volume_db = -14.0
 
 [node name="AmbienceEvent5" type="AudioStreamPlayer" parent="." unique_id=1773048823]
 stream = ExtResource("16_8o77j")
@@ -101,47 +104,47 @@ volume_db = -17.0
 
 [node name="AmbienceEvent6" type="AudioStreamPlayer" parent="." unique_id=1773048824]
 stream = ExtResource("17_jklj1")
-volume_db = -12.0
+volume_db = -15.0
 
 [node name="AmbienceEvent7" type="AudioStreamPlayer" parent="." unique_id=1773048825]
 stream = ExtResource("18_pil3g")
-volume_db = -9.0
+volume_db = -11.0
 
 [node name="AmbienceEvent8" type="AudioStreamPlayer" parent="." unique_id=1773048826]
 stream = ExtResource("19_evv53")
-volume_db = -9.0
+volume_db = -18.0
 
 [node name="AmbienceEvent9" type="AudioStreamPlayer" parent="." unique_id=1773048827]
 stream = ExtResource("20_whfdm")
-volume_db = -12.0
+volume_db = -18.0
 
 [node name="AmbienceEvent10" type="AudioStreamPlayer" parent="." unique_id=1773048828]
 stream = ExtResource("21_mabco")
-volume_db = -12.0
+volume_db = -13.0
 
 [node name="AmbienceEvent11" type="AudioStreamPlayer" parent="." unique_id=1773048829]
 stream = ExtResource("22_58lqq")
-volume_db = -9.0
+volume_db = -12.0
 
 [node name="AmbienceEvent12" type="AudioStreamPlayer" parent="." unique_id=1773048830]
 stream = ExtResource("23_nto4k")
-volume_db = -9.0
+volume_db = -14.0
 
 [node name="AmbienceEvent13" type="AudioStreamPlayer" parent="." unique_id=1773048831]
 stream = ExtResource("24_dymsb")
-volume_db = -9.0
+volume_db = -12.0
 
 [node name="AmbienceEvent14" type="AudioStreamPlayer" parent="." unique_id=1773048832]
 stream = ExtResource("25_gjg3o")
-volume_db = -13.0
+volume_db = -16.0
 
 [node name="AmbienceEvent15" type="AudioStreamPlayer" parent="." unique_id=1773048833]
 stream = ExtResource("26_4pnrx")
-volume_db = -15.0
+volume_db = -18.0
 
 [node name="AmbienceEvent16" type="AudioStreamPlayer" parent="." unique_id=1773048834]
 stream = ExtResource("27_2cbbc")
-volume_db = -9.0
+volume_db = -12.0
 
 [node name="AmbienceEvent17" type="AudioStreamPlayer" parent="." unique_id=1773048835]
 stream = ExtResource("28_nmmkl")
@@ -149,7 +152,7 @@ volume_db = -14.0
 
 [node name="AmbienceEvent18" type="AudioStreamPlayer" parent="." unique_id=1773048836]
 stream = ExtResource("29_3wdey")
-volume_db = -9.0
+volume_db = -12.0
 
 [node name="AmbienceEvent19" type="AudioStreamPlayer" parent="." unique_id=1773048837]
 stream = ExtResource("30_0chhu")
@@ -157,19 +160,19 @@ volume_db = -14.0
 
 [node name="AmbienceEvent20" type="AudioStreamPlayer" parent="." unique_id=1773048838]
 stream = ExtResource("31_1d1af")
-volume_db = -9.0
+volume_db = -13.0
 
 [node name="AmbienceEvent21" type="AudioStreamPlayer" parent="." unique_id=1773048839]
 stream = ExtResource("32_ty7m8")
-volume_db = -17.0
+volume_db = -20.0
 
 [node name="AmbienceEvent22" type="AudioStreamPlayer" parent="." unique_id=1773048840]
 stream = ExtResource("33_n1hch")
-volume_db = -9.0
+volume_db = -12.0
 
 [node name="AmbienceEvent23" type="AudioStreamPlayer" parent="." unique_id=1773048841]
 stream = ExtResource("34_ex434")
-volume_db = -12.0
+volume_db = -14.0
 
 [node name="AmbienceEvent24" type="AudioStreamPlayer" parent="." unique_id=1773048842]
 stream = ExtResource("35_l4ljp")
@@ -178,3 +181,11 @@ volume_db = -11.0
 [node name="AmbienceEvent25" type="AudioStreamPlayer" parent="." unique_id=1773048843]
 stream = ExtResource("36_0o4ia")
 volume_db = -11.0
+
+[node name="AmbienceEvent26" type="AudioStreamPlayer" parent="." unique_id=1773048844]
+stream = ExtResource("37_pil3g")
+volume_db = -12.0
+
+[node name="AmbienceEvent27" type="AudioStreamPlayer" parent="." unique_id=1773048845]
+stream = ExtResource("38_evv53")
+volume_db = -12.0

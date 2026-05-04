@@ -1,6 +1,8 @@
 extends Node3D
 var player
 
+
+@export var id_MJ=0
 @onready var minijeu=$MJ
 @onready var subMJ=$MJ/SubViewportContainer
 # Called when the node enters the scene tree for the first time.
@@ -20,17 +22,23 @@ func _process(delta: float) -> void:
 		GameState.IGJ=false
 		GameState.IGC=false
 		
+	elif player and Input.is_action_just_pressed("interagir"):
+		interact()
 		
 		
 	
 		
-
+func interact():
+	GameState.on_pc=true
+	call_deferred("open_computer")
+	
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and id_MJ in GameState.activated_minigames:
 		player = body
-		GameState.on_pc=true
-		call_deferred("open_computer")
+	else:
+		print("MJ non disponible")
+		
 		
 		
 

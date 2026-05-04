@@ -1,6 +1,6 @@
 extends Node
 var time=0
-var night_duration=120
+var night_duration=600	
 var win=false
 var IG=false
 var IGJ=false
@@ -9,6 +9,14 @@ var IGC=false
 var en_menu=false
 var disabled_robots := {}
 var completed_minigames := {}
+
+
+### 1:jump
+### 2:cultureG
+### 3:voiture
+### 4:jetpack
+var activated_minigames :=[]
+
 
 var loose=false
 var on_pc=false
@@ -33,7 +41,7 @@ func _process(delta: float) -> void:
 		if !win and !en_menu:
 			win=true
 			call_deferred("win_game")
-	#print(on_pc,IG)
+	
 
 func get_current_hour():
 	var ratio = time / night_duration
