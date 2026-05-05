@@ -36,8 +36,15 @@
 [ext_resource type="Texture2D" uid="uid://bwqybexwh5exa" path="res://assets/corrugated_iron_02_disp_4k.png" id="34_toit_height"]
 [ext_resource type="Texture2D" uid="uid://bj31hx4dwp6rh" path="res://assets/wood_table_diff_4k.jpg" id="35_biblio_albedo"]
 [ext_resource type="Texture2D" uid="uid://cvywx65djdmnm" path="res://assets/wood_table_disp_4k.png" id="36_biblio_height"]
+[ext_resource type="Script" path="res://neon_flicker.gd" id="37_neon"]
 
 [sub_resource type="Environment" id="Environment_edh6e"]
+background_mode = 1
+background_color = Color(0, 0, 0, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0, 0, 0, 1)
+ambient_light_energy = 0.0
+reflected_light_source = 0
 
 [sub_resource type="Shader" id="7"]
 code = "shader_type canvas_item;
@@ -373,6 +380,51 @@ environment = SubResource("Environment_edh6e")
 transform = Transform3D(1, 0, 0, 0, -0.87166756, 0.49009758, 0, -0.49009758, -0.87166756, 0, 4.600267, 0)
 visible = false
 
+[node name="NeonCouloir1" type="OmniLight3D" parent="." unique_id=1596484263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 6.8, 5.0)
+light_color = Color(0.78, 0.88, 1, 1)
+light_energy = 0.42
+light_specular = 0.15
+light_indirect_energy = 0.0
+omni_range = 10.0
+omni_attenuation = 1.2
+script = ExtResource("37_neon")
+base_energy = 0.42
+dim_energy = 0.05
+min_interval = 1.3
+max_interval = 3.6
+flicker_chance = 0.8
+
+[node name="NeonCouloir2" type="OmniLight3D" parent="." unique_id=1596484264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 6.7, 2.0)
+light_color = Color(0.76, 0.9, 1, 1)
+light_energy = 0.36
+light_specular = 0.15
+light_indirect_energy = 0.0
+omni_range = 9.0
+omni_attenuation = 1.2
+script = ExtResource("37_neon")
+base_energy = 0.36
+dim_energy = 0.04
+min_interval = 1.8
+max_interval = 4.2
+flicker_chance = 0.65
+
+[node name="NeonCafet" type="OmniLight3D" parent="." unique_id=1596484265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0, -0.8, -2.0)
+light_color = Color(0.74, 0.86, 0.98, 1)
+light_energy = 0.3
+light_specular = 0.12
+light_indirect_energy = 0.0
+omni_range = 8.5
+omni_attenuation = 1.25
+script = ExtResource("37_neon")
+base_energy = 0.3
+dim_energy = 0.03
+min_interval = 2.1
+max_interval = 5.0
+flicker_chance = 0.55
+
 [node name="joueur" parent="." unique_id=1410063770 instance=ExtResource("1_h0aww")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2184653, 2.8021662, 6.3129625)
 
@@ -693,53 +745,53 @@ script = ExtResource("3_qt6nr")
 [node name="projet" parent="." unique_id=1918126783 instance=ExtResource("21_0n1jq")]
 transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, -0.067977905, -0.056337815, -0.011007786)
 
-[node name="SolRDC_003-col" parent="projet" index="2" unique_id=410999265]
+[node name="SolRDC_003-col" parent="projet" index="2" unique_id=1981687567]
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
-[node name="Grande porte vitrée entrée-col" parent="projet" index="3" unique_id=240734552]
+[node name="Grande porte vitrée entrée-col" parent="projet" index="3" unique_id=1664230318]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="SolRDC_001-col" parent="projet" index="8" unique_id=1926268203]
+[node name="SolRDC_001-col" parent="projet" index="8" unique_id=78160268]
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
-[node name="Toit" parent="projet" index="9" unique_id=2122734480]
+[node name="Toit" parent="projet" index="9" unique_id=395897947]
 surface_material_override/0 = SubResource("StandardMaterial3D_toit_corrugated")
 
-[node name="Amphi-col" parent="projet" index="10" unique_id=179456367]
+[node name="Amphi-col" parent="projet" index="10" unique_id=20834985]
 surface_material_override/0 = SubResource("StandardMaterial3D_y4b80")
 surface_material_override/19 = SubResource("StandardMaterial3D_ybbx5")
 surface_material_override/20 = SubResource("StandardMaterial3D_8qthc")
 
-[node name="Amphi_001-col" parent="projet" index="19" unique_id=1103701449]
+[node name="Amphi_001-col" parent="projet" index="19" unique_id=22569570]
 surface_material_override/0 = SubResource("StandardMaterial3D_q4gk6")
 surface_material_override/19 = SubResource("StandardMaterial3D_ibq41")
 surface_material_override/20 = SubResource("StandardMaterial3D_0rt0s")
 
-[node name="Salle-col" parent="projet" index="21" unique_id=1900375732]
+[node name="Salle-col" parent="projet" index="21" unique_id=2117880312]
 surface_material_override/0 = SubResource("StandardMaterial3D_twbhk")
 
-[node name="Mur_001-col" parent="projet" index="36" unique_id=881970289]
+[node name="Mur_001-col" parent="projet" index="36" unique_id=537843392]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="Mur-col-col" parent="projet" index="40" unique_id=903307206]
+[node name="Mur-col-col" parent="projet" index="40" unique_id=1483864245]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="Mur_002-col" parent="projet" index="41" unique_id=1507144397]
+[node name="Mur_002-col" parent="projet" index="41" unique_id=646675518]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="Mur_004-col" parent="projet" index="42" unique_id=1312039739]
+[node name="Mur_004-col" parent="projet" index="42" unique_id=287906142]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="Escalier-col" parent="projet" index="43" unique_id=1054838416]
+[node name="Escalier-col" parent="projet" index="43" unique_id=1603810955]
 surface_material_override/2 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="Mur_003-col" parent="projet" index="44" unique_id=846895311]
+[node name="Mur_003-col" parent="projet" index="44" unique_id=2052996535]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="SolSOUSOL-col" parent="projet" index="45" unique_id=2094768688]
+[node name="SolSOUSOL-col" parent="projet" index="45" unique_id=1587315615]
 surface_material_override/0 = SubResource("StandardMaterial3D_6chum")
 
-[node name="Bibliothèque-col" parent="projet" index="47" unique_id=1682254554]
+[node name="Bibliothèque-col" parent="projet" index="47" unique_id=1991137500]
 surface_material_override/0 = SubResource("StandardMaterial3D_bibliotheque_bois")
 
 [node name="collisions" type="StaticBody3D" parent="projet" unique_id=1348770359]
