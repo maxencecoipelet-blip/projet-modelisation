@@ -7,7 +7,7 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2d0qe"]
 
-[node name="Node3D" type="Node3D" unique_id=536804608]
+[node name="Node3D2" type="Node3D" unique_id=536804608]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=341568856 groups=["player"]]
 script = ExtResource("1_2d0qe")
@@ -26,15 +26,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75634444, -0.07143724)
 [node name="LampeTorche" type="SpotLight3D" parent="CharacterBody3D/CameraPivot" unique_id=1921991]
 transform = Transform3D(1, 0, 0, 0, 0.9848077, -0.1736482, 0, 0.1736482, 0.9848077, 0, 0.72, -0.02)
 light_color = Color(0.98, 0.99, 1, 1)
-light_energy = 3.0
-light_specular = 0.4
+light_energy = 3.3
 light_volumetric_fog_energy = 0.0
-spot_range = 17.0
-spot_angle = 34.0
-spot_angle_attenuation = 0.85
+light_specular = 0.4
 shadow_enabled = true
 shadow_bias = 0.08
 shadow_normal_bias = 1.2
+spot_range = 18.5
+spot_angle = 48.0
+spot_angle_attenuation = 0.72
 
 [node name="BruitPas" type="AudioStreamPlayer" parent="." unique_id=490146521]
 stream = ExtResource("2_mc3kx")

@@ -36,15 +36,12 @@
 [ext_resource type="Texture2D" uid="uid://bwqybexwh5exa" path="res://assets/corrugated_iron_02_disp_4k.png" id="34_toit_height"]
 [ext_resource type="Texture2D" uid="uid://bj31hx4dwp6rh" path="res://assets/wood_table_diff_4k.jpg" id="35_biblio_albedo"]
 [ext_resource type="Texture2D" uid="uid://cvywx65djdmnm" path="res://assets/wood_table_disp_4k.png" id="36_biblio_height"]
-[ext_resource type="Script" path="res://neon_flicker.gd" id="37_neon"]
+[ext_resource type="Script" uid="uid://dh4gtbphli786" path="res://neon_flicker.gd" id="37_neon"]
 
 [sub_resource type="Environment" id="Environment_edh6e"]
 background_mode = 1
-background_color = Color(0, 0, 0, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0, 0, 0, 1)
 ambient_light_energy = 0.0
-reflected_light_source = 0
 
 [sub_resource type="Shader" id="7"]
 code = "shader_type canvas_item;
@@ -75,7 +72,6 @@ uv1_scale = Vector3(120, 10, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grande_porte_vitree"]
 resource_name = "GrandePorteVitreeMarble"
-cull_mode = 2
 albedo_texture = ExtResource("28_gpv_albedo")
 metallic_texture = ExtResource("31_gpv_metal")
 roughness_texture = ExtResource("29_gpv_rough")
@@ -168,6 +164,81 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twbhk"]
+resource_name = "GrandePorteVitreeMarble"
+cull_mode = 2
+albedo_texture = ExtResource("28_gpv_albedo")
+metallic_texture = ExtResource("31_gpv_metal")
+roughness_texture = ExtResource("29_gpv_rough")
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("32_gpv_normal")
+ao_enabled = true
+ao_texture = ExtResource("30_gpv_ao")
+uv1_scale = Vector3(0.35, 0.35, 0.35)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eaxdp"]
+resource_name = "GrandePorteVitreeMarble"
+cull_mode = 2
+albedo_texture = ExtResource("28_gpv_albedo")
+metallic_texture = ExtResource("31_gpv_metal")
+roughness_texture = ExtResource("29_gpv_rough")
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("32_gpv_normal")
+ao_enabled = true
+ao_texture = ExtResource("30_gpv_ao")
+uv1_scale = Vector3(0.35, 0.35, 0.35)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3h2jn"]
+resource_name = "GrandePorteVitreeMarble"
+cull_mode = 2
+albedo_texture = ExtResource("28_gpv_albedo")
+metallic_texture = ExtResource("31_gpv_metal")
+roughness_texture = ExtResource("29_gpv_rough")
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("32_gpv_normal")
+ao_enabled = true
+ao_texture = ExtResource("30_gpv_ao")
+uv1_scale = Vector3(0.35, 0.35, 0.35)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nbn7y"]
+resource_name = "GrandePorteVitreeMarble"
+cull_mode = 2
+albedo_texture = ExtResource("28_gpv_albedo")
+metallic_texture = ExtResource("31_gpv_metal")
+roughness_texture = ExtResource("29_gpv_rough")
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("32_gpv_normal")
+ao_enabled = true
+ao_texture = ExtResource("30_gpv_ao")
+uv1_scale = Vector3(0.35, 0.35, 0.35)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eqpvg"]
+resource_name = "GrandePorteVitreeMarble"
+cull_mode = 2
+albedo_texture = ExtResource("28_gpv_albedo")
+metallic_texture = ExtResource("31_gpv_metal")
+roughness_texture = ExtResource("29_gpv_rough")
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("32_gpv_normal")
+ao_enabled = true
+ao_texture = ExtResource("30_gpv_ao")
+uv1_scale = Vector3(0.35, 0.35, 0.35)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7g7n"]
 resource_name = "GrandePorteVitreeMarble"
 cull_mode = 2
 albedo_texture = ExtResource("28_gpv_albedo")
@@ -360,16 +431,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0kxh1")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n1jq"]
-albedo_color = Color(0.21513474, 0.23443952, 0.24087289, 1)
-metallic_specular = 0.1
-roughness = 0.8
-roughness_texture = ExtResource("23_qw832")
-normal_enabled = true
-normal_scale = 0.61
-normal_texture = ExtResource("22_mlydm")
-uv1_scale = Vector3(1, 0, 0)
-
 [node name="Node3D" type="Node3D" unique_id=571075242]
 script = ExtResource("1_xethn")
 
@@ -381,11 +442,11 @@ transform = Transform3D(1, 0, 0, 0, -0.87166756, 0.49009758, 0, -0.49009758, -0.
 visible = false
 
 [node name="NeonCouloir1" type="OmniLight3D" parent="." unique_id=1596484263]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 6.8, 5.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.20306, -3.212656, 25.957293)
 light_color = Color(0.78, 0.88, 1, 1)
 light_energy = 0.42
-light_specular = 0.15
 light_indirect_energy = 0.0
+light_specular = 0.15
 omni_range = 10.0
 omni_attenuation = 1.2
 script = ExtResource("37_neon")
@@ -396,11 +457,11 @@ max_interval = 3.6
 flicker_chance = 0.8
 
 [node name="NeonCouloir2" type="OmniLight3D" parent="." unique_id=1596484264]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 6.7, 2.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.379673, 0.11961591, 19.110752)
 light_color = Color(0.76, 0.9, 1, 1)
 light_energy = 0.36
-light_specular = 0.15
 light_indirect_energy = 0.0
+light_specular = 0.15
 omni_range = 9.0
 omni_attenuation = 1.2
 script = ExtResource("37_neon")
@@ -411,11 +472,11 @@ max_interval = 4.2
 flicker_chance = 0.65
 
 [node name="NeonCafet" type="OmniLight3D" parent="." unique_id=1596484265]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0, -0.8, -2.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, -0.8, -2)
 light_color = Color(0.74, 0.86, 0.98, 1)
 light_energy = 0.3
-light_specular = 0.12
 light_indirect_energy = 0.0
+light_specular = 0.12
 omni_range = 8.5
 omni_attenuation = 1.25
 script = ExtResource("37_neon")
@@ -771,22 +832,19 @@ surface_material_override/20 = SubResource("StandardMaterial3D_0rt0s")
 surface_material_override/0 = SubResource("StandardMaterial3D_twbhk")
 
 [node name="Mur_001-col" parent="projet" index="36" unique_id=537843392]
-surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+surface_material_override/0 = SubResource("StandardMaterial3D_eaxdp")
 
 [node name="Mur-col-col" parent="projet" index="40" unique_id=1483864245]
-surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+surface_material_override/0 = SubResource("StandardMaterial3D_3h2jn")
 
 [node name="Mur_002-col" parent="projet" index="41" unique_id=646675518]
-surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+surface_material_override/0 = SubResource("StandardMaterial3D_nbn7y")
 
 [node name="Mur_004-col" parent="projet" index="42" unique_id=287906142]
-surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
-
-[node name="Escalier-col" parent="projet" index="43" unique_id=1603810955]
-surface_material_override/2 = SubResource("StandardMaterial3D_grande_porte_vitree")
+surface_material_override/0 = SubResource("StandardMaterial3D_eqpvg")
 
 [node name="Mur_003-col" parent="projet" index="44" unique_id=2052996535]
-surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+surface_material_override/0 = SubResource("StandardMaterial3D_q7g7n")
 
 [node name="SolSOUSOL-col" parent="projet" index="45" unique_id=1587315615]
 surface_material_override/0 = SubResource("StandardMaterial3D_6chum")
@@ -960,7 +1018,7 @@ shape = SubResource("BoxShape3D_w040f")
 transform = Transform3D(-256, -5.1579438e-08, 0, 2.2380229e-05, -0.59, 0, 0, 0, 51.3, 25.72, 4.879, 27.52)
 mesh = SubResource("ArrayMesh_ybbx5")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_0n1jq")
+surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
 [editable path="robot"]
 [editable path="robot2"]
