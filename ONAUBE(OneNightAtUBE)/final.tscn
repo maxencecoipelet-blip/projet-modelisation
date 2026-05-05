@@ -24,9 +24,19 @@
 [ext_resource type="Texture2D" uid="uid://d2dae7ggb2pfj" path="res://assets/concrete_floor_worn_001_diff_4k.jpg" id="22_mlydm"]
 [ext_resource type="Texture2D" uid="uid://ikuy0p01qcmc" path="res://assets/concrete_floor_worn_001_rough_4k.jpg" id="23_qw832"]
 [ext_resource type="Texture2D" uid="uid://c1ecdh0iti0tg" path="res://assets/projet_marble01_diffuse.jpg" id="24_y4b80"]
+[ext_resource type="Texture2D" uid="uid://bdolq04xpwf5d" path="res://assets/white_plaster_02_diff_4k.jpg" id="25_8qthc"]
 [ext_resource type="Texture2D" uid="uid://bbjqals4e3mdk" path="res://assets/projet_marble01_roughness.png" id="25_gvbhl"]
 [ext_resource type="Texture2D" uid="uid://bn60nmsufr325" path="res://assets/projet_marble01_normal_opengl.jpg" id="26_8qthc"]
 [ext_resource type="Script" uid="uid://kv0he8t7rnq" path="res://navigation_region_baker.gd" id="27_navbk"]
+[ext_resource type="Texture2D" uid="uid://bb24tlb05xcyl" path="res://assets/stringy_marble_albedo.png" id="28_gpv_albedo"]
+[ext_resource type="Texture2D" uid="uid://c0rm6pfn3bcd4" path="res://assets/stringy_marble_Roughness.png" id="29_gpv_rough"]
+[ext_resource type="Texture2D" uid="uid://bjp6be4xqg0lb" path="res://assets/stringy_marble_ao.png" id="30_gpv_ao"]
+[ext_resource type="Texture2D" uid="uid://7l2g008p0pm1" path="res://assets/stringy_marble_Metallic.png" id="31_gpv_metal"]
+[ext_resource type="Texture2D" uid="uid://bk7ktdg41dn55" path="res://assets/stringy_marble_Normal-ogl.png" id="32_gpv_normal"]
+[ext_resource type="Texture2D" uid="uid://ba7wn8fbmfes" path="res://assets/corrugated_iron_02_diff_4k.jpg" id="33_toit_albedo"]
+[ext_resource type="Texture2D" uid="uid://bwqybexwh5exa" path="res://assets/corrugated_iron_02_disp_4k.png" id="34_toit_height"]
+[ext_resource type="Texture2D" uid="uid://bj31hx4dwp6rh" path="res://assets/wood_table_diff_4k.jpg" id="35_biblio_albedo"]
+[ext_resource type="Texture2D" uid="uid://cvywx65djdmnm" path="res://assets/wood_table_disp_4k.png" id="36_biblio_height"]
 
 [sub_resource type="Environment" id="Environment_edh6e"]
 
@@ -65,14 +75,33 @@ normal_scale = 0.61
 normal_texture = ExtResource("22_mlydm")
 uv1_scale = Vector3(120, 10, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlydm"]
-albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
-roughness = 0.8
-roughness_texture = ExtResource("23_qw832")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grande_porte_vitree"]
+resource_name = "GrandePorteVitreeMarble"
+cull_mode = 2
+albedo_texture = ExtResource("28_gpv_albedo")
+metallic_texture = ExtResource("31_gpv_metal")
+roughness_texture = ExtResource("29_gpv_rough")
 normal_enabled = true
-normal_scale = 0.61
-normal_texture = ExtResource("22_mlydm")
-uv1_scale = Vector3(5, 1, 1)
+normal_scale = 0.45
+normal_texture = ExtResource("32_gpv_normal")
+ao_enabled = true
+ao_texture = ExtResource("30_gpv_ao")
+uv1_scale = Vector3(0.35, 0.35, 0.35)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_toit_corrugated"]
+resource_name = "ToitCorrugatedIron"
+cull_mode = 2
+albedo_texture = ExtResource("33_toit_albedo")
+metallic = 0.25
+roughness = 0.72
+heightmap_enabled = true
+heightmap_scale = 0.08
+heightmap_texture = ExtResource("34_toit_height")
+uv1_scale = Vector3(0.22, 0.22, 0.22)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4b80"]
 cull_mode = 2
@@ -82,17 +111,99 @@ roughness_texture = ExtResource("23_qw832")
 normal_enabled = true
 normal_scale = 0.61
 normal_texture = ExtResource("22_mlydm")
-uv1_scale = Vector3(5, 120, 0)
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybbx5"]
+cull_mode = 2
+albedo_color = Color(0.115924485, 0.13206846, 0.10668933, 1)
+roughness = 0.8
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("25_8qthc")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qthc"]
 cull_mode = 2
-albedo_color = Color(0.19070616, 0.25418302, 0.13685039, 1)
+albedo_color = Color(0.24126235, 0.27014312, 0.22661239, 1)
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("25_8qthc")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q4gk6"]
+cull_mode = 2
+albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
 roughness = 0.8
 roughness_texture = ExtResource("23_qw832")
 normal_enabled = true
 normal_scale = 0.61
 normal_texture = ExtResource("22_mlydm")
-uv1_scale = Vector3(5, 120, 0)
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibq41"]
+cull_mode = 2
+albedo_color = Color(0.115924485, 0.13206846, 0.10668933, 1)
+roughness = 0.8
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("25_8qthc")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rt0s"]
+cull_mode = 2
+albedo_color = Color(0.24126235, 0.27014312, 0.22661239, 1)
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("25_8qthc")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twbhk"]
+resource_name = "GrandePorteVitreeMarble"
+cull_mode = 2
+albedo_texture = ExtResource("28_gpv_albedo")
+metallic_texture = ExtResource("31_gpv_metal")
+roughness_texture = ExtResource("29_gpv_rough")
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("32_gpv_normal")
+ao_enabled = true
+ao_texture = ExtResource("30_gpv_ao")
+uv1_scale = Vector3(0.35, 0.35, 0.35)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6chum"]
+albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
+roughness = 0.8
+roughness_texture = ExtResource("23_qw832")
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("22_mlydm")
+uv1_scale = Vector3(120, 30, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bibliotheque_bois"]
+resource_name = "BibliothequeBois"
+cull_mode = 2
+albedo_texture = ExtResource("35_biblio_albedo")
+roughness = 0.82
+heightmap_enabled = true
+heightmap_scale = 0.05
+heightmap_texture = ExtResource("36_biblio_height")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_projet_sol_a"]
 size = Vector3(235.40735, 0.69870603, 52.648533)
@@ -505,15 +616,51 @@ transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, -0.067977905, -0.056
 [node name="SolRDC_003-col" parent="projet" index="2" unique_id=1981687567]
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
+[node name="Grande porte vitrée entrée-col" parent="projet" index="3" unique_id=1664230318]
+surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+
 [node name="SolRDC_001-col" parent="projet" index="8" unique_id=78160268]
-surface_material_override/0 = SubResource("StandardMaterial3D_mlydm")
+surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
+
+[node name="Toit" parent="projet" index="9" unique_id=395897947]
+surface_material_override/0 = SubResource("StandardMaterial3D_toit_corrugated")
 
 [node name="Amphi-col" parent="projet" index="10" unique_id=20834985]
 surface_material_override/0 = SubResource("StandardMaterial3D_y4b80")
+surface_material_override/19 = SubResource("StandardMaterial3D_ybbx5")
 surface_material_override/20 = SubResource("StandardMaterial3D_8qthc")
 
 [node name="Amphi_001-col" parent="projet" index="19" unique_id=22569570]
-surface_material_override/0 = SubResource("StandardMaterial3D_y4b80")
+surface_material_override/0 = SubResource("StandardMaterial3D_q4gk6")
+surface_material_override/19 = SubResource("StandardMaterial3D_ibq41")
+surface_material_override/20 = SubResource("StandardMaterial3D_0rt0s")
+
+[node name="Salle-col" parent="projet" index="21" unique_id=2117880312]
+surface_material_override/0 = SubResource("StandardMaterial3D_twbhk")
+
+[node name="Mur_001-col" parent="projet" index="36" unique_id=537843392]
+surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+
+[node name="Mur-col-col" parent="projet" index="40" unique_id=1483864245]
+surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+
+[node name="Mur_002-col" parent="projet" index="41" unique_id=646675518]
+surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+
+[node name="Mur_004-col" parent="projet" index="42" unique_id=287906142]
+surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+
+[node name="Escalier-col" parent="projet" index="43" unique_id=1603810955]
+surface_material_override/2 = SubResource("StandardMaterial3D_grande_porte_vitree")
+
+[node name="Mur_003-col" parent="projet" index="44" unique_id=2052996535]
+surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+
+[node name="SolSOUSOL-col" parent="projet" index="45" unique_id=1587315615]
+surface_material_override/0 = SubResource("StandardMaterial3D_6chum")
+
+[node name="Bibliothèque-col" parent="projet" index="47" unique_id=1991137500]
+surface_material_override/0 = SubResource("StandardMaterial3D_bibliotheque_bois")
 
 [node name="collisions" type="StaticBody3D" parent="projet" unique_id=1348770359]
 
