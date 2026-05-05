@@ -1,40 +1,122 @@
 extends CharacterBody3D
 
-var speed = 3.0
-var player = null
-var chasing = false
-var target_position = Vector3.ZERO
-@export var time_active=0
-@export var robot_id := ""
-@export var patrol_bounds_min := Vector3(-140.0, 0.0, -90.0)
-@export var patrol_bounds_max := Vector3(230.0, 0.0, 230.0)
+# ═══════════════════════════════════════════════════════════════════════════════
+#  STATS
+# ═══════════════════════════════════════════════════════════════════════════════
+var speed := 3.0
+
+@export var time_active := 0
+@export var robot_id    := ""
+@export var gravity     := 22.0
 
 
-var is_active=false
-#detecte la premiere fois que is_active passe en true
-var has_activated=false
+# ═══════════════════════════════════════════════════════════════════════════════
+#  SYSTÈME DE WAYPOINTS
+#
+#  Dans la scène, créez un Node3D "Waypoints" et ajoutez des Node3D enfants
+#  positionnés dans les lieux clés : paliers d'escalier, couloirs, entrées
+#  d'amphis, sous-sol… Le graphe de connexions est calculé automatiquement.
+#
+#  Conseil escalier : placez un waypoint tous les 2-3 marches pour que
+#  le robot monte/descende proprement via la physique.
+# ═══════════════════════════════════════════════════════════════════════════════
+@export var waypoints_parent_path : NodePath = NodePath("../waypoints")
+## Distance max en mètres pour relier deux waypoints entre eux
+@export var connection_radius     : float    = 16.0
 
+const WP_REACH      := 1.4   # distance pour considérer un WP comme atteint
+const CHASE_CLOSE   := 4.0   # en dessous : le robot fonce direct sans passer par WP
+const STUCK_TIMEOUT := 1.8   # secondes immobile avant de recalculer un chemin
 
-var is_disabled := false
+var _wps  : Array = []   # Array[Node3D]  — liste des waypoints
+var _adj  : Array = []   # Array[Array[int]] — graphe d'adjacence
+var _path : Array = []   # indices des WP restant à traverser
+var _cur  : int   = -1   # dernier WP atteint
+
+# ─── Stuck detection ───────────────────────────────────────────────────────────
+var _stuck_timer    : float   = 0.0
+var _last_pos       : Vector3 = Vector3.ZERO
+var _stuck_attempts : int     = 0        # nb de fois coincé d'affilée
+const STUCK_CHECK   := 0.8              # vérifie toutes les X secondes
+const STUCK_DIST    := 0.3              # doit avoir bougé au moins 30 cm
+var _stuck_check_timer : float = 0.0
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  INTELLIGENCE DE CHASSE
+# ═══════════════════════════════════════════════════════════════════════════════
+var player        : Node3D = null
+var chasing       := false
+var last_known    := Vector3.ZERO
+var _search_timer := 0.0
+const SEARCH_DUR  := 9.0   # secondes de recherche au dernier endroit connu
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  ÉTAT GÉNÉRAL (inchangé)
+# ═══════════════════════════════════════════════════════════════════════════════
+var is_active     := false
+var has_activated := false
+var is_disabled   := false
+
 var robot_move_threshold := 0.15
-var robot_stop_delay := 0.6
-var robot_stop_timer := 0.0
+var robot_stop_delay     := 0.6
+var robot_stop_timer     := 0.0
 
-@onready var bruit_robot = $BruitRobot
+@onready var bruit_robot    = $BruitRobot
 @onready var shutdown_sound = get_node_or_null("ShutdownSound")
-@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
-@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var mesh_instance  : MeshInstance3D = $MeshInstance3D
 
 
+# ═══════════════════════════════════════════════════════════════════════════════
+#  INITIALISATION
+# ═══════════════════════════════════════════════════════════════════════════════
+func _ready() -> void:
+	_restore_default_visual()
+	if robot_id.is_empty():
+		robot_id = name
+	if GameState.is_robot_disabled(robot_id):
+		disable_robot()
+		return
+	_build_waypoint_graph()
+	_go_to_random_wp()
+	_last_pos = global_position
+
+
+func _build_waypoint_graph() -> void:
+	_wps.clear()
+	_adj.clear()
+
+	if not waypoints_parent_path.is_empty():
+		var parent = get_node_or_null(waypoints_parent_path)
+		if parent:
+			for child in parent.get_children():
+				if child is Node3D:
+					_wps.append(child)
+
+	if _wps.is_empty():
+		push_warning("Robot [%s] : aucun waypoint trouvé ! Vérifiez waypoints_parent_path." % robot_id)
+		return
+
+	_adj.resize(_wps.size())
+	for i in _wps.size():
+		_adj[i] = []
+
+	# Connexion automatique par proximité
+	for i in _wps.size():
+		for j in range(i + 1, _wps.size()):
+			if _wps[i].global_position.distance_to(_wps[j].global_position) <= connection_radius:
+				_adj[i].append(j)
+				_adj[j].append(i)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  ACTIVATION (identique à l'original)
+# ═══════════════════════════════════════════════════════════════════════════════
 func _process(delta: float) -> void:
 	if is_disabled:
 		return
-
-	if GameState.get_current_hour() >= time_active and !has_activated:
-		is_active = true
-		has_activated = true
-		
-		#  Tirage aléatoire UNE SEULE FOIS
+	if GameState.get_current_hour() >= time_active and not has_activated:
+		is_active      = true
+		has_activated  = true
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
 		var nombre = rng.randi_range(1, 4)
@@ -42,74 +124,217 @@ func _process(delta: float) -> void:
 			nombre = rng.randi_range(1, 4)
 		GameState.activated_minigames.append(nombre)
 		print(GameState.activated_minigames)
-	
-	
-func _ready():
-	_restore_default_visual()
-	if robot_id.is_empty():
-		robot_id = name
-	navigation_agent.max_speed = speed
-	if GameState.is_robot_disabled(robot_id):
-		disable_robot()
-		return
-	choose_random_position()
 
-func _physics_process(delta):
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  PHYSIQUE
+# ═══════════════════════════════════════════════════════════════════════════════
+func _physics_process(delta: float) -> void:
 	if is_disabled:
 		return
 
-	if chasing and player and is_active:
-		_set_navigation_target(player.global_position)
-	elif is_active and !chasing and navigation_agent.is_navigation_finished():
-		choose_random_position()
+	if is_on_floor():
+		velocity.y = 0.0
+	else:
+		velocity.y -= gravity * delta
 
-	var current_speed := 0.0
-	if chasing and is_active:
-		current_speed = speed
-	elif is_active and !chasing:
-		current_speed = speed / 2.0
+	if not is_active:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		move_and_slide()
+		return
 
-	if current_speed > 0.0 and not navigation_agent.is_navigation_finished():
-		var next_path_position := navigation_agent.get_next_path_position()
-		var direction := next_path_position - global_position
-		direction.y = 0.0
-		if direction.length() > 0.05:
-			direction = direction.normalized()
-			velocity.x = direction.x * current_speed
-			velocity.z = direction.z * current_speed
+	# ── Détection de blocage (par snapshot toutes les 0.8s) ───────────────────
+	_stuck_check_timer += delta
+	if _stuck_check_timer >= STUCK_CHECK:
+		_stuck_check_timer = 0.0
+		var dist_moved := global_position.distance_to(_last_pos)
+		if dist_moved < STUCK_DIST:
+			_stuck_attempts += 1
+			_try_unstuck()
 		else:
-			velocity.x = 0.0
-			velocity.z = 0.0
+			_stuck_attempts = 0
+		_last_pos = global_position
+
+	# ── Cible et vitesse ──────────────────────────────────────────────────────
+	var target_pos : Vector3
+	var cur_speed  : float
+
+	if chasing and player:
+		last_known    = player.global_position
+		_search_timer = SEARCH_DUR
+		var dist = global_position.distance_to(player.global_position)
+		if dist <= CHASE_CLOSE:
+			target_pos = player.global_position
+			_path.clear()
+		else:
+			target_pos = _next_waypoint_toward(player.global_position)
+		cur_speed = speed
+
+	elif _search_timer > 0.0:
+		_search_timer -= delta
+		target_pos = _next_waypoint_toward(last_known)
+		cur_speed  = speed * 0.8
+		if global_position.distance_to(last_known) < WP_REACH * 2.5 and _path.is_empty():
+			_search_timer = 0.0
+			_go_to_random_wp()
+
+	else:
+		target_pos = _patrol_next()
+		cur_speed  = speed * 0.5
+
+	# ── Mouvement ─────────────────────────────────────────────────────────────
+	var to_target := target_pos - global_position
+	to_target.y   = 0.0
+
+	if to_target.length() > 0.05:
+		var dir    := to_target.normalized()
+		velocity.x  = dir.x * cur_speed
+		velocity.z  = dir.z * cur_speed
+		var look_pos := global_position + to_target
+		if look_pos.distance_to(global_position) > 0.01:
+			var t := transform.looking_at(look_pos, Vector3.UP)
+			transform.basis = transform.basis.slerp(t.basis, delta * 8.0)
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
 
 	move_and_slide()
 	_update_robot_audio(delta)
-	
-func choose_random_position():
-	var random_target := Vector3(
-		randf_range(patrol_bounds_min.x, patrol_bounds_max.x),
-		global_position.y,
-		randf_range(patrol_bounds_min.z, patrol_bounds_max.z)
-	)
-	_set_navigation_target(random_target)
 
 
-func _set_navigation_target(desired_target: Vector3) -> void:
-	var navigation_map_rid := get_world_3d().navigation_map
-	var snapped_target := desired_target
-	if navigation_map_rid.is_valid():
-		snapped_target = NavigationServer3D.map_get_closest_point(navigation_map_rid, desired_target)
-	target_position = snapped_target
-	navigation_agent.target_position = snapped_target
-	
-	
-	
-	
-	
+func _try_unstuck() -> void:
+	match _stuck_attempts:
+		1:
+			# Tentative 1 : sauter le WP actuel et viser le suivant
+			if _path.size() > 1:
+				_path.pop_front()
+			else:
+				_go_to_random_wp()
 
-func _on_area_3d_body_entered(body):
+		2:
+			# Tentative 2 : impulsion aléatoire + nouveau chemin
+			var rng_dir := Vector3(randf_range(-1.0, 1.0), 0.0, randf_range(-1.0, 1.0)).normalized()
+			velocity.x = rng_dir.x * speed * 2.0
+			velocity.z = rng_dir.z * speed * 2.0
+			velocity.y = 4.0   # petit saut pour passer une arête
+			_go_to_random_wp()
+
+		3:
+			# Tentative 3 : se téléporter au WP le plus proche accessible
+			var nearest := _nearest_wp(global_position)
+			if nearest >= 0 and nearest < _wps.size():
+				global_position = _wps[nearest].global_position + Vector3(0, 0.2, 0)
+			_go_to_random_wp()
+			_stuck_attempts = 0   # reset après téléport
+
+		_:
+			# Trop coincé : téléport forcé
+			var nearest := _nearest_wp(global_position)
+			if nearest >= 0 and nearest < _wps.size():
+				global_position = _wps[nearest].global_position + Vector3(0, 0.2, 0)
+			_go_to_random_wp()
+			_stuck_attempts = 0
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  NAVIGATION WAYPOINTS (BFS)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+## Renvoie la prochaine position à cibler pour aller vers `dest`
+func _next_waypoint_toward(dest: Vector3) -> Vector3:
+	# Avancer dans le chemin existant si on a atteint le prochain WP
+	if not _path.is_empty():
+		var next_pos : Vector3 = _wps[_path[0]].global_position
+		if global_position.distance_to(next_pos) < WP_REACH:
+			_cur = _path[0]
+			_path.pop_front()
+
+	# Recalculer si le chemin est vide
+	if _path.is_empty():
+		var from_idx := _nearest_wp(global_position)
+		var to_idx   := _nearest_wp(dest)
+		_path = _bfs(from_idx, to_idx)
+		if not _path.is_empty():
+			_path.pop_front()   # on enlève le point de départ
+
+	if not _path.is_empty():
+		return _wps[_path[0]].global_position
+
+	return dest   # aucun chemin → direction directe
+
+
+## Avance dans le chemin de patrouille, en choisit un nouveau si fini
+func _patrol_next() -> Vector3:
+	if _path.is_empty():
+		_go_to_random_wp()
+
+	if _path.is_empty():
+		return global_position
+
+	var next_pos : Vector3 = _wps[_path[0]].global_position
+	if global_position.distance_to(next_pos) < WP_REACH:
+		_cur = _path[0]
+		_path.pop_front()
+
+	if _path.is_empty():
+		return global_position   # arrivé → prochain tick choisira un nouveau
+
+	return _wps[_path[0]].global_position
+
+
+## Choisit un waypoint aléatoire et calcule le chemin BFS
+func _go_to_random_wp() -> void:
+	if _wps.is_empty():
+		return
+	var from := _nearest_wp(global_position)
+	var dest := randi() % _wps.size()
+	var tries := 0
+	while dest == from and tries < 10:
+		dest = randi() % _wps.size()
+		tries += 1
+	_path = _bfs(from, dest)
+	if not _path.is_empty():
+		_path.pop_front()
+
+
+## Trouve l'index du waypoint le plus proche d'une position donnée
+func _nearest_wp(pos: Vector3) -> int:
+	var best_idx  := 0
+	var best_dist := INF
+	for i in _wps.size():
+		var d : float = _wps[i].global_position.distance_to(pos)
+		if d < best_dist:
+			best_dist = d
+			best_idx  = i
+	return best_idx
+
+
+## BFS : renvoie la liste d'indices de waypoints du chemin le plus court
+func _bfs(from_idx: int, to_idx: int) -> Array:
+	if from_idx == to_idx or _adj.is_empty():
+		return [from_idx]
+
+	var queue   : Array      = [[from_idx]]
+	var visited : Dictionary = {from_idx: true}
+
+	while not queue.is_empty():
+		var path : Array = queue.pop_front()
+		var node : int   = path[-1]
+		for neighbor : int in _adj[node]:
+			if neighbor == to_idx:
+				return path + [neighbor]
+			if not visited.has(neighbor):
+				visited[neighbor] = true
+				queue.append(path + [neighbor])
+
+	# Pas de chemin trouvé → rester sur place
+	return [from_idx]
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  ZONES DE DÉTECTION (inchangé)
+# ═══════════════════════════════════════════════════════════════════════════════
+func _on_area_3d_body_entered(body) -> void:
 	if is_disabled:
 		return
 	if is_active and body.is_in_group("player"):
@@ -119,7 +344,6 @@ func _on_area_3d_body_entered(body):
 			AudioManager.notify_robot_started_chase()
 
 
-
 func _on_area_3d_2_body_exited(body: Node3D) -> void:
 	if is_disabled:
 		return
@@ -127,30 +351,29 @@ func _on_area_3d_2_body_exited(body: Node3D) -> void:
 		if chasing:
 			chasing = false
 			AudioManager.notify_robot_stopped_chase()
-		choose_random_position()
+		# Démarre la recherche au dernier endroit connu
+		_path.clear()
 		player = null
-
 
 
 func _on_area_3d_3_body_entered(body: Node3D) -> void:
 	if is_disabled:
 		return
-	if is_active:
-		if body.is_in_group("player"):
-			GameState.loose=true
-			call_deferred("triggerMort")
-			
-			
-			
-			
-			
-			
-func triggerMort():
+	if is_active and body.is_in_group("player"):
+		GameState.loose = true
+		call_deferred("triggerMort")
+
+
+func triggerMort() -> void:
 	if chasing:
 		chasing = false
 		AudioManager.notify_robot_stopped_chase()
 	get_tree().change_scene_to_file("res://ecran_mort.tscn")
 
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  AUDIO (inchangé)
+# ═══════════════════════════════════════════════════════════════════════════════
 func _update_robot_audio(delta: float) -> void:
 	if not is_active:
 		if bruit_robot.playing:
@@ -167,20 +390,21 @@ func _update_robot_audio(delta: float) -> void:
 		robot_stop_timer = max(robot_stop_timer - delta, 0.0)
 		if bruit_robot.playing and robot_stop_timer <= 0.0:
 			bruit_robot.stop()
-			
-			
-			
 
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  DÉSACTIVATION (inchangé)
+# ═══════════════════════════════════════════════════════════════════════════════
 func disable_robot() -> void:
 	if is_disabled:
 		return
-	var was_chasing: bool = chasing
-	is_disabled = true
-	is_active = false
-	chasing = false
-	player = null
-	velocity = Vector3.ZERO
-	navigation_agent.target_position = global_position
+	var was_chasing := chasing
+	is_disabled  = true
+	is_active    = false
+	chasing      = false
+	player       = null
+	velocity     = Vector3.ZERO
+	_path.clear()
 	robot_stop_timer = 0.0
 	if was_chasing:
 		AudioManager.notify_robot_stopped_chase()
@@ -191,7 +415,7 @@ func disable_robot() -> void:
 	for area_name in ["Area3D", "Area3D2", "Area3D3"]:
 		var area = get_node_or_null(area_name)
 		if area:
-			area.set_deferred("monitoring", false)
+			area.set_deferred("monitoring",  false)
 			area.set_deferred("monitorable", false)
 			var area_shape = area.get_node_or_null("CollisionShape3D")
 			if area_shape:
@@ -200,18 +424,21 @@ func disable_robot() -> void:
 	set_physics_process(false)
 	_apply_disabled_visual()
 
+
 func can_be_disabled_by_minigame() -> bool:
 	return is_active and not is_disabled
+
 
 func _apply_disabled_visual() -> void:
 	if not mesh_instance:
 		return
-	var disabled_material := StandardMaterial3D.new()
-	disabled_material.albedo_color = Color(0.9, 0.15, 0.15, 1.0)
-	disabled_material.emission_enabled = true
-	disabled_material.emission = Color(0.55, 0.05, 0.05, 1.0)
-	disabled_material.emission_energy_multiplier = 1.2
-	mesh_instance.material_override = disabled_material
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color              = Color(0.9, 0.15, 0.15, 1.0)
+	mat.emission_enabled          = true
+	mat.emission                  = Color(0.55, 0.05, 0.05, 1.0)
+	mat.emission_energy_multiplier = 1.2
+	mesh_instance.material_override = mat
+
 
 func _restore_default_visual() -> void:
 	if mesh_instance:

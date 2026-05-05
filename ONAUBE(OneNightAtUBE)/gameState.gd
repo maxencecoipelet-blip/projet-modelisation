@@ -1,6 +1,6 @@
 extends Node
 var time=0
-var night_duration=50	
+var night_duration=500	
 var win=false
 var IG=false
 var IGJ=false

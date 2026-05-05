@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://bdolq04xpwf5d" path="res://assets/white_plaster_02_diff_4k.jpg" id="25_8qthc"]
 [ext_resource type="Texture2D" uid="uid://bbjqals4e3mdk" path="res://assets/projet_marble01_roughness.png" id="25_gvbhl"]
 [ext_resource type="Texture2D" uid="uid://bn60nmsufr325" path="res://assets/projet_marble01_normal_opengl.jpg" id="26_8qthc"]
-[ext_resource type="Script" uid="uid://kv0he8t7rnq" path="res://navigation_region_baker.gd" id="27_navbk"]
 [ext_resource type="Texture2D" uid="uid://bb24tlb05xcyl" path="res://assets/stringy_marble_albedo.png" id="28_gpv_albedo"]
 [ext_resource type="Texture2D" uid="uid://c0rm6pfn3bcd4" path="res://assets/stringy_marble_Roughness.png" id="29_gpv_rough"]
 [ext_resource type="Texture2D" uid="uid://bjp6be4xqg0lb" path="res://assets/stringy_marble_ao.png" id="30_gpv_ao"]
@@ -57,14 +56,6 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_awkn3"]
 shader = SubResource("7")
 shader_parameter/SCREEN_HEIGHT = 240.0
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_robot_nav"]
-cell_height = 0.2
-border_size = 0.25
-agent_height = 1.4
-agent_radius = 0.6
-agent_max_climb = 0.8
-edge_max_length = 12.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvbhl"]
 albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
@@ -380,29 +371,30 @@ environment = SubResource("Environment_edh6e")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1596484262]
 transform = Transform3D(1, 0, 0, 0, -0.87166756, 0.49009758, 0, -0.49009758, -0.87166756, 0, 4.600267, 0)
+visible = false
 
 [node name="joueur" parent="." unique_id=1410063770 instance=ExtResource("1_h0aww")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2184653, 2.8021662, 6.3129625)
 
 [node name="robot" parent="." unique_id=538969851 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.092857, 1.9373345, 8.578706)
-time_active = 1
+time_active = 3
 
-[node name="BruitRobot" parent="robot" index="6" unique_id=1052473452]
+[node name="BruitRobot" parent="robot" index="5" unique_id=1052473452]
 stream = ExtResource("4_77v52")
 
 [node name="robot2" parent="." unique_id=538969852 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.12223, -3.3486233, -1.734194)
-time_active = 1
+time_active = 2
 
-[node name="BruitRobot" parent="robot2" index="6" unique_id=1052473452]
+[node name="BruitRobot" parent="robot2" index="5" unique_id=1052473452]
 stream = ExtResource("5_ijprh")
 
 [node name="robot3" parent="." unique_id=538969853 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.298988, 1.7587683, 0.238698)
-time_active = 1
+time_active = 3
 
-[node name="BruitRobot" parent="robot3" index="6" unique_id=1052473452]
+[node name="BruitRobot" parent="robot3" index="5" unique_id=1052473452]
 stream = ExtResource("6_0n1jq")
 volume_db = -8.0
 unit_size = 3.0
@@ -412,7 +404,7 @@ max_distance = 16.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.053348, 2.4596322, -4.360953)
 time_active = 1
 
-[node name="BruitRobot" parent="robot4" index="6" unique_id=1052473452]
+[node name="BruitRobot" parent="robot4" index="5" unique_id=1052473452]
 stream = ExtResource("6_tc1ei")
 unit_size = 3.0
 max_distance = 16.0
@@ -504,13 +496,40 @@ handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 0
 
+[node name="cam3" type="Node3D" parent="." unique_id=1619557267]
+
+[node name="SubViewport" type="SubViewport" parent="cam3" unique_id=1619195618]
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="cam3/SubViewport" unique_id=395353017]
+transform = Transform3D(-0.99935937, -0.024571596, 0.026021004, -0.0034389356, 0.7896312, 0.6135722, -0.035623442, 0.6130897, -0.7892098, 19.732784, 4.2358775, 9.529955)
+current = true
+
+[node name="cam5" type="Node3D" parent="." unique_id=1679974940]
+
+[node name="SubViewport" type="SubViewport" parent="cam5" unique_id=315522703]
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="cam5/SubViewport" unique_id=419022852]
+transform = Transform3D(-0.6807644, 0.4545413, -0.5744146, 0.07031129, 0.8211089, 0.5664244, 0.72912025, 0.3452137, -0.590941, 4.2253394, 7.613083, -7.796064)
+current = true
+
+[node name="cam4" type="Node3D" parent="." unique_id=370272363]
+
+[node name="SubViewport" type="SubViewport" parent="cam4" unique_id=1673040067]
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="cam4/SubViewport" unique_id=949348856]
+transform = Transform3D(-0.07878031, -0.45486808, 0.8870675, -0.025048267, 0.89045537, 0.45438075, -0.99657726, 0.013576735, -0.08154398, 32.060593, 0.043464422, -0.05627632)
+current = true
+
 [node name="cam1" type="Node3D" parent="." unique_id=1519529835]
 
 [node name="SubViewport" type="SubViewport" parent="cam1" unique_id=1353739870]
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="cam1/SubViewport" unique_id=57539863]
-transform = Transform3D(0.33229282, -0.6475541, 0.68575156, 0, 0.72706616, 0.6865674, -0.94317627, -0.22814143, 0.24159886, 4.2253394, 5.2528424, -12.829972)
+transform = Transform3D(-0.6061415, -0.38664263, 0.6950541, 0.00016046315, 0.87382984, 0.4862317, -0.79535687, 0.29483676, -0.52960247, 31.988264, 5.9228296, -2.3324347)
 current = true
 
 [node name="cam2" type="Node3D" parent="." unique_id=693677788]
@@ -520,11 +539,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4553716, 2.772935, 0)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="cam2/SubViewport" unique_id=98995594]
-transform = Transform3D(1, 0, 0, 0, 0.72706616, 0.6865674, 0, -0.6865674, 0.72706616, 0, 5.2528424, 6.658082)
+transform = Transform3D(1, 0, 0, 0, 0.72706616, 0.6865674, 0, -0.6865674, 0.72706616, 8.110563, 8.102386, 9.178016)
 current = true
 
 [node name="ordinateur2" parent="." unique_id=547112757 instance=ExtResource("5_fp1em")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.024212, 0, 17.928867)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.141326, 1.3342578, 11.618559)
 script = ExtResource("11_i6nld")
 id_MJ = 4
 
@@ -548,7 +567,7 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 0
 
 [node name="ordinateur3" parent="." unique_id=811746658 instance=ExtResource("5_fp1em")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.493877, 0, 17.928867)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.846535, -3.0701995, -3.7761388)
 script = ExtResource("11_i6nld")
 id_MJ = 3
 
@@ -572,7 +591,7 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 0
 
 [node name="ordinateur4" parent="." unique_id=2111980412 instance=ExtResource("5_fp1em")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.211094, 0, -28.094273)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.682497, 1.872983, -0.87309265)
 script = ExtResource("11_i6nld")
 id_MJ = 2
 
@@ -595,6 +614,71 @@ handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 0
 
+[node name="waypoints" type="Node3D" parent="." unique_id=607506450]
+
+[node name="Node3D" type="Node3D" parent="waypoints" unique_id=1562872150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6807827, 0)
+
+[node name="Node3D2" type="Node3D" parent="waypoints" unique_id=1235674883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.613321, 0, 0)
+
+[node name="Node3D3" type="Node3D" parent="waypoints" unique_id=142003124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.114916, 0.80885315, 8.683933)
+
+[node name="Node3D4" type="Node3D" parent="waypoints" unique_id=1018539682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.767515, -1.4118203, 18.501787)
+
+[node name="Node3D5" type="Node3D" parent="waypoints" unique_id=300050013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0084195, 0.8502667, -6.6521387)
+
+[node name="Node3D6" type="Node3D" parent="waypoints" unique_id=79866936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.038683, 1.5144306, 0)
+
+[node name="Node3D7" type="Node3D" parent="waypoints" unique_id=570901785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.95062, 1.1228371, 7.0761566)
+
+[node name="Node3D8" type="Node3D" parent="waypoints" unique_id=89579615]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.713104, -1.2694486, 18.881222)
+
+[node name="Node3D9" type="Node3D" parent="waypoints" unique_id=290650199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.31714, -3.2643614, 22.818966)
+
+[node name="Node3D10" type="Node3D" parent="waypoints" unique_id=1948378658]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.087626, 0.5258422, 7.2941685)
+
+[node name="Node3D11" type="Node3D" parent="waypoints" unique_id=1239963530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.026709, -1.1776057, -6.819283)
+
+[node name="Node3D12" type="Node3D" parent="waypoints" unique_id=1844043487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.04764, -4.199385, -6.6160164)
+
+[node name="Node3D13" type="Node3D" parent="waypoints" unique_id=1536029916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7284076, -4.2252035, 0.89415765)
+
+[node name="Node3D14" type="Node3D" parent="waypoints" unique_id=304650900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.832299, 0.9699328, 6.211117)
+
+[node name="Node3D15" type="Node3D" parent="waypoints" unique_id=1342958376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.958511, 0.87993574, -2.4466662)
+
+[node name="Node3D16" type="Node3D" parent="waypoints" unique_id=77221966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.570627, 0.9804324, -6.958812)
+
+[node name="Node3D17" type="Node3D" parent="waypoints" unique_id=1639038699]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.530923, 0.58708394, 7.51742)
+
+[node name="Node3D18" type="Node3D" parent="waypoints" unique_id=1368143631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2048507, 0.09261829, -6.7297964)
+
+[node name="Node3D19" type="Node3D" parent="waypoints" unique_id=349048324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.895771, -4.247636, 5.4941597)
+
+[node name="Node3D20" type="Node3D" parent="waypoints" unique_id=148521105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.21051, -4.1273003, 0)
+
+[node name="Node3D21" type="Node3D" parent="waypoints" unique_id=1149872802]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.564186, 28.731297)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1412745373]
 
 [node name="TimeLabel" type="Label" parent="CanvasLayer" unique_id=15791412]
@@ -606,60 +690,56 @@ offset_bottom = 23.0
 grow_horizontal = 0
 script = ExtResource("3_qt6nr")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=192887441]
-navigation_mesh = SubResource("NavigationMesh_robot_nav")
-script = ExtResource("27_navbk")
-
 [node name="projet" parent="." unique_id=1918126783 instance=ExtResource("21_0n1jq")]
 transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, -0.067977905, -0.056337815, -0.011007786)
 
-[node name="SolRDC_003-col" parent="projet" index="2" unique_id=1981687567]
+[node name="SolRDC_003-col" parent="projet" index="2" unique_id=410999265]
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
-[node name="Grande porte vitrée entrée-col" parent="projet" index="3" unique_id=1664230318]
+[node name="Grande porte vitrée entrée-col" parent="projet" index="3" unique_id=240734552]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="SolRDC_001-col" parent="projet" index="8" unique_id=78160268]
+[node name="SolRDC_001-col" parent="projet" index="8" unique_id=1926268203]
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
-[node name="Toit" parent="projet" index="9" unique_id=395897947]
+[node name="Toit" parent="projet" index="9" unique_id=2122734480]
 surface_material_override/0 = SubResource("StandardMaterial3D_toit_corrugated")
 
-[node name="Amphi-col" parent="projet" index="10" unique_id=20834985]
+[node name="Amphi-col" parent="projet" index="10" unique_id=179456367]
 surface_material_override/0 = SubResource("StandardMaterial3D_y4b80")
 surface_material_override/19 = SubResource("StandardMaterial3D_ybbx5")
 surface_material_override/20 = SubResource("StandardMaterial3D_8qthc")
 
-[node name="Amphi_001-col" parent="projet" index="19" unique_id=22569570]
+[node name="Amphi_001-col" parent="projet" index="19" unique_id=1103701449]
 surface_material_override/0 = SubResource("StandardMaterial3D_q4gk6")
 surface_material_override/19 = SubResource("StandardMaterial3D_ibq41")
 surface_material_override/20 = SubResource("StandardMaterial3D_0rt0s")
 
-[node name="Salle-col" parent="projet" index="21" unique_id=2117880312]
+[node name="Salle-col" parent="projet" index="21" unique_id=1900375732]
 surface_material_override/0 = SubResource("StandardMaterial3D_twbhk")
 
-[node name="Mur_001-col" parent="projet" index="36" unique_id=537843392]
+[node name="Mur_001-col" parent="projet" index="36" unique_id=881970289]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="Mur-col-col" parent="projet" index="40" unique_id=1483864245]
+[node name="Mur-col-col" parent="projet" index="40" unique_id=903307206]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="Mur_002-col" parent="projet" index="41" unique_id=646675518]
+[node name="Mur_002-col" parent="projet" index="41" unique_id=1507144397]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="Mur_004-col" parent="projet" index="42" unique_id=287906142]
+[node name="Mur_004-col" parent="projet" index="42" unique_id=1312039739]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="Escalier-col" parent="projet" index="43" unique_id=1603810955]
+[node name="Escalier-col" parent="projet" index="43" unique_id=1054838416]
 surface_material_override/2 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="Mur_003-col" parent="projet" index="44" unique_id=2052996535]
+[node name="Mur_003-col" parent="projet" index="44" unique_id=846895311]
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="SolSOUSOL-col" parent="projet" index="45" unique_id=1587315615]
+[node name="SolSOUSOL-col" parent="projet" index="45" unique_id=2094768688]
 surface_material_override/0 = SubResource("StandardMaterial3D_6chum")
 
-[node name="Bibliothèque-col" parent="projet" index="47" unique_id=1991137500]
+[node name="Bibliothèque-col" parent="projet" index="47" unique_id=1682254554]
 surface_material_override/0 = SubResource("StandardMaterial3D_bibliotheque_bois")
 
 [node name="collisions" type="StaticBody3D" parent="projet" unique_id=1348770359]
