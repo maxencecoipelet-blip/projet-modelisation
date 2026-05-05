@@ -7,6 +7,7 @@ var player
 @onready var cams=$Desktop/cams
 @onready var robots=$Desktop/Robots
 @onready var minijeu=$Desktop/MJ
+@onready var light=get_node("../DirectionalLight3D")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -18,6 +19,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and GameState.on_pc and player:
 		if cams.visible or robots.visible or minijeu.visible:
 			desktop.visible=true
+			light.visible=false
 			cams.visible=false
 			robots.visible=false
 			minijeu.visible=false

@@ -4,6 +4,8 @@ extends Control
 @onready var robots = $Robots
 @onready var minijeu = $MJ 
 @onready var subMJ=$MJ/SubViewportContainer
+@onready var light=get_node("../../DirectionalLight3D")
+
 var mini_game_instance = null
 
 func _process(delta: float) -> void:
@@ -17,6 +19,7 @@ func _on_texture_button_pressed() -> void:
 # Bouton cams
 func _on_texture_button_2_pressed() -> void:
 	AudioManager.play_ui_click()
+	light.visible=true
 	cams.visible = true
 
 # Bouton mini-jeu

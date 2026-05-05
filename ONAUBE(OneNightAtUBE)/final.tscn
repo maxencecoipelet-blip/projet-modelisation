@@ -388,6 +388,33 @@ size = Vector3(28.277191, 32.375607, 72.10712)
 [sub_resource type="BoxShape3D" id="BoxShape3D_w040f"]
 size = Vector3(89.07971, 36.05687, 45.891357)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dyfe3"]
+size = Vector3(21.933739, 6.0391846, 116.8331)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t60jh"]
+size = Vector3(21.933739, 6.0391846, 116.8331)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6rhf6"]
+size = Vector3(21.933739, 6.0391846, 116.8331)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q53ko"]
+size = Vector3(21.933739, 6.0391846, 116.8331)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ayhm4"]
+size = Vector3(36.218353, 6.0391846, 102.77161)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qu6jo"]
+size = Vector3(36.218353, 6.0391846, 102.77161)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cj38c"]
+size = Vector3(1, 45.218277, 181.99673)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_55stl"]
+size = Vector3(1, 45.218277, 181.99673)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wjurc"]
+size = Vector3(1, 45.218277, 181.99673)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e7pqc"]
 resource_name = "Black marbleSOL"
 cull_mode = 2
@@ -431,6 +458,17 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0kxh1")
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_3h2jn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3h2jn"]
+size = Vector3(7, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nbn7y"]
+size = Vector3(7, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eqpvg"]
+size = Vector3(7, 1, 1)
+
 [node name="Node3D" type="Node3D" unique_id=571075242]
 script = ExtResource("1_xethn")
 
@@ -438,7 +476,7 @@ script = ExtResource("1_xethn")
 environment = SubResource("Environment_edh6e")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1596484262]
-transform = Transform3D(1, 0, 0, 0, -0.87166756, 0.49009758, 0, -0.49009758, -0.87166756, 0, 4.600267, 0)
+transform = Transform3D(1, 0, 0, 0, -0.115283966, 0.99333256, 0, -0.99333256, -0.115283966, 0, 4.600267, 1.3237171)
 visible = false
 
 [node name="NeonCouloir1" type="OmniLight3D" parent="." unique_id=1596484263]
@@ -472,7 +510,7 @@ max_interval = 4.2
 flicker_chance = 0.65
 
 [node name="NeonCafet" type="OmniLight3D" parent="." unique_id=1596484265]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, -0.8, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, -1.7190778, -2)
 light_color = Color(0.74, 0.86, 0.98, 1)
 light_energy = 0.3
 light_indirect_energy = 0.0
@@ -806,50 +844,51 @@ script = ExtResource("3_qt6nr")
 [node name="projet" parent="." unique_id=1918126783 instance=ExtResource("21_0n1jq")]
 transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, -0.067977905, -0.056337815, -0.011007786)
 
-[node name="SolRDC_003-col" parent="projet" index="2" unique_id=1981687567]
+[node name="SolRDC_003-col" parent="projet" index="2" unique_id=770114215]
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
-[node name="Grande porte vitrée entrée-col" parent="projet" index="3" unique_id=1664230318]
+[node name="Grande porte vitrée entrée-col" parent="projet" index="3" unique_id=1620017927]
+transform = Transform3D(-35.831375, 0, 0, 0, 29.649544, 0, 0, 0, 0.5929909, -154.04506, 4.779658, -20.455194)
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="SolRDC_001-col" parent="projet" index="8" unique_id=78160268]
+[node name="SolRDC_001-col" parent="projet" index="8" unique_id=574865016]
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
-[node name="Toit" parent="projet" index="9" unique_id=395897947]
+[node name="Toit" parent="projet" index="9" unique_id=1995143921]
 surface_material_override/0 = SubResource("StandardMaterial3D_toit_corrugated")
 
-[node name="Amphi-col" parent="projet" index="10" unique_id=20834985]
+[node name="Amphi-col" parent="projet" index="10" unique_id=2004021330]
 surface_material_override/0 = SubResource("StandardMaterial3D_y4b80")
 surface_material_override/19 = SubResource("StandardMaterial3D_ybbx5")
 surface_material_override/20 = SubResource("StandardMaterial3D_8qthc")
 
-[node name="Amphi_001-col" parent="projet" index="19" unique_id=22569570]
+[node name="Amphi_001-col" parent="projet" index="19" unique_id=621942935]
 surface_material_override/0 = SubResource("StandardMaterial3D_q4gk6")
 surface_material_override/19 = SubResource("StandardMaterial3D_ibq41")
 surface_material_override/20 = SubResource("StandardMaterial3D_0rt0s")
 
-[node name="Salle-col" parent="projet" index="21" unique_id=2117880312]
+[node name="Salle-col" parent="projet" index="21" unique_id=256154139]
 surface_material_override/0 = SubResource("StandardMaterial3D_twbhk")
 
-[node name="Mur_001-col" parent="projet" index="36" unique_id=537843392]
+[node name="Mur_001-col" parent="projet" index="36" unique_id=1298323909]
 surface_material_override/0 = SubResource("StandardMaterial3D_eaxdp")
 
-[node name="Mur-col-col" parent="projet" index="40" unique_id=1483864245]
+[node name="Mur-col-col" parent="projet" index="40" unique_id=17419222]
 surface_material_override/0 = SubResource("StandardMaterial3D_3h2jn")
 
-[node name="Mur_002-col" parent="projet" index="41" unique_id=646675518]
+[node name="Mur_002-col" parent="projet" index="41" unique_id=107094571]
 surface_material_override/0 = SubResource("StandardMaterial3D_nbn7y")
 
-[node name="Mur_004-col" parent="projet" index="42" unique_id=287906142]
+[node name="Mur_004-col" parent="projet" index="42" unique_id=791961629]
 surface_material_override/0 = SubResource("StandardMaterial3D_eqpvg")
 
-[node name="Mur_003-col" parent="projet" index="44" unique_id=2052996535]
+[node name="Mur_003-col" parent="projet" index="44" unique_id=1871121533]
 surface_material_override/0 = SubResource("StandardMaterial3D_q7g7n")
 
-[node name="SolSOUSOL-col" parent="projet" index="45" unique_id=1587315615]
+[node name="SolSOUSOL-col" parent="projet" index="45" unique_id=2023381723]
 surface_material_override/0 = SubResource("StandardMaterial3D_6chum")
 
-[node name="Bibliothèque-col" parent="projet" index="47" unique_id=1991137500]
+[node name="Bibliothèque-col" parent="projet" index="47" unique_id=1028454242]
 surface_material_override/0 = SubResource("StandardMaterial3D_bibliotheque_bois")
 
 [node name="collisions" type="StaticBody3D" parent="projet" unique_id=1348770359]
@@ -1014,11 +1053,73 @@ shape = SubResource("BoxShape3D_23toj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.872622, -13.192829, -42.696156)
 shape = SubResource("BoxShape3D_w040f")
 
+[node name="amphisiege6" type="CollisionShape3D" parent="projet/collisions" unique_id=35133656]
+transform = Transform3D(1, 0, 0, 0, 0.9170631, -0.39875042, 0, 0.39875042, 0.9170631, 195.24097, -11.703544, 144.8706)
+shape = SubResource("BoxShape3D_dyfe3")
+
+[node name="amphisiege5" type="CollisionShape3D" parent="projet/collisions" unique_id=195184444]
+transform = Transform3D(1, 0, 0, 0, 0.9170616, -0.39874974, 0, 0.39874974, 0.9170616, 85.81827, -8.916749, 137.76198)
+shape = SubResource("BoxShape3D_t60jh")
+
+[node name="amphisiege3" type="CollisionShape3D" parent="projet/collisions" unique_id=85448871]
+transform = Transform3D(1, 0, 0, 0, 0.91706085, -0.3987494, 0, 0.3987494, 0.91706085, -53.746407, -10.32283, 139.94563)
+shape = SubResource("BoxShape3D_6rhf6")
+
+[node name="amphisiege2" type="CollisionShape3D" parent="projet/collisions" unique_id=955978572]
+transform = Transform3D(1, 0, 0, 0, 0.91706043, -0.39874923, 0, 0.39874923, 0.91706043, 51.34795, -10.806966, 140.84644)
+shape = SubResource("BoxShape3D_q53ko")
+
+[node name="amphisiege4" type="CollisionShape3D" parent="projet/collisions" unique_id=427463529]
+transform = Transform3D(1, 0, 0, 0, 0.91706026, -0.39874914, 0, 0.39874914, 0.91706026, 141.34813, -10.960599, 138.8746)
+shape = SubResource("BoxShape3D_ayhm4")
+
+[node name="amphisiege1" type="CollisionShape3D" parent="projet/collisions" unique_id=1029561370]
+transform = Transform3D(1, 0, 0, 0, 0.9172132, -0.39839697, 0, 0.39839697, 0.9172132, 0.13337815, -12.297867, 138.28458)
+shape = SubResource("BoxShape3D_qu6jo")
+
+[node name="mursamphi3" type="CollisionShape3D" parent="projet/collisions" unique_id=1302451643]
+transform = Transform3D(0.9675376, -0.20930664, -0.14164038, 0.13695648, 0.9052568, -0.40218475, 0.21240096, 0.36973026, 0.90453583, 61.9423, -19.253536, 156.35156)
+shape = SubResource("BoxShape3D_cj38c")
+
+[node name="mursamphi4" type="CollisionShape3D" parent="projet/collisions" unique_id=166650990]
+transform = Transform3D(0.99071944, 0, -0.13592307, -0.028083617, 0.9784226, -0.2046965, 0.13299018, 0.20661409, 0.96934205, 200.325, -12.64321, 154.00461)
+shape = SubResource("BoxShape3D_55stl")
+
+[node name="mursamphi2" type="CollisionShape3D" parent="projet/collisions" unique_id=59660269]
+transform = Transform3D(0.9911616, -0.03293849, 0.12850657, 0.08195014, 0.91378, -0.39785743, -0.104321845, 0.4048721, 0.90840274, 82.26802, -9.842388, 157.51543)
+shape = SubResource("BoxShape3D_wjurc")
+
+[node name="mursamphi" type="CollisionShape3D" parent="projet/collisions" unique_id=449684197]
+transform = Transform3D(0.99097854, 0, 0.13402078, 0.027889654, 0.97810763, -0.20622212, -0.13108674, 0.20809948, 0.9692837, -58.183212, -7.9638343, 157.48161)
+shape = SubResource("BoxShape3D_wjurc")
+
 [node name="plafondcafet" type="MeshInstance3D" parent="projet" unique_id=2131253707]
 transform = Transform3D(-256, -5.1579438e-08, 0, 2.2380229e-05, -0.59, 0, 0, 0, 51.3, 25.72, 4.879, 27.52)
 mesh = SubResource("ArrayMesh_ybbx5")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="projet/plafondcafet" unique_id=2003894117]
+transform = Transform3D(-0.24, 0, 1.6543612e-24, 4.5474735e-12, 0.19500011, 8.0429e-08, 0, -1.704746e-08, 0.9200001, -0.62832284, 0.44733334, -1.7228861)
+mesh = SubResource("PlaneMesh_3h2jn")
+surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="projet" unique_id=1771329140]
+transform = Transform3D(114.045, 0, 0, 0, 100, 0, 0, 0, 62.538998, 18.094873, 37.358437, -97.30429)
+mesh = SubResource("BoxMesh_3h2jn")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="projet" unique_id=1905802800]
+transform = Transform3D(-2.1790127e-06, 0, 49.85, 0, 66.075, 0, -49.85, 0, -2.1790127e-06, -5.0096674, 38.971138, -194.5457)
+mesh = SubResource("BoxMesh_nbn7y")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="projet" unique_id=1599974191]
+transform = Transform3D(11.995, 0, 0, 0, 29.950003, 0, 0, 0, 7.62, -23.181343, 19.921192, -24.497677)
+mesh = SubResource("BoxMesh_eqpvg")
+surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
 [editable path="robot"]
 [editable path="robot2"]
