@@ -75,7 +75,18 @@ normal_texture = ExtResource("22_mlydm")
 uv1_scale = Vector3(5, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4b80"]
+cull_mode = 2
 albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
+roughness = 0.8
+roughness_texture = ExtResource("23_qw832")
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("22_mlydm")
+uv1_scale = Vector3(5, 120, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qthc"]
+cull_mode = 2
+albedo_color = Color(0.19070616, 0.25418302, 0.13685039, 1)
 roughness = 0.8
 roughness_texture = ExtResource("23_qw832")
 normal_enabled = true
@@ -498,6 +509,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 surface_material_override/0 = SubResource("StandardMaterial3D_mlydm")
 
 [node name="Amphi-col" parent="projet" index="10" unique_id=20834985]
+surface_material_override/0 = SubResource("StandardMaterial3D_y4b80")
+surface_material_override/20 = SubResource("StandardMaterial3D_8qthc")
+
+[node name="Amphi_001-col" parent="projet" index="19" unique_id=22569570]
 surface_material_override/0 = SubResource("StandardMaterial3D_y4b80")
 
 [node name="collisions" type="StaticBody3D" parent="projet" unique_id=1348770359]

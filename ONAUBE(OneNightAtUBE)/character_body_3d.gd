@@ -5,7 +5,7 @@ const SPEED = 4
 const JUMP_VELOCITY = 2.5
 
 var step_timer := 0.0
-var step_interval := 0.9
+var step_interval := 1
 var step_restart_delay := 0.12
 var was_walking := false
 
