@@ -106,7 +106,7 @@ uv1_world_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4b80"]
 cull_mode = 2
 albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
-roughness = 0.8
+roughness = 0.79
 roughness_texture = ExtResource("23_qw832")
 normal_enabled = true
 normal_scale = 0.61
