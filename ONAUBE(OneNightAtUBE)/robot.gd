@@ -6,6 +6,8 @@ var chasing = false
 var target_position = Vector3.ZERO
 @export var time_active=0
 @export var robot_id := ""
+@export var patrol_bounds_min := Vector3(-140.0, 0.0, -90.0)
+@export var patrol_bounds_max := Vector3(230.0, 0.0, 230.0)
 
 
 var is_active=false
@@ -21,6 +23,7 @@ var robot_stop_timer := 0.0
 @onready var bruit_robot = $BruitRobot
 @onready var shutdown_sound = get_node_or_null("ShutdownSound")
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 
 
 func _process(delta: float) -> void:
@@ -45,6 +48,7 @@ func _ready():
 	_restore_default_visual()
 	if robot_id.is_empty():
 		robot_id = name
+	navigation_agent.max_speed = speed
 	if GameState.is_robot_disabled(robot_id):
 		disable_robot()
 		return
@@ -55,29 +59,50 @@ func _physics_process(delta):
 		return
 
 	if chasing and player and is_active:
-		target_position = player.global_position
-
-	var direction = (target_position - global_position).normalized()
-	if chasing:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-	elif is_active and !chasing:
-		velocity.x = direction.x * speed/2
-		velocity.z = direction.z * speed/2
-
-	
-
-	if global_position.distance_to(target_position) < 1.5 and !chasing:
+		_set_navigation_target(player.global_position)
+	elif is_active and !chasing and navigation_agent.is_navigation_finished():
 		choose_random_position()
+
+	var current_speed := 0.0
+	if chasing and is_active:
+		current_speed = speed
+	elif is_active and !chasing:
+		current_speed = speed / 2.0
+
+	if current_speed > 0.0 and not navigation_agent.is_navigation_finished():
+		var next_path_position := navigation_agent.get_next_path_position()
+		var direction := next_path_position - global_position
+		direction.y = 0.0
+		if direction.length() > 0.05:
+			direction = direction.normalized()
+			velocity.x = direction.x * current_speed
+			velocity.z = direction.z * current_speed
+		else:
+			velocity.x = 0.0
+			velocity.z = 0.0
+	else:
+		velocity.x = 0.0
+		velocity.z = 0.0
+
 	move_and_slide()
 	_update_robot_audio(delta)
 	
 func choose_random_position():
-	target_position = Vector3(
-		randf_range(-10,10),
+	var random_target := Vector3(
+		randf_range(patrol_bounds_min.x, patrol_bounds_max.x),
 		global_position.y,
-		randf_range(-10,10)
+		randf_range(patrol_bounds_min.z, patrol_bounds_max.z)
 	)
+	_set_navigation_target(random_target)
+
+
+func _set_navigation_target(desired_target: Vector3) -> void:
+	var navigation_map_rid := get_world_3d().navigation_map
+	var snapped_target := desired_target
+	if navigation_map_rid.is_valid():
+		snapped_target = NavigationServer3D.map_get_closest_point(navigation_map_rid, desired_target)
+	target_position = snapped_target
+	navigation_agent.target_position = snapped_target
 	
 	
 	
@@ -155,6 +180,7 @@ func disable_robot() -> void:
 	chasing = false
 	player = null
 	velocity = Vector3.ZERO
+	navigation_agent.target_position = global_position
 	robot_stop_timer = 0.0
 	if was_chasing:
 		AudioManager.notify_robot_stopped_chase()

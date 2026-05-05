@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cjfd6r28c58vr"]
+[gd_scene format=4 uid="uid://cjfd6r28c58vr"]
 
 [ext_resource type="PackedScene" uid="uid://60ajcwcosu0l" path="res://joueur.tscn" id="1_h0aww"]
 [ext_resource type="Script" uid="uid://16s73dtowb2r" path="res://final.gd" id="1_xethn"]
@@ -21,6 +21,12 @@
 [ext_resource type="PackedScene" uid="uid://dcn6epxvxjunb" path="res://MJ/mini_jeuVoiture.tscn" id="13_m4l06"]
 [ext_resource type="PackedScene" uid="uid://cmyufcwuppvt4" path="res://MJ/jeu_cultureG/mini_jeuCulture.tscn" id="15_3fwds"]
 [ext_resource type="PackedScene" uid="uid://ulbomcb5wbwx" path="res://assets/projet.glb" id="21_0n1jq"]
+[ext_resource type="Texture2D" uid="uid://d2dae7ggb2pfj" path="res://assets/concrete_floor_worn_001_diff_4k.jpg" id="22_mlydm"]
+[ext_resource type="Texture2D" uid="uid://ikuy0p01qcmc" path="res://assets/concrete_floor_worn_001_rough_4k.jpg" id="23_qw832"]
+[ext_resource type="Texture2D" uid="uid://c1ecdh0iti0tg" path="res://assets/projet_marble01_diffuse.jpg" id="24_y4b80"]
+[ext_resource type="Texture2D" uid="uid://bbjqals4e3mdk" path="res://assets/projet_marble01_roughness.png" id="25_gvbhl"]
+[ext_resource type="Texture2D" uid="uid://bn60nmsufr325" path="res://assets/projet_marble01_normal_opengl.jpg" id="26_8qthc"]
+[ext_resource type="Script" uid="uid://kv0he8t7rnq" path="res://navigation_region_baker.gd" id="27_navbk"]
 
 [sub_resource type="Environment" id="Environment_edh6e"]
 
@@ -41,6 +47,41 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_awkn3"]
 shader = SubResource("7")
 shader_parameter/SCREEN_HEIGHT = 240.0
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_robot_nav"]
+cell_height = 0.2
+border_size = 0.25
+agent_height = 1.4
+agent_radius = 0.6
+agent_max_climb = 0.8
+edge_max_length = 12.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvbhl"]
+albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
+roughness = 0.8
+roughness_texture = ExtResource("23_qw832")
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("22_mlydm")
+uv1_scale = Vector3(120, 10, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlydm"]
+albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
+roughness = 0.8
+roughness_texture = ExtResource("23_qw832")
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("22_mlydm")
+uv1_scale = Vector3(5, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4b80"]
+albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
+roughness = 0.8
+roughness_texture = ExtResource("23_qw832")
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("22_mlydm")
+uv1_scale = Vector3(5, 120, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_projet_sol_a"]
 size = Vector3(235.40735, 0.69870603, 52.648533)
@@ -156,6 +197,59 @@ size = Vector3(28.277191, 32.375607, 72.10712)
 [sub_resource type="BoxShape3D" id="BoxShape3D_w040f"]
 size = Vector3(89.07971, 36.05687, 45.891357)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e7pqc"]
+resource_name = "Black marbleSOL"
+cull_mode = 2
+albedo_texture = ExtResource("24_y4b80")
+metallic_texture = ExtResource("25_gvbhl")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("25_gvbhl")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("26_8qthc")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0kxh1"]
+_surfaces = [{
+"aabb": AABB(-1, 0.9999522, -1, 1.7658327, 4.7802925e-05, 1.794183),
+"format": 34896613377,
+"index_count": 192,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAAADAAMAAAADAAMAAAADAAMAAAADAAMAAAADAAMAAAADAAMAAAADAAMAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAMABAAAAAAABAADAAAABAAFAAYABAAGAAcABwAIAAkABwAJAAQACQAEAAQABAAAAAAAAwAJAAkABAAEAAAAAwADAAkABAAEAAAAAwADAAkABAAEAAAAAwADAAkABAAEAAAAAwADAAkABAAEAAAAAwADAAkABAAEAAAAAwADAAkABAAEAAAAAwADAAkACQAEAAQABAAJAAMABAAAAAAAAwAJAAkAAwAJAAkAAwAJAAkAAwAJAAkAAwAJAAkAAwAJAAkACQAEAAQACQAEAAQABAAAAAAACQAJAAQABAAAAAAABAAAAAAABAAAAAAACQAJAAQACQAJAAQACQAJAAQACQAJAAQACQAJAAQACQAEAAQACQAJAAQACQAEAAQACQAEAAQA"),
+"name": "Black marbleSOL",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("qI3//24JAAAAAP////8AAAAA//8AAAAAqI3//6j+AACv3f//bgkAAL/dAACYCQAA//8AAJgJAADv////bgkAAO////+o/gAAr93//6j+AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ybbx5"]
+resource_name = "projet_Cube"
+_surfaces = [{
+"aabb": AABB(-1, 0.9999522, -1, 1.7658327, 4.7802925e-05, 1.794183),
+"attribute_data": PackedByteArray("IO5/uxxqvIz///+fAAD//////78AAN95IO7/nxxq//8g7v+fHGr//yDuf7scaryMIO7/nxxq//8g7n+7HGq8jCDu/58cav//IO5/uxxqvIwg7v+fHGr//yDuf7scaryMIO7/nxxq//8g7n+7HGq8jCDu/58cav//IO5/uxxqvIwg7v+fHGr//yDuf7scaryMVut/u7J6vIxW6/+fsnr//1br/5+yev//Vut/u7J6vIxW6/+fsnr//1brf7uyeryMVuv/n7J6//9W63+7snq8jFbr/5+yev//Vut/u7J6vIxW6/+fsnr//1brf7uyeryMVuv/n7J6//9W63+7snq8jFbr/5+yev//Vut/u7J6vIwk6n+7y4G8jCTq/5/Lgf//Vut/u7J6vIwk6n+7y4G8jCTqf7vLgbyMVut/u7J6vIz/f////39fgP9/////f1+A/3////9/X4D/f////39fgP9/////f1+A/3////9/X4D/f////39fgP9/////f1+A/3////9/X4D/f////39fgP9/////f1+A/3////9/X4D/f////39fgP9/////f1+A/3////9/X4D/f////39fgP9/////f1+A/3////9/X4D/f////39fgP9/////f1+A/3////9/X4D/f////39fgP9/////f1+A/3////9/X4D/f////39fgP9/////f1+A/3////9/X4D/f////39fgP9/////f1+A/3////9/X4D/f////39fgP9/////f1+A"),
+"format": 34896613431,
+"index_count": 192,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAAAEAAMAAAAFAAQABQAGAAQABQAHAAYABwAIAAYABwAJAAgACQAKAAgACQALAAoACwAMAAoACwANAAwADQAOAAwADQAPAA4ADwAQAA4ADwARABAAEgAQABEAEgATABAAFAATABIAFAASABUAFgAUABUAFgAVABcAGAAWABcAGAAXABkAGgAYABkAGgAZABsAHAAaABsAHAAbAB0AHgAcAB0AHgAdAB8AIAAeAB8AIAAfACEAIgAgACEAIgAjACAAJAAlACYAJAAnACUAKAApACoAKAArACkAKwAsACkAKwAtACwALQAuACwALQAvAC4ALwAwAC4ALwAxADAAMQAyADAAMQAzADIAMwA0ADIAMwA1ADQANQA2ADQANQA3ADYAOAA5ADoAOAA7ADkAOwA8ADkAOwA9ADwAPQA+ADwAPQA/AD4APwBAAD4APwBBAEAAQQBCAEAAQQBDAEIAQwBEAEIAQwBFAEQARQBGAEQARQBHAEYA"),
+"material": SubResource("StandardMaterial3D_e7pqc"),
+"name": "Black marbleSOL",
+"primitive": 3,
+"uv_scale": Vector4(1.75, 2, 422.4295, 684.0579),
+"vertex_count": 72,
+"vertex_data": PackedByteArray("qI3//24JDf4AAP////8G/gAA//8AAJL6qI3//6j+2/+ojf//qP7b/6iN//9uCQ3+qI3//6j+2/+ojf//bgkN/qiN//+o/tv/qI3//24JDf6ojf//qP7b/6iN//9uCQ3+qI3//6j+2/+ojf//bgkN/qiN//+o/tv/qI3//24JDf6ojf//qP7b/6iN//9uCQ3+r93//24J//+v3f//qP7//6/d//+o/v//r93//24J//+v3f//qP7//6/d//9uCf//r93//6j+//+v3f//bgn//6/d//+o/v//r93//24J//+v3f//qP7//6/d//9uCf//r93//6j+//+v3f//bgn//6/d//+o/v//r93//24J///v////bgn//+////+o/v//r93//24JrsH//wAAmAmuwe////9uCa7Bv90AAJgJrsGojf//qP7/v6/d//+o/v+/r93//6j+/7+ojf//qP7/v6/d//+o/v+/qI3//6j+/7+v3f//qP7/v6iN//+o/v+/r93//6j+/7+ojf//qP7/v6/d//+o/v+/qI3//6j+/7+v3f//qP7/v6iN//+o/v+/r93//6j+/7+ojf//qP7/v6/d//9uCf+/qI3//24J/7+ojf//bgn/v6/d//9uCf+/qI3//24J/7+v3f//bgn/v6iN//9uCf+/r93//24J/7+ojf//bgn/v6/d//9uCf+/qI3//24J/7+v3f//bgn/v6iN//9uCf+/r93//24J/7+ojf//bgn/v6/d//9uCf+/HoLvviaC677FhRy9JoDrvyaA678egu++JoDrvx6C774mgOu/HoLvviaA678egu++JoDrvx6C774mgOu/HoLvviaA678egu++/3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+/AAD/fwAA/38AAP9/AAD/f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0kxh1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n1jq"]
+albedo_color = Color(0.21513474, 0.23443952, 0.24087289, 1)
+metallic_specular = 0.1
+roughness = 0.8
+roughness_texture = ExtResource("23_qw832")
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("22_mlydm")
+uv1_scale = Vector3(1, 0, 0)
+
 [node name="Node3D" type="Node3D" unique_id=571075242]
 script = ExtResource("1_xethn")
 
@@ -164,7 +258,6 @@ environment = SubResource("Environment_edh6e")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1596484262]
 transform = Transform3D(1, 0, 0, 0, -0.87166756, 0.49009758, 0, -0.49009758, -0.87166756, 0, 4.600267, 0)
-visible = false
 
 [node name="joueur" parent="." unique_id=1410063770 instance=ExtResource("1_h0aww")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2184653, 2.8021662, 6.3129625)
@@ -173,21 +266,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2184653, 2.8021662, 6.3129
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.092857, 1.9373345, 8.578706)
 time_active = 1
 
-[node name="BruitRobot" parent="robot" index="5" unique_id=1052473452]
+[node name="BruitRobot" parent="robot" index="6" unique_id=1052473452]
 stream = ExtResource("4_77v52")
 
 [node name="robot2" parent="." unique_id=538969852 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.12223, -3.3486233, -1.734194)
 time_active = 1
 
-[node name="BruitRobot" parent="robot2" index="5" unique_id=1052473452]
+[node name="BruitRobot" parent="robot2" index="6" unique_id=1052473452]
 stream = ExtResource("5_ijprh")
 
 [node name="robot3" parent="." unique_id=538969853 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.298988, 1.7587683, 0.238698)
 time_active = 1
 
-[node name="BruitRobot" parent="robot3" index="5" unique_id=1052473452]
+[node name="BruitRobot" parent="robot3" index="6" unique_id=1052473452]
 stream = ExtResource("6_0n1jq")
 volume_db = -8.0
 unit_size = 3.0
@@ -197,7 +290,7 @@ max_distance = 16.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.053348, 2.4596322, -4.360953)
 time_active = 1
 
-[node name="BruitRobot" parent="robot4" index="5" unique_id=1052473452]
+[node name="BruitRobot" parent="robot4" index="6" unique_id=1052473452]
 stream = ExtResource("6_tc1ei")
 unit_size = 3.0
 max_distance = 16.0
@@ -391,8 +484,21 @@ offset_bottom = 23.0
 grow_horizontal = 0
 script = ExtResource("3_qt6nr")
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=192887441]
+navigation_mesh = SubResource("NavigationMesh_robot_nav")
+script = ExtResource("27_navbk")
+
 [node name="projet" parent="." unique_id=1918126783 instance=ExtResource("21_0n1jq")]
 transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, -0.067977905, -0.056337815, -0.011007786)
+
+[node name="SolRDC_003-col" parent="projet" index="2" unique_id=1981687567]
+surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
+
+[node name="SolRDC_001-col" parent="projet" index="8" unique_id=78160268]
+surface_material_override/0 = SubResource("StandardMaterial3D_mlydm")
+
+[node name="Amphi-col" parent="projet" index="10" unique_id=20834985]
+surface_material_override/0 = SubResource("StandardMaterial3D_y4b80")
 
 [node name="collisions" type="StaticBody3D" parent="projet" unique_id=1348770359]
 
@@ -556,7 +662,14 @@ shape = SubResource("BoxShape3D_23toj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.872622, -13.192829, -42.696156)
 shape = SubResource("BoxShape3D_w040f")
 
+[node name="plafondcafet" type="MeshInstance3D" parent="projet" unique_id=2131253707]
+transform = Transform3D(-256, -5.1579438e-08, 0, 2.2380229e-05, -0.59, 0, 0, 0, 51.3, 25.72, 4.879, 27.52)
+mesh = SubResource("ArrayMesh_ybbx5")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n1jq")
+
 [editable path="robot"]
 [editable path="robot2"]
 [editable path="robot3"]
 [editable path="robot4"]
+[editable path="projet"]
