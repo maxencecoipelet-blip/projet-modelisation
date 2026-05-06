@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://twysdcyf1du5"]
+
+[ext_resource type="Script" uid="uid://dbig7g8jrseki" path="res://Bombe.gd" id="1_kuihk"]
+[ext_resource type="PackedScene" uid="uid://cpulpdtbx46fk" path="res://MJ/jeu course/bombeB.glb" id="2_7fybs"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x5yxc"]
+
+[node name="Bombe" type="Area3D" unique_id=1821413447]
+script = ExtResource("1_kuihk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1204072919]
+shape = SubResource("SphereShape3D_x5yxc")
+
+[node name="bombeB" parent="." unique_id=1733386485 instance=ExtResource("2_7fybs")]
+transform = Transform3D(0.31, 0, 0, 0, 0.31, 0, 0, 0, 0.31, 1.0786752, -2.7069294, 0.36802006)
