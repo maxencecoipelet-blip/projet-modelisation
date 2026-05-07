@@ -3,7 +3,7 @@ extends CharacterBody3D
 # === REGLAGES (modifiables dans l'inspecteur) ===
 @export_group("Vitesse")
 @export var vitesse_max := 25.0
-@export var vitesse_max_boost := 40.0
+@export var vitesse_max_boost := 70.0
 @export var vitesse_max_arriere := 10.0
 @export var acceleration := 30.0
 @export var freinage := 25.0

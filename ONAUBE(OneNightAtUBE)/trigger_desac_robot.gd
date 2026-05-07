@@ -15,5 +15,6 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	triggered = true
 	GameState.complete_minigame_and_disable_robot(minigame_id, target_robot_name)
+	AudioManager.play_victory()
 	set_deferred("monitoring", false)
 	call_deferred("queue_free")
