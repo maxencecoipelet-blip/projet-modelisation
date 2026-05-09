@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cey3n5yukyw83"]
 
 [ext_resource type="Script" uid="uid://bqoc7jkk5e6b0" path="res://ordi.gd" id="1_qph6v"]
+[ext_resource type="PackedScene" uid="uid://jhjvwy8bhsun" path="res://laptop.glb" id="2_x48ln"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1kdxr"]
 radius = 2.318
@@ -12,6 +13,9 @@ script = ExtResource("1_qph6v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=84677638]
 shape = SubResource("SphereShape3D_1kdxr")
+
+[node name="laptop" parent="." unique_id=600842574 instance=ExtResource("2_x48ln")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -46,6 +46,18 @@ background_mode = 1
 ambient_light_source = 2
 ambient_light_energy = 0.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4b80"]
+cull_mode = 2
+albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
+roughness = 0.79
+roughness_texture = ExtResource("23_qw832")
+normal_enabled = true
+normal_scale = 0.61
+normal_texture = ExtResource("22_mlydm")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
 [sub_resource type="Shader" id="7"]
 code = "shader_type canvas_item;
 
@@ -101,18 +113,6 @@ points = PackedVector3Array(1.5505356, 2.0624332, 0.9168005, 1.5505356, -0.00243
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_eqpvg"]
 points = PackedVector3Array(1.5505356, 2.0624332, 0.9168005, 1.5505356, -0.0024328232, 0.9168005, 1.5505356, 2.0624332, -1.2079308, -1.4278427, 2.0624332, 0.9168005, -0.32407022, 1.789368, 1.9184201, -0.3118255, 1.789368, 1.9147477, -1.4278427, -0.0024328232, 0.9168005, 1.5505356, -0.0024328232, -1.2079308, -0.3118255, 0.22394246, 1.9147477, -0.32407022, 0.22394246, 1.9184201, -1.4278427, 2.0624332, -1.2079308, -0.8016136, 1.789368, 1.9040368, -0.78995204, 1.789368, 1.9147477, -0.77770734, 1.789368, 1.9184201, -1.4278427, -0.0024328232, -1.2079308, -0.77770734, 0.22394246, 1.9184201, -0.78995204, 0.22394246, 1.9147477, -0.8016136, 0.22394246, 1.9040368)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4b80"]
-cull_mode = 2
-albedo_color = Color(0.21568628, 0.23529412, 0.23921569, 1)
-roughness = 0.79
-roughness_texture = ExtResource("23_qw832")
-normal_enabled = true
-normal_scale = 0.61
-normal_texture = ExtResource("22_mlydm")
-uv1_scale = Vector3(0.2, 0.2, 0.2)
-uv1_triplanar = true
-uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybbx5"]
 cull_mode = 2
@@ -1125,7 +1125,14 @@ max_distance = 16.0
 visible = false
 
 [node name="ordinateur" parent="." unique_id=793953710 instance=ExtResource("5_fp1em")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.972845, 1.5263996, -6.5705585)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.129648, 1.5263996, -6.5705585)
+
+[node name="laptop" parent="ordinateur" index="1" unique_id=600842574]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -7.2394447)
+visible = false
+
+[node name="Laptop_Screen" parent="ordinateur/laptop/Laptop" parent_id_path=PackedInt32Array(793953710, 600842574, 1453962435) index="3" unique_id=623407669]
+surface_material_override/2 = SubResource("StandardMaterial3D_y4b80")
 
 [node name="Desktop" parent="ordinateur" unique_id=1676753499 instance=ExtResource("6_6gx7d")]
 visible = false
@@ -1255,9 +1262,12 @@ transform = Transform3D(1, 0, 0, 0, 0.72706616, 0.6865674, 0, -0.6865674, 0.7270
 current = true
 
 [node name="ordinateur2" parent="." unique_id=547112757 instance=ExtResource("5_fp1em")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.141326, 1.3342578, 11.618559)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14438713, -5.0665665, 30.931393)
 script = ExtResource("11_i6nld")
 id_MJ = 4
+
+[node name="Laptop_Screen" parent="ordinateur2/laptop/Laptop" parent_id_path=PackedInt32Array(547112757, 600842574, 1453962435) index="3" unique_id=623407669]
+surface_material_override/2 = SubResource("StandardMaterial3D_y4b80")
 
 [node name="MJ" type="CanvasLayer" parent="ordinateur2" unique_id=552275237]
 visible = false
@@ -1279,9 +1289,12 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 0
 
 [node name="ordinateur3" parent="." unique_id=811746658 instance=ExtResource("5_fp1em")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.846535, -3.0701995, -3.7761388)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.058496, -3.2738123, -4.912989)
 script = ExtResource("11_i6nld")
 id_MJ = 3
+
+[node name="Laptop_Screen" parent="ordinateur3/laptop/Laptop" parent_id_path=PackedInt32Array(811746658, 600842574, 1453962435) index="3" unique_id=623407669]
+surface_material_override/2 = SubResource("StandardMaterial3D_y4b80")
 
 [node name="MJ" type="CanvasLayer" parent="ordinateur3" unique_id=1345878182]
 visible = false
@@ -1303,9 +1316,12 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 0
 
 [node name="ordinateur4" parent="." unique_id=2111980412 instance=ExtResource("5_fp1em")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.682497, 1.872983, -0.87309265)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.682497, 0.7600522, -2.2892175)
 script = ExtResource("11_i6nld")
 id_MJ = 2
+
+[node name="Laptop_Screen" parent="ordinateur4/laptop/Laptop" parent_id_path=PackedInt32Array(2111980412, 600842574, 1453962435) index="3" unique_id=623407669]
+surface_material_override/2 = SubResource("StandardMaterial3D_y4b80")
 
 [node name="MJ" type="CanvasLayer" parent="ordinateur4" unique_id=285417217]
 visible = false
@@ -2660,6 +2676,14 @@ shape = SubResource("BoxShape3D_55stl")
 [editable path="robot2"]
 [editable path="robot3"]
 [editable path="robot4"]
+[editable path="ordinateur"]
+[editable path="ordinateur/laptop"]
+[editable path="ordinateur2"]
+[editable path="ordinateur2/laptop"]
+[editable path="ordinateur3"]
+[editable path="ordinateur3/laptop"]
+[editable path="ordinateur4"]
+[editable path="ordinateur4/laptop"]
 [editable path="projet"]
 [editable path="projet/extension"]
 [editable path="projet/murSeparation"]
