@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://bk0hdyu54eduo" path="res://UI.gd" id="7_bgnhv"]
 [ext_resource type="AudioStream" uid="uid://dyg6vad8l8tpy" path="res://audio/player/footstep.mp3" id="8_q7utl"]
 [ext_resource type="Texture2D" uid="uid://cqihmx6jegxdi" path="res://MJ/jeu_cultureG/textures/Capture d'écran 2026-05-03 012343.png" id="11_4t1jj"]
-[ext_resource type="AudioStream" uid="uid://d3owo44mmfx7q" path="res://MJ/jeu_cultureG/LEBOUSEUH - Les Boss (Clip Officiel) ft. Pidi.mp3" id="12_47q24"]
 
 [sub_resource type="ProceduralSkyMaterial" id="Sky_1"]
 
@@ -281,6 +280,3 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("11_4t1jj")
 expand_mode = 1
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/uiroot" unique_id=712222577]
-stream = ExtResource("12_47q24")

@@ -30,7 +30,7 @@ func _on_question_changed(q):
 
 func _on_game_won():
 	$uiroot/fin.visible = true
-	$uiroot/AudioStreamPlayer.play(63)
+	
 	question_label.text = "VICTOIRE ! Tu as repondu juste 10 fois !"
 	answer_a_label.text = ""
 	answer_b_label.text = ""

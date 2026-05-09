@@ -1039,6 +1039,7 @@ environment = SubResource("Environment_edh6e")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1596484262]
 transform = Transform3D(1, 0, 0, 0, -0.115283966, 0.99333256, 0, -0.99333256, -0.115283966, 0, 4.600267, 1.3237171)
+visible = false
 
 [node name="NeonCouloir1" type="OmniLight3D" parent="." unique_id=1596484263]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.20306, -3.212656, 25.957293)
@@ -1131,7 +1132,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.129648, 1.5263996, -6.5705
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -7.2394447)
 visible = false
 
-[node name="Laptop_Screen" parent="ordinateur/laptop/Laptop" parent_id_path=PackedInt32Array(793953710, 600842574, 1453962435) index="3" unique_id=623407669]
+[node name="Laptop_Screen" parent="ordinateur/laptop/Laptop" parent_id_path=PackedInt32Array(793953710, 600842574, 1961392127) index="3" unique_id=518087867]
 surface_material_override/2 = SubResource("StandardMaterial3D_y4b80")
 
 [node name="Desktop" parent="ordinateur" unique_id=1676753499 instance=ExtResource("6_6gx7d")]
@@ -1266,7 +1267,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14438713, -5.0665665, 30.93
 script = ExtResource("11_i6nld")
 id_MJ = 4
 
-[node name="Laptop_Screen" parent="ordinateur2/laptop/Laptop" parent_id_path=PackedInt32Array(547112757, 600842574, 1453962435) index="3" unique_id=623407669]
+[node name="Laptop_Screen" parent="ordinateur2/laptop/Laptop" parent_id_path=PackedInt32Array(547112757, 600842574, 1961392127) index="3" unique_id=518087867]
 surface_material_override/2 = SubResource("StandardMaterial3D_y4b80")
 
 [node name="MJ" type="CanvasLayer" parent="ordinateur2" unique_id=552275237]
@@ -1293,7 +1294,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.058496, -3.2738123, -4.912
 script = ExtResource("11_i6nld")
 id_MJ = 3
 
-[node name="Laptop_Screen" parent="ordinateur3/laptop/Laptop" parent_id_path=PackedInt32Array(811746658, 600842574, 1453962435) index="3" unique_id=623407669]
+[node name="Laptop_Screen" parent="ordinateur3/laptop/Laptop" parent_id_path=PackedInt32Array(811746658, 600842574, 1961392127) index="3" unique_id=518087867]
 surface_material_override/2 = SubResource("StandardMaterial3D_y4b80")
 
 [node name="MJ" type="CanvasLayer" parent="ordinateur3" unique_id=1345878182]
@@ -1320,7 +1321,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.682497, 0.7600522, -2.289
 script = ExtResource("11_i6nld")
 id_MJ = 2
 
-[node name="Laptop_Screen" parent="ordinateur4/laptop/Laptop" parent_id_path=PackedInt32Array(2111980412, 600842574, 1453962435) index="3" unique_id=623407669]
+[node name="Laptop_Screen" parent="ordinateur4/laptop/Laptop" parent_id_path=PackedInt32Array(2111980412, 600842574, 1961392127) index="3" unique_id=518087867]
 surface_material_override/2 = SubResource("StandardMaterial3D_y4b80")
 
 [node name="MJ" type="CanvasLayer" parent="ordinateur4" unique_id=285417217]
@@ -1421,7 +1422,7 @@ script = ExtResource("3_qt6nr")
 [node name="projet" parent="." unique_id=1918126783 instance=ExtResource("21_0n1jq")]
 transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, -0.067977905, -0.056337815, -0.011007786)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/MangeDebout-col" parent_id_path=PackedInt32Array(1918126783, 168463473) index="0" unique_id=879472555]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/MangeDebout-col" parent_id_path=PackedInt32Array(1918126783, 1022958240) index="0" unique_id=879472555]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/MangeDebout-col/StaticBody3D" unique_id=346123869]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 2.499689, -25.556103, -0.2962513)
@@ -1431,27 +1432,27 @@ shape = SubResource("BoxShape3D_03l4q")
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 22.052713, -25.38448, -4.428132)
 shape = SubResource("BoxShape3D_f0fpl")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/MangeDebout_001" parent_id_path=PackedInt32Array(1918126783, 214971741) index="0" unique_id=12764804]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/MangeDebout_001" parent_id_path=PackedInt32Array(1918126783, 1003016791) index="0" unique_id=12764804]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/MangeDebout_001/StaticBody3D" unique_id=259778506]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 1.0390425, -25.671547, 0.1153028)
 shape = SubResource("BoxShape3D_g2d3y")
 
-[node name="SolRDC_003-col" parent="projet" index="2" unique_id=1069834416]
+[node name="SolRDC_003-col" parent="projet" index="2" unique_id=939412413]
 transform = Transform3D(266.8459, 0, 0, 0, 0.5929909, 0, 0, 0, 51.347076, 25.723509, 4.8788385, -218.11922)
 visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
-[node name="Grande porte vitrée entrée-col" parent="projet" index="3" unique_id=403168955]
+[node name="Grande porte vitrée entrée-col" parent="projet" index="3" unique_id=2111919624]
 transform = Transform3D(-35.831375, 0, 0, 0, 29.649544, 0, 0, 0, 0.5929909, -154.04506, 4.779658, -20.455194)
 surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitree")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Porte-col" parent_id_path=PackedInt32Array(1918126783, 1766035805) index="0" unique_id=976139934]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Porte-col" parent_id_path=PackedInt32Array(1918126783, 761424512) index="0" unique_id=976139934]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Porte-col/StaticBody3D" unique_id=1799351131]
 shape = SubResource("ConvexPolygonShape3D_q7g7n")
 
-[node name="Porte_001-col" parent="projet" index="7" unique_id=1451382654]
+[node name="Porte_001-col" parent="projet" index="7" unique_id=1889339858]
 transform = Transform3D(6.5228996, 0, 0, 0, 11.266827, 0, 0, 0, 2.3719635, -23.802, 4.9, -20.447)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="projet/Porte_001-col" index="0" unique_id=415536153]
@@ -1459,14 +1460,14 @@ transform = Transform3D(6.5228996, 0, 0, 0, 11.266827, 0, 0, 0, 2.3719635, -23.8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Porte_001-col/StaticBody3D" unique_id=551005863]
 shape = SubResource("ConvexPolygonShape3D_eqpvg")
 
-[node name="SolRDC_001-col" parent="projet" index="8" unique_id=1070935610]
+[node name="SolRDC_001-col" parent="projet" index="8" unique_id=419236689]
 transform = Transform3D(266.8459, 0, 0, 0, 2.293745, 0, 0, 0, 51.347076, 25.723999, 4.879, -199.37286)
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
-[node name="Toit" parent="projet" index="9" unique_id=868379625]
+[node name="Toit" parent="projet" index="9" unique_id=267681851]
 surface_material_override/0 = SubResource("StandardMaterial3D_gvbhl")
 
-[node name="Amphi-col" parent="projet" index="10" unique_id=1813857695]
+[node name="Amphi-col" parent="projet" index="10" unique_id=597651290]
 surface_material_override/0 = SubResource("StandardMaterial3D_y4b80")
 surface_material_override/19 = SubResource("StandardMaterial3D_ybbx5")
 surface_material_override/20 = SubResource("StandardMaterial3D_8qthc")
@@ -1497,7 +1498,7 @@ shape = SubResource("BoxShape3D_d1ydn")
 transform = Transform3D(1.0000005, 0, 0, 0, 1, 0, 0, 0, 1, -4.687407, -2.8247404, 81.745026)
 shape = SubResource("BoxShape3D_kjih3")
 
-[node name="Amphi_001-col" parent="projet" index="19" unique_id=71829102]
+[node name="Amphi_001-col" parent="projet" index="19" unique_id=589183843]
 surface_material_override/0 = SubResource("StandardMaterial3D_q4gk6")
 surface_material_override/19 = SubResource("StandardMaterial3D_ibq41")
 surface_material_override/20 = SubResource("StandardMaterial3D_0rt0s")
@@ -1528,19 +1529,19 @@ shape = SubResource("BoxShape3D_d1ydn")
 transform = Transform3D(1.0000005, 0, 0, 0, 1, 0, 0, 0, 1, -4.9259224, -2.8324928, 81.76973)
 shape = SubResource("BoxShape3D_kjih3")
 
-[node name="Salle-col" parent="projet" index="21" unique_id=1599755837]
+[node name="Salle-col" parent="projet" index="21" unique_id=260030946]
 surface_material_override/0 = SubResource("StandardMaterial3D_twbhk")
 
-[node name="Radiateur" parent="projet" index="22" unique_id=900741471]
+[node name="Radiateur" parent="projet" index="22" unique_id=1238720361]
 transform = Transform3D(25.395285, 0, 0, 0, 12.568004, 0, 0, 0, -12.568004, 159.74911, 5.4825583, -72.329025)
 
-[node name="metal-col" parent="projet/Radiateur" index="2" unique_id=38297964]
+[node name="metal-col" parent="projet/Radiateur" index="2" unique_id=1900858737]
 transform = Transform3D(-1.1920929e-07, 0, 0.5515748, 0, 1, 0, -0.99999994, 0, -6.575284e-08, -0.37118196, 0, 0)
 
-[node name="white-col" parent="projet/Radiateur" index="3" unique_id=1621338574]
+[node name="white-col" parent="projet/Radiateur" index="3" unique_id=1755278863]
 transform = Transform3D(-1.1920929e-07, 0, 0.5397314, 0, 1, 0, -0.99999994, 0, -6.4340995e-08, -0.35590076, 0, -0.007610798)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Ordinateur" parent_id_path=PackedInt32Array(1918126783, 895741046) index="8" unique_id=1303357027]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Ordinateur" parent_id_path=PackedInt32Array(1918126783, 1538335220) index="8" unique_id=1303357027]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Ordinateur/StaticBody3D" unique_id=731739594]
 transform = Transform3D(-0.009998477, -0.00017452554, 2.2986519e-11, -1.862645e-11, 2.3841855e-09, 0.009999999, -0.00017452554, 0.009998477, -2.3841473e-09, 3.504753e-05, 0.16420597, -0.0950675)
@@ -1574,7 +1575,7 @@ shape = SubResource("ConvexPolygonShape3D_vna7n")
 transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.001, 0, 0.23360103, -0.08454037)
 shape = SubResource("ConvexPolygonShape3D_w040f")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Corbeille/corpo-col" parent_id_path=PackedInt32Array(1918126783, 126567695) index="2" unique_id=1749405034]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Corbeille/corpo-col" parent_id_path=PackedInt32Array(1918126783, 1624791824) index="2" unique_id=1749405034]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Corbeille/corpo-col/StaticBody3D" unique_id=1786219831]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -1588,10 +1589,10 @@ shape = SubResource("ConvexPolygonShape3D_3vkpf")
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_61yjt")
 
-[node name="ChaiseBureau" parent="projet" index="31" unique_id=731166415]
+[node name="ChaiseBureau" parent="projet" index="31" unique_id=491568066]
 transform = Transform3D(9.729565e-07, 0, -5.441167, 0, 5.441167, 0, 5.441167, 0, 9.729565e-07, 141.08113, 5.482559, -50.105465)
 
-[node name="Office Chair_REX-col" parent="projet/ChaiseBureau" index="0" unique_id=1381915668]
+[node name="Office Chair_REX-col" parent="projet/ChaiseBureau" index="0" unique_id=31163315]
 transform = Transform3D(0.51584816, 0, 1.7194114, 0, 1.7951252, 0, -1.7194114, 0, 0.51584816, -0.38611412, 0, -0.20584297)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="projet/ChaiseBureau/Office Chair_REX-col" index="0" unique_id=459231164]
@@ -1599,37 +1600,37 @@ transform = Transform3D(0.51584816, 0, 1.7194114, 0, 1.7951252, 0, -1.7194114, 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/ChaiseBureau/Office Chair_REX-col/StaticBody3D" unique_id=141735131]
 shape = SubResource("ConvexPolygonShape3D_23toj")
 
-[node name="CadreFamilial" parent="projet" index="33" unique_id=856583705]
+[node name="CadreFamilial" parent="projet" index="33" unique_id=117534478]
 transform = Transform3D(0, 2.7877133, 0, 8.308033e-08, -2.4759868e-15, -2.7877133, -2.7877133, 0, -8.308033e-08, 130.57608, 22.937155, -46.968998)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Bureau-col" parent_id_path=PackedInt32Array(1918126783, 700853946) index="0" unique_id=888965889]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Bureau-col" parent_id_path=PackedInt32Array(1918126783, 217192838) index="0" unique_id=888965889]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Bureau-col/StaticBody3D" unique_id=1163448396]
 transform = Transform3D(0.9999999, 0, -1.7763568e-15, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_dyfe3")
 
-[node name="Mur_001-col" parent="projet" index="36" unique_id=794998380]
+[node name="Mur_001-col" parent="projet" index="36" unique_id=1633268502]
 transform = Transform3D(0.5929909, 0, 0, 0, 29.649544, 0, 0, 0, 60.398373, 109.446, 4.879, -174.38055)
 surface_material_override/0 = SubResource("StandardMaterial3D_eaxdp")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/PoubelleCafet/Poubelle Cafet-col" parent_id_path=PackedInt32Array(1918126783, 1218168530) index="0" unique_id=1464471829]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/PoubelleCafet/Poubelle Cafet-col" parent_id_path=PackedInt32Array(1918126783, 1241765078) index="0" unique_id=1464471829]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/PoubelleCafet/Poubelle Cafet-col/StaticBody3D" unique_id=1183732058]
 shape = SubResource("ConvexPolygonShape3D_g2d3y")
 
-[node name="Radiateur_001-col" parent="projet" index="39" unique_id=1844071115]
+[node name="Radiateur_001-col" parent="projet" index="39" unique_id=435756862]
 transform = Transform3D(78.2708, 0, 0, 0, 12.300543, 0, 0, 0, 25.115318, 106.062965, -32, -61.46932)
 
-[node name="grid_001-col" parent="projet/Radiateur_001-col" index="0" unique_id=2104700155]
+[node name="grid_001-col" parent="projet/Radiateur_001-col" index="0" unique_id=1169480691]
 transform = Transform3D(-1.1920929e-07, 0, 1.0486511, 0, 1, 0, -1, 0, -1.2500897e-07, -0.012576938, 0, 0)
 
-[node name="marks_001-col" parent="projet/Radiateur_001-col" index="1" unique_id=635405196]
+[node name="marks_001-col" parent="projet/Radiateur_001-col" index="1" unique_id=650691808]
 transform = Transform3D(-1.1920929e-07, 0, 0.60750926, 0, 1, 0, -1, 0, -7.242076e-08, -0.26091218, 0, -0.03547883)
 
-[node name="metal_001-col" parent="projet/Radiateur_001-col" index="2" unique_id=1208716384]
+[node name="metal_001-col" parent="projet/Radiateur_001-col" index="2" unique_id=440080540]
 transform = Transform3D(-1.6613527e-08, 0, 0.51241446, 0, 1, 0, -0.13936436, 0, -6.1084634e-08, -0.36978382, 0, -0.064542055)
 
-[node name="white_001-col" parent="projet/Radiateur_001-col" index="3" unique_id=859719391]
+[node name="white_001-col" parent="projet/Radiateur_001-col" index="3" unique_id=1904909060]
 transform = Transform3D(-1.1920929e-07, 0, 0.51631457, 0, 1, 0, -1, 0, -6.15495e-08, -0.3379786, 0, -0.035259485)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="projet/Radiateur_001-col" index="4" unique_id=206554085]
@@ -1638,7 +1639,7 @@ transform = Transform3D(-1.1920929e-07, 0, 0.51631457, 0, 1, 0, -1, 0, -6.15495e
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38762408, 0.41242242, -0.047375917)
 shape = SubResource("BoxShape3D_t60jh")
 
-[node name="Mur-col-col" parent="projet" index="40" unique_id=89973218]
+[node name="Mur-col-col" parent="projet" index="40" unique_id=198848504]
 surface_material_override/0 = SubResource("StandardMaterial3D_3h2jn")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="projet/Mur-col-col" index="0" unique_id=810787697]
@@ -1647,14 +1648,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3h2jn")
 transform = Transform3D(1, 0, 0, 0, 0.9999995, 0, 0, 0, 0.9999904, 0.20327246, -0.7360128, -76.36354)
 shape = SubResource("BoxShape3D_m54dw")
 
-[node name="Mur_002-col" parent="projet" index="41" unique_id=2044170973]
+[node name="Mur_002-col" parent="projet" index="41" unique_id=734892966]
 surface_material_override/0 = SubResource("StandardMaterial3D_nbn7y")
 
-[node name="Mur_004-col" parent="projet" index="42" unique_id=510999471]
+[node name="Mur_004-col" parent="projet" index="42" unique_id=1404968855]
 transform = Transform3D(177.89726, 0, 0, 0, 29.649544, 0, 0, 0, 0.5929909, 106.17412, 4.8788385, 67.55369)
 surface_material_override/0 = SubResource("StandardMaterial3D_eqpvg")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Escalier-col" parent_id_path=PackedInt32Array(1918126783, 781176695) index="0" unique_id=1860226310]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Escalier-col" parent_id_path=PackedInt32Array(1918126783, 855206490) index="0" unique_id=1860226310]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Escalier-col/StaticBody3D" unique_id=1155157905]
 transform = Transform3D(1, -2.2737368e-13, 2.6645353e-14, -2.220446e-16, 0.9999997, -4.6566134e-10, 2.4158453e-13, 3.8146966e-06, 0.9999995, -9.973526, -0.03582716, 1.4963684)
@@ -1668,43 +1669,43 @@ shape = SubResource("BoxShape3D_projet_stair_ramp")
 transform = Transform3D(1, -2.2737368e-13, 7.1054274e-15, -2.220446e-16, 0.99999976, -6.0712635e-17, 9.947598e-14, 3.8146966e-06, 0.9999998, 9.974, -0.036, 1.496)
 shape = SubResource("BoxShape3D_dyfe3")
 
-[node name="Mur_003-col" parent="projet" index="44" unique_id=1136236262]
+[node name="Mur_003-col" parent="projet" index="44" unique_id=123321442]
 transform = Transform3D(247.98878, 0, 0, 0, 0.5929909, 0, 0, 0, 88.94863, 0.36045456, -32.481453, -135.26884)
 surface_material_override/0 = SubResource("StandardMaterial3D_q7g7n")
 
-[node name="SolSOUSOL-col" parent="projet" index="45" unique_id=554677522]
+[node name="SolSOUSOL-col" parent="projet" index="45" unique_id=1576326904]
 surface_material_override/0 = SubResource("StandardMaterial3D_6chum")
 
-[node name="Bibliothèque-col" parent="projet" index="47" unique_id=1570092484]
+[node name="Bibliothèque-col" parent="projet" index="47" unique_id=1851508452]
 surface_material_override/0 = SubResource("StandardMaterial3D_bibliotheque_bois")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/PoubelleCafet_001/Poubelle Cafet_001-col" parent_id_path=PackedInt32Array(1918126783, 807773754) index="0" unique_id=13728891]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/PoubelleCafet_001/Poubelle Cafet_001-col" parent_id_path=PackedInt32Array(1918126783, 1254004837) index="0" unique_id=13728891]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/PoubelleCafet_001/Poubelle Cafet_001-col/StaticBody3D" unique_id=1104709358]
 shape = SubResource("ConvexPolygonShape3D_m54dw")
 
-[node name="AfficheBDE" parent="projet" index="49" unique_id=1828414774]
+[node name="AfficheBDE" parent="projet" index="49" unique_id=280527681]
 surface_material_override/1 = SubResource("ShaderMaterial_eqpvg")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/MachineDroite/VendingMachine_MainBody_001-col" parent_id_path=PackedInt32Array(1918126783, 1799047291) index="0" unique_id=90659078]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/MachineDroite/VendingMachine_MainBody_001-col" parent_id_path=PackedInt32Array(1918126783, 640745560) index="0" unique_id=90659078]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/MachineDroite/VendingMachine_MainBody_001-col/StaticBody3D" unique_id=42306564]
 transform = Transform3D(0.99999994, 0, -1.4210855e-14, 0, 0.99999994, 0, 1.4210855e-14, 0, 0.99999994, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_b4e4e")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/MachineGauche/VendingMachine_MainBody_002-col" parent_id_path=PackedInt32Array(1918126783, 324121313) index="0" unique_id=45737401]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/MachineGauche/VendingMachine_MainBody_002-col" parent_id_path=PackedInt32Array(1918126783, 819974326) index="0" unique_id=45737401]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/MachineGauche/VendingMachine_MainBody_002-col/StaticBody3D" unique_id=212525355]
 transform = Transform3D(0.99999994, 0, -1.4210855e-14, 0, 0.99999994, 0, 1.4210855e-14, 0, 0.99999994, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_whjp7")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/MachineCentre/VendingMachine_MainBody_003-col" parent_id_path=PackedInt32Array(1918126783, 439915365) index="0" unique_id=659613341]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/MachineCentre/VendingMachine_MainBody_003-col" parent_id_path=PackedInt32Array(1918126783, 1744544633) index="0" unique_id=659613341]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/MachineCentre/VendingMachine_MainBody_003-col/StaticBody3D" unique_id=969464107]
 transform = Transform3D(0.99999994, 0, -1.4210855e-14, 0, 0.99999994, 0, 1.4210855e-14, 0, 0.99999994, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_hysfo")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/TestTable" parent_id_path=PackedInt32Array(1918126783, 1814633795) index="9" unique_id=2064986685]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/TestTable" parent_id_path=PackedInt32Array(1918126783, 443691637) index="9" unique_id=2064986685]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/TestTable/StaticBody3D" unique_id=509731519]
 transform = Transform3D(1.5493211e-09, 9.489592e-09, -0.006498322, -0.006493003, 0.00026290005, -1.164136e-09, 0.00026290005, 0.006493003, 9.544502e-09, 0.53565156, 0.6718273, 0.5754081)
@@ -1742,7 +1743,7 @@ shape = SubResource("ConvexPolygonShape3D_por01")
 transform = Transform3D(3.8110025, 0, 0, 0, 3.811003, 0, 0, 0, 3.811003, 0, 1.9817216, 0)
 shape = SubResource("ConvexPolygonShape3D_sih7b")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_014" parent_id_path=PackedInt32Array(1918126783, 463721879) index="11" unique_id=495702833]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_014" parent_id_path=PackedInt32Array(1918126783, 645678654) index="11" unique_id=495702833]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_014/StaticBody3D" unique_id=89434014]
 transform = Transform3D(7.7466056e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.5356516, 0.6718273, 0.575408)
@@ -1788,7 +1789,7 @@ shape = SubResource("ConvexPolygonShape3D_lnrvj")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817209, 0)
 shape = SubResource("ConvexPolygonShape3D_y7jjh")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_015" parent_id_path=PackedInt32Array(1918126783, 1964349048) index="11" unique_id=952789014]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_015" parent_id_path=PackedInt32Array(1918126783, 320818071) index="11" unique_id=952789014]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_015/StaticBody3D" unique_id=1940211866]
 transform = Transform3D(7.746606e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.53565145, 0.6718273, 0.575408)
@@ -1834,7 +1835,7 @@ shape = SubResource("ConvexPolygonShape3D_vw3q0")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817214, 0)
 shape = SubResource("ConvexPolygonShape3D_qthlb")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_016" parent_id_path=PackedInt32Array(1918126783, 289031978) index="11" unique_id=1959796815]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_016" parent_id_path=PackedInt32Array(1918126783, 1684858502) index="11" unique_id=1959796815]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_016/StaticBody3D" unique_id=1089150715]
 transform = Transform3D(7.746606e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.5356516, 0.6718273, 0.5754082)
@@ -1880,7 +1881,7 @@ shape = SubResource("ConvexPolygonShape3D_eqplk")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817214, 0)
 shape = SubResource("ConvexPolygonShape3D_6siwl")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_017" parent_id_path=PackedInt32Array(1918126783, 485646806) index="11" unique_id=1565011952]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_017" parent_id_path=PackedInt32Array(1918126783, 674014278) index="11" unique_id=1565011952]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_017/StaticBody3D" unique_id=279912898]
 transform = Transform3D(7.746606e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.5356516, 0.6718273, 0.575408)
@@ -1926,7 +1927,7 @@ shape = SubResource("ConvexPolygonShape3D_o2fua")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817214, 0)
 shape = SubResource("ConvexPolygonShape3D_f0vly")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_018" parent_id_path=PackedInt32Array(1918126783, 2063289864) index="11" unique_id=419524579]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_018" parent_id_path=PackedInt32Array(1918126783, 1016340991) index="11" unique_id=419524579]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_018/StaticBody3D" unique_id=2122822061]
 transform = Transform3D(7.746606e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.5356512, 0.6718273, 0.575408)
@@ -1972,7 +1973,7 @@ shape = SubResource("ConvexPolygonShape3D_5b7ls")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817214, 0)
 shape = SubResource("ConvexPolygonShape3D_kxcsf")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_019" parent_id_path=PackedInt32Array(1918126783, 1412686507) index="11" unique_id=1168707163]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_019" parent_id_path=PackedInt32Array(1918126783, 1218438358) index="11" unique_id=1168707163]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_019/StaticBody3D" unique_id=351063993]
 transform = Transform3D(7.7466056e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.53565145, 0.6718273, 0.575408)
@@ -2018,7 +2019,7 @@ shape = SubResource("ConvexPolygonShape3D_w4biu")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, -4.7683716e-07, 1.9817209, 0)
 shape = SubResource("ConvexPolygonShape3D_ayyt1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_020" parent_id_path=PackedInt32Array(1918126783, 540154258) index="11" unique_id=1352152764]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_020" parent_id_path=PackedInt32Array(1918126783, 925413557) index="11" unique_id=1352152764]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_020/StaticBody3D" unique_id=983417864]
 transform = Transform3D(7.746606e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.5356512, 0.6718273, 0.5754082)
@@ -2064,7 +2065,7 @@ shape = SubResource("ConvexPolygonShape3D_vnso2")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817214, 0)
 shape = SubResource("ConvexPolygonShape3D_27r4o")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_021" parent_id_path=PackedInt32Array(1918126783, 1282042139) index="11" unique_id=398854544]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_021" parent_id_path=PackedInt32Array(1918126783, 1060003799) index="11" unique_id=398854544]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_021/StaticBody3D" unique_id=581284826]
 transform = Transform3D(7.746606e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.5356512, 0.6718273, 0.575408)
@@ -2110,7 +2111,7 @@ shape = SubResource("ConvexPolygonShape3D_40t41")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817214, 0)
 shape = SubResource("ConvexPolygonShape3D_4bnpn")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/TestTable_001" parent_id_path=PackedInt32Array(1918126783, 1384697649) index="9" unique_id=245152848]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/TestTable_001" parent_id_path=PackedInt32Array(1918126783, 1146679603) index="9" unique_id=245152848]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/TestTable_001/StaticBody3D" unique_id=1781356674]
 transform = Transform3D(1.5493211e-09, 9.489592e-09, -0.006498322, -0.006493003, 0.00026290005, -1.164136e-09, 0.00026290005, 0.006493003, 9.544502e-09, 0.5356513, 0.6718273, 0.5754081)
@@ -2148,7 +2149,7 @@ shape = SubResource("ConvexPolygonShape3D_0op0k")
 transform = Transform3D(3.8110025, 0, 0, 0, 3.811003, 0, 0, 0, 3.811003, 0, 1.9817216, 0)
 shape = SubResource("ConvexPolygonShape3D_qehjm")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_022" parent_id_path=PackedInt32Array(1918126783, 2026675454) index="11" unique_id=440218627]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_022" parent_id_path=PackedInt32Array(1918126783, 776025121) index="11" unique_id=440218627]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_022/StaticBody3D" unique_id=1556830418]
 transform = Transform3D(7.746606e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.5356517, 0.6718273, 0.575407)
@@ -2194,7 +2195,7 @@ shape = SubResource("ConvexPolygonShape3D_yyyd6")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817214, 0)
 shape = SubResource("ConvexPolygonShape3D_y64yn")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_023" parent_id_path=PackedInt32Array(1918126783, 1903466343) index="11" unique_id=2036993681]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_023" parent_id_path=PackedInt32Array(1918126783, 1536259778) index="11" unique_id=2036993681]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_023/StaticBody3D" unique_id=1968528778]
 transform = Transform3D(7.746606e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.5356517, 0.6718273, 0.575407)
@@ -2240,7 +2241,7 @@ shape = SubResource("ConvexPolygonShape3D_lm2og")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817214, 0)
 shape = SubResource("ConvexPolygonShape3D_g5o43")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_024" parent_id_path=PackedInt32Array(1918126783, 1292791380) index="11" unique_id=855403337]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_024" parent_id_path=PackedInt32Array(1918126783, 941964702) index="11" unique_id=855403337]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_024/StaticBody3D" unique_id=1266011711]
 transform = Transform3D(7.746606e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.53565264, 0.6718273, 0.575407)
@@ -2286,7 +2287,7 @@ shape = SubResource("ConvexPolygonShape3D_e5a7r")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817214, 0)
 shape = SubResource("ConvexPolygonShape3D_txfdq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_025" parent_id_path=PackedInt32Array(1918126783, 1416196083) index="11" unique_id=1460576738]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/Tabouret_025" parent_id_path=PackedInt32Array(1918126783, 699197093) index="11" unique_id=1460576738]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/Tabouret_025/StaticBody3D" unique_id=469231908]
 transform = Transform3D(7.746606e-10, 9.489592e-09, -0.0064983224, -0.006493003, 0.00026289967, -3.9011036e-10, 0.00026289964, 0.006493003, 9.51316e-09, 0.53565264, 0.6718273, 0.5754075)
@@ -2332,7 +2333,7 @@ shape = SubResource("ConvexPolygonShape3D_7s4r4")
 transform = Transform3D(3.8110032, 0, 0, 0, 3.8110032, 0, 0, 0, 3.8110032, 0, 1.9817214, 0)
 shape = SubResource("ConvexPolygonShape3D_jsb3r")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="projet/TestTable_002" parent_id_path=PackedInt32Array(1918126783, 657161322) index="9" unique_id=6985804]
+[node name="StaticBody3D" type="StaticBody3D" parent="projet/TestTable_002" parent_id_path=PackedInt32Array(1918126783, 1635845061) index="9" unique_id=6985804]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/TestTable_002/StaticBody3D" unique_id=2020868681]
 transform = Transform3D(1.5493211e-09, 9.489592e-09, -0.006498322, -0.006493003, 0.00026290005, -1.164136e-09, 0.00026290005, 0.006493003, 9.544502e-09, 0.53565145, 0.6718273, 0.5754075)
@@ -2599,21 +2600,21 @@ surface_material_override/0 = SubResource("StandardMaterial3D_grande_porte_vitre
 [node name="extension" parent="projet" unique_id=857776119 instance=ExtResource("38_nbn7y")]
 transform = Transform3D(0.61, 0, 0, 0, 0.61, 0, 0, 0, 0.61, -71.659164, -31.506845, 10.889823)
 
-[node name="Plane  " parent="projet/extension" index="1" unique_id=1761655694]
+[node name="Plane  " parent="projet/extension" index="1" unique_id=281856544]
 surface_material_override/0 = SubResource("StandardMaterial3D_6chum")
 
-[node name="Mur " parent="projet/extension" index="2" unique_id=1573530195]
+[node name="Mur " parent="projet/extension" index="2" unique_id=934680978]
 surface_material_override/0 = SubResource("StandardMaterial3D_eqpvg")
 
 [node name="murSeparation" parent="projet" unique_id=481384791 instance=ExtResource("39_eqpvg")]
 transform = Transform3D(1, 0, 0, 0, 1.2259151, 0, 0, 0, 1, 109.446, -30.432085, 0.83609647)
 
-[node name="Mur_001" parent="projet/murSeparation" index="0" unique_id=124474502]
+[node name="Mur_001" parent="projet/murSeparation" index="0" unique_id=433706093]
 surface_material_override/0 = SubResource("StandardMaterial3D_3h2jn")
 
 [node name="solEscalier" parent="projet" unique_id=1198616014 instance=ExtResource("38_eqpvg")]
 
-[node name="SolRDC" parent="projet/solEscalier" index="0" unique_id=1360143239]
+[node name="SolRDC" parent="projet/solEscalier" index="0" unique_id=506383990]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.723509, 4.8788385, 27.521416)
 surface_material_override/0 = SubResource("StandardMaterial3D_6chum")
 
@@ -2622,7 +2623,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6chum")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projet/solEscalier/SolRDC/StaticBody3D" unique_id=1331762520]
 shape = SubResource("ConvexPolygonShape3D_nbn7y")
 
-[node name="SolEscalier" parent="projet/solEscalier" index="1" unique_id=1559434139]
+[node name="SolEscalier" parent="projet/solEscalier" index="1" unique_id=499149032]
 surface_material_override/0 = SubResource("StandardMaterial3D_6chum")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="projet/solEscalier/SolEscalier" index="0" unique_id=475640079]
