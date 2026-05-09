@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dc5ee2js46gpo"
+path="res://.godot/imported/COMTelph_Telephone a cadran (ID 0001)_LaSonotheque.fr.mp3-1cbe64f3a30fa5464a1683a46295dedb.mp3str"
+
+[deps]
+
+source_file="res://audio/COMTelph_Telephone a cadran (ID 0001)_LaSonotheque.fr.mp3"
+dest_files=["res://.godot/imported/COMTelph_Telephone a cadran (ID 0001)_LaSonotheque.fr.mp3-1cbe64f3a30fa5464a1683a46295dedb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

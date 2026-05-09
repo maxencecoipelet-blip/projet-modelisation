@@ -1,5 +1,7 @@
 extends Node
 
+
+
 var chasing_robots := 0
 var ambience_base_volume := -35.0
 var ambience_chase_volume := -45.0
@@ -16,6 +18,7 @@ var room_ambience_tween: Tween
 var room_ambience_enabled := false
 var random_ambience_loop_started := false
 var random_ambience_players: Array[AudioStreamPlayer] = []
+
 
 @onready var musique_ambiance = $MusiqueAmbiance
 @onready var musique_chasse = $MusiqueChasse
