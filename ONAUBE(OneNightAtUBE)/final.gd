@@ -37,3 +37,10 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	label.visible=false
+
+
+func _on_sous_la_map_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		GameState.loose = true
+		AudioManager.notify_robot_stopped_chase()
+		get_tree().change_scene_to_file("res://ecran_mort.tscn")
