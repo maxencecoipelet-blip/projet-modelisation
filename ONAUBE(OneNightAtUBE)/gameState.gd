@@ -41,6 +41,9 @@ func _process(delta: float) -> void:
 		if !win and !en_menu:
 			win=true
 			call_deferred("win_game")
+	if len(completed_minigames)==4:
+		call_deferred("win_game")
+	
 	
 	
 

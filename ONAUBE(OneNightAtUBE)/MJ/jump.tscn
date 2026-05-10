@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://c5p8457nn6duv" path="res://MJ/moving_platform_2.gd" id="3_s6x0o"]
 [ext_resource type="Script" uid="uid://y5u6hao5q0f3" path="res://MJ/movingwall_1.gd" id="4_kaylv"]
 [ext_resource type="PackedScene" uid="uid://dkv6bi6qy43y7" path="res://triggerDesacRobot.tscn" id="5_h7s17"]
-[ext_resource type="Script" uid="uid://c657npph1lph3" path="res://trigger_desac_robot.gd" id="6_4g58u"]
 [ext_resource type="AudioStream" uid="uid://dyg6vad8l8tpy" path="res://audio/player/footstep.mp3" id="7_k1d9r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uts1x"]
@@ -216,4 +215,3 @@ surface_material_override/0 = SubResource("StandardMaterial3D_uts1x")
 
 [node name="triggerdesacrobot" parent="." unique_id=816027573 instance=ExtResource("5_h7s17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3670464, 7.2334814, -52.496975)
-script = ExtResource("6_4g58u")

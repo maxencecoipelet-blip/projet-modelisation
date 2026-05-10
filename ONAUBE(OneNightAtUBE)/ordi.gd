@@ -61,6 +61,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		GameState.on_pc=false
 		
 		
+		
 
 func open_computer():
 	$Desktop.visible=true

@@ -32,6 +32,14 @@ var random_ambience_players: Array[AudioStreamPlayer] = []
 @onready var craquement_electrique = get_node_or_null("CraquementElectrique")
 
 func _ready() -> void:
+	if musique_ambiance.stream is AudioStreamOggVorbis:
+		musique_ambiance.stream.loop = true
+	if musique_chasse.stream is AudioStreamOggVorbis:
+		musique_chasse.stream.loop = true
+	if musique_menu.stream is AudioStreamOggVorbis:
+		musique_menu.stream.loop = true
+	if ventilo and ventilo.stream is AudioStreamOggVorbis:
+		ventilo.stream.loop = true
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	randomize()
 	_collect_random_ambience_players()
@@ -108,7 +116,7 @@ func play_game_over() -> void:
 	game_over.play()
 
 func play_victory() -> void:
-	stop_all_music()
+	
 	if victoire:
 		victoire.stop()
 		victoire.play()

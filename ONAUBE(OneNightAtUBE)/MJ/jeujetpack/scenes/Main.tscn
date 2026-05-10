@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" path="res://MJ/jeujetpack/scenes/Collectible.tscn" id="3_collect"]
 [ext_resource type="PackedScene" uid="uid://i7wigf6cjfrk" path="res://MJ/jeujetpack/scenes/HUD.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://c413mdvcmtgk5" path="res://MJ/jeujetpack/assets/models/bonjetpackcity.glb" id="5_vcsgt"]
+[ext_resource type="PackedScene" uid="uid://vt2rl1the6kc" path="res://MJ/jeujetpack/scenes/WinScreen.tscn" id="6_hohiq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.1, 0.2, 0.5, 1)
@@ -65,3 +66,7 @@ layer = 10
 
 [node name="bonjetpackcity" parent="." unique_id=283045973 instance=ExtResource("5_vcsgt")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -9.935299, 0)
+
+[node name="WinLayerInner" type="CanvasLayer" parent="." unique_id=1285633757]
+
+[node name="WinScreen" parent="WinLayerInner" unique_id=1522807375 instance=ExtResource("6_hohiq")]

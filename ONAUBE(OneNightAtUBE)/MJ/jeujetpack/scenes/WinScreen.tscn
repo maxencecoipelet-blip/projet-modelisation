@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://jetpack_win"]
+[gd_scene format=3 uid="uid://vt2rl1the6kc"]
 
-[ext_resource type="Script" path="res://scripts/WinScreen.gd" id="1_winscr"]
+[ext_resource type="Script" uid="uid://c5pkt0cfqddg" path="res://MJ/jeujetpack/scripts/WinScreen.gd" id="1_85mrv"]
 
-[node name="WinScreen" type="Control"]
+[node name="WinScreen" type="Control" unique_id=1522807375]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_winscr")
+script = ExtResource("1_85mrv")

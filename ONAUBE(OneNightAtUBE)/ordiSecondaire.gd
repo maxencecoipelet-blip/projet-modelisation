@@ -28,6 +28,9 @@ func _process(delta: float) -> void:
 		GameState.IGV = false
 		GameState.IGJ = false
 		GameState.IGC = false
+		GameState.IGV = false
+		
+		
 		
 	elif player and Input.is_action_just_pressed("interagir"):
 		interact()
@@ -35,6 +38,15 @@ func _process(delta: float) -> void:
 func interact():
 	if id_MJ in GameState.activated_minigames:
 		GameState.on_pc = true
+		match id_MJ	:
+			2:
+				GameState.IGC=true
+			3:
+				GameState.IGV=true
+			4:
+				GameState.IGJ=true
+				
+				
 		call_deferred("open_computer")
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

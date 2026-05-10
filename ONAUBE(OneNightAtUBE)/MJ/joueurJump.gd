@@ -22,7 +22,7 @@ func _ready():
 	
 func set_active(value: bool) -> void:
 	active = value
-	GameState.IGJ = value
+	GameState.IG = value
 	if value:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
@@ -30,7 +30,7 @@ func set_active(value: bool) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not active or not GameState.IGJ:
+	if not active or not GameState.IG:
 		was_walking = false
 		return
 
@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not active or not GameState.IGJ:
+	if not active or not GameState.IG:
 		return
 
 	if event is InputEventMouseButton and event.pressed:
