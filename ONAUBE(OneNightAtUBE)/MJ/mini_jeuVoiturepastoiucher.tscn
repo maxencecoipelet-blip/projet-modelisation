@@ -1,0 +1,349 @@
+[gd_scene format=3 uid="uid://bvnejwhf4ouin"]
+
+[ext_resource type="Texture2D" uid="uid://cpq71gb2xbe0q" path="res://assets/fondEcran1.png" id="1_0awqr"]
+[ext_resource type="Script" uid="uid://c5lcrebwyr8qf" path="res://MJ/voituredeplacement.gd" id="1_g8ucr"]
+[ext_resource type="PackedScene" uid="uid://bnj5jye1sls2o" path="res://MJ/jeu course/villecircuit.glb" id="2_g8ucr"]
+[ext_resource type="PackedScene" uid="uid://ciblvknrc5qjt" path="res://MJ/jeu course/voiture.glb" id="2_wl8ts"]
+[ext_resource type="PackedScene" uid="uid://twysdcyf1du5" path="res://Bombe.tscn" id="4_o8oxu"]
+[ext_resource type="PackedScene" uid="uid://dkv6bi6qy43y7" path="res://triggerDesacRobot.tscn" id="5_ksxgp"]
+[ext_resource type="Script" uid="uid://bvsb541ajfjlx" path="res://MJ/area_3d.gd" id="6_bl8vd"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_baifl"]
+panorama = ExtResource("1_0awqr")
+
+[sub_resource type="Sky" id="Sky_ifotl"]
+sky_material = SubResource("PanoramaSkyMaterial_baifl")
+
+[sub_resource type="Environment" id="Environment_5ssc2"]
+background_mode = 2
+sky = SubResource("Sky_ifotl")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2tm7w"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6wvun"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o8oxu"]
+radius = 5.519043
+height = 12.329147
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0awqr"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wl8ts"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ksxgp"]
+size = Vector3(0.6845703, 1, 6.2284546)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bl8vd"]
+size = Vector3(1.7164307, 0.5196533, 1)
+
+[node name="Node3D" type="Node3D" unique_id=1819507674]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=704198207]
+environment = SubResource("Environment_5ssc2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=975759067]
+transform = Transform3D(0.92696726, -0.3730397, -0.039661996, 0.12497647, 0.20739725, 0.9702409, -0.35371262, -0.9043384, 0.23887168, 0, 9.623073, -0.7078806)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2126606590]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=567793872]
+mesh = SubResource("PlaneMesh_2tm7w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=730086449]
+shape = SubResource("ConcavePolygonShape3D_6wvun")
+
+[node name="voiture" type="CharacterBody3D" parent="." unique_id=588228740 groups=["voiture"]]
+transform = Transform3D(0.008376563, 0, -0.29988304, 0, 0.3, 0, 0.29988304, 0, 0.008376563, 5.897108, -46.148937, -61.491936)
+script = ExtResource("1_g8ucr")
+
+[node name="model3Dvoiture" parent="voiture" unique_id=1835502264 instance=ExtResource("2_wl8ts")]
+transform = Transform3D(5.029142e-08, 0.017452396, 0.99984777, 8.740947e-08, 0.99984777, -0.017452396, -1, 8.8242814e-08, 4.8428774e-08, 0.02470398, 0, -0.8841691)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="voiture" unique_id=1246442858]
+transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0, 4.9020615, 0)
+shape = SubResource("CapsuleShape3D_o8oxu")
+
+[node name="Camera3D" type="Camera3D" parent="voiture" unique_id=572820141]
+transform = Transform3D(3.3112488, 0.16161193, -0.34731147, -2.4560073e-05, 3.0222547, 1.40609, 0.38307133, -1.3967713, 3.0022323, -0.9312897, 12.975479, 14.772259)
+
+[node name="villecircuit" parent="." unique_id=1699691149 instance=ExtResource("2_g8ucr")]
+transform = Transform3D(0.59999996, 0, 0, 0, 0.59999996, 0, 0, 0, 0.59999996, -0.01457119, -49.427956, 0.19104385)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="villecircuit" unique_id=1649533067]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="villecircuit/StaticBody3D" unique_id=1727935228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 6, -48.896687, 0.10370636, -100.04379)
+mesh = SubResource("PlaneMesh_0awqr")
+
+[node name="solpourvoiture" type="StaticBody3D" parent="." unique_id=1928213622]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="solpourvoiture" unique_id=1743057242]
+transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, -48.6989, 0)
+shape = SubResource("ConvexPolygonShape3D_wl8ts")
+
+[node name="Bombe" parent="." unique_id=1821413447 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.48083, -49.09303, -63.217342)
+
+[node name="Bombe2" parent="." unique_id=700232751 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.48083, -49.223305, -57.141563)
+
+[node name="Bombe3" parent="." unique_id=1321067364 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.812645, -49.223305, -60.31739)
+
+[node name="Bombe4" parent="." unique_id=1309186877 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.554306, -49.223305, -58.287544)
+
+[node name="Bombe5" parent="." unique_id=253092860 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.68945, -49.223305, -53.99523)
+
+[node name="Bombe6" parent="." unique_id=621351579 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.963486, -49.223305, -47.258892)
+
+[node name="Bombe7" parent="." unique_id=1828225900 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.20578, -49.223305, -47.258892)
+
+[node name="Bombe8" parent="." unique_id=2090213478 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.01443, -49.223305, -38.404495)
+
+[node name="Bombe9" parent="." unique_id=589514626 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.01443, -49.223305, -38.404495)
+
+[node name="Bombe10" parent="." unique_id=1846494808 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.01443, -49.223305, -19.784513)
+
+[node name="Bombe12" parent="." unique_id=1187454258 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.97888, -49.223305, -10.732548)
+
+[node name="Bombe14" parent="." unique_id=1490788043 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.02395, -49.223305, 4.5740833)
+
+[node name="Bombe16" parent="." unique_id=1354702352 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.80294, -49.223305, 16.031616)
+
+[node name="Bombe17" parent="." unique_id=1165385298 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.80294, -49.223305, 25.516989)
+
+[node name="Bombe18" parent="." unique_id=1459112358 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.58193, -49.223305, 25.516989)
+
+[node name="Bombe20" parent="." unique_id=838041172 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.81512, -49.223305, 33.970947)
+
+[node name="Bombe21" parent="." unique_id=133363790 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.68772, -49.223305, 33.970947)
+
+[node name="Bombe22" parent="." unique_id=264675684 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.790474, -49.223305, 33.970947)
+
+[node name="Bombe23" parent="." unique_id=913884253 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.790474, -49.223305, 40.631737)
+
+[node name="Bombe24" parent="." unique_id=1387142386 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.60484, -49.223305, 46.63736)
+
+[node name="Bombe25" parent="." unique_id=2091440212 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.76367, -49.223305, 53.02395)
+
+[node name="Bombe26" parent="." unique_id=268276181 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.332, -49.223305, 59.625893)
+
+[node name="Bombe31" parent="." unique_id=120527489 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.631714, -49.223305, 57.625893)
+
+[node name="Bombe34" parent="." unique_id=323623449 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.171667, -49.223305, 57.625893)
+
+[node name="Bombe36" parent="." unique_id=118306191 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.171667, -49.223305, 62.822426)
+
+[node name="Bombe37" parent="." unique_id=554054628 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.061443, -49.223305, 59.458168)
+
+[node name="Bombe39" parent="." unique_id=1548816950 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.06406, -49.223305, 56.626705)
+
+[node name="Bombe40" parent="." unique_id=10591635 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.06406, -49.223305, 62.735798)
+
+[node name="Bombe41" parent="." unique_id=1523928911 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5788474, -49.223305, 59.406506)
+
+[node name="Bombe43" parent="." unique_id=1013395257 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.409109, -49.223305, 62.15288)
+
+[node name="Bombe44" parent="." unique_id=1053256420 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.409109, -49.223305, 58.479557)
+
+[node name="Bombe45" parent="." unique_id=1599176771 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.40911, -49.223305, 58.479557)
+
+[node name="Bombe46" parent="." unique_id=11469326 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.409111, -49.223305, 60.479557)
+
+[node name="Bombe47" parent="." unique_id=1203484974 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.409111, -49.223305, 59.479557)
+
+[node name="Bombe48" parent="." unique_id=204530681 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.40911, -49.223305, 59.479557)
+
+[node name="Bombe50" parent="." unique_id=1242741444 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.40911, -49.223305, 62.991432)
+
+[node name="Bombe51" parent="." unique_id=1210159385 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.40911, -49.223305, 62.991432)
+
+[node name="Bombe52" parent="." unique_id=1999603749 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.40911, -49.223305, 58.332138)
+
+[node name="Bombe53" parent="." unique_id=1507744165 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.25978, -49.223305, 61.025253)
+
+[node name="Bombe54" parent="." unique_id=1419062977 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.26541, -49.223305, 61.025253)
+
+[node name="Bombe55" parent="." unique_id=735569590 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.26541, -49.223305, 57.61226)
+
+[node name="Bombe56" parent="." unique_id=583806856 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.45972, -49.223305, 57.61226)
+
+[node name="Bombe57" parent="." unique_id=221551851 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.57034, -49.223305, 43.99463)
+
+[node name="Bombe58" parent="." unique_id=1933605609 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.050804, -49.223305, 31.826591)
+
+[node name="Bombe59" parent="." unique_id=182062904 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.35692, -49.223305, 31.826591)
+
+[node name="Bombe60" parent="." unique_id=1020900659 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.785255, -49.223305, 21.0932)
+
+[node name="Bombe61" parent="." unique_id=2066738831 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.55042, -49.223305, 10.512501)
+
+[node name="Bombe62" parent="." unique_id=1095840193 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.54739, -49.223305, 10.512501)
+
+[node name="Bombe63" parent="." unique_id=670562610 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.54739, -49.223305, -2.1098995)
+
+[node name="Bombe64" parent="." unique_id=203127238 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.4766, -49.223305, -2.1098995)
+
+[node name="Bombe65" parent="." unique_id=212291889 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.586464, -49.223305, -9.025523)
+
+[node name="Bombe67" parent="." unique_id=1940876618 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.544014, -49.223305, -15.920764)
+
+[node name="Bombe68" parent="." unique_id=502546166 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.544014, -49.223305, -15.920764)
+
+[node name="Bombe69" parent="." unique_id=534836091 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.41489, -49.223305, -22.537079)
+
+[node name="Bombe70" parent="." unique_id=1806512277 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.61367, -49.223305, -22.537079)
+
+[node name="Bombe71" parent="." unique_id=1121163456 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.61367, -49.223305, -30.337646)
+
+[node name="Bombe72" parent="." unique_id=1631733415 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.85911, -49.223305, -30.337646)
+
+[node name="Bombe73" parent="." unique_id=305592652 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.85911, -49.223305, -37.767967)
+
+[node name="Bombe74" parent="." unique_id=1415313624 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.78908, -49.223305, -37.767967)
+
+[node name="Bombe75" parent="." unique_id=405445295 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.78908, -49.223305, -43.926456)
+
+[node name="Bombe76" parent="." unique_id=119215454 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.68431, -49.223305, -43.926456)
+
+[node name="Bombe77" parent="." unique_id=1215861809 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.68431, -49.223305, -50.479282)
+
+[node name="Bombe78" parent="." unique_id=1128532827 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.68431, -49.223305, -55.479282)
+
+[node name="Bombe80" parent="." unique_id=1178183248 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.13078, -49.223305, -60.258526)
+
+[node name="Bombe81" parent="." unique_id=1875847871 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.13078, -49.223305, -59.512794)
+
+[node name="Bombe82" parent="." unique_id=1310413389 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.13078, -49.223305, -59.512794)
+
+[node name="Bombe83" parent="." unique_id=2084215792 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.13078, -49.223305, -62.481606)
+
+[node name="Bombe85" parent="." unique_id=2038291289 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.13078, -49.223305, -61.481606)
+
+[node name="Bombe84" parent="." unique_id=1371835441 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.13078, -49.223305, -60.512794)
+
+[node name="Bombe79" parent="." unique_id=104442316 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.699524, -49.223305, -53.705513)
+
+[node name="Bombe66" parent="." unique_id=2143815508 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.4766, -49.223305, -9.025523)
+
+[node name="Bombe49" parent="." unique_id=1500147859 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.40911, -49.20578, 61.32706)
+
+[node name="Bombe42" parent="." unique_id=2065634552 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.607235, -49.223305, 59.406506)
+
+[node name="Bombe38" parent="." unique_id=464107874 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.061443, -49.223305, 59.458168)
+
+[node name="Bombe32" parent="." unique_id=1233236115 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.631714, -49.223305, 63.873604)
+
+[node name="Bombe33" parent="." unique_id=1720366578 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.631714, -49.223305, 56.41375)
+
+[node name="Bombe35" parent="." unique_id=1630131788 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.631714, -49.223305, 62.98307)
+
+[node name="Bombe27" parent="." unique_id=97629599 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.28975, -49.223305, 59.625893)
+
+[node name="Bombe19" parent="." unique_id=36392628 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.99153, -49.223305, 25.516989)
+
+[node name="Bombe15" parent="." unique_id=630736742 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.52427, -49.223305, 16.112177)
+
+[node name="Bombe13" parent="." unique_id=280794254 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.595, -49.223305, -10.732548)
+
+[node name="Bombe11" parent="." unique_id=1251718592 instance=ExtResource("4_o8oxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.001816, -49.223305, -29.66607)
+
+[node name="triggerdesacrobot" parent="." unique_id=816027573 instance=ExtResource("5_ksxgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.385682, -47.320915, -60.334396)
+minigame_id = "voiture"
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=337619225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -43.425804, -53.658485)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=2138517118]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1.5771484, 0, 16.886147)
+shape = SubResource("BoxShape3D_ksxgp")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1802686512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5692749, -1.5611229)
+script = ExtResource("6_bl8vd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=474230572]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -1.1169434, -27.270912, 0)
+shape = SubResource("BoxShape3D_bl8vd")

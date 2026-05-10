@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://5n3c6f87emve" path="res://robot.gd" id="1_3cn6f"]
 [ext_resource type="AudioStream" uid="uid://bpaikdo6xb8ff" path="res://audio/robot/shut down.mp3" id="2_0m4qx"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_gv0v2"]
+[ext_resource type="PackedScene" uid="uid://b2qbfiw4pomw8" path="res://LEROBOT.glb" id="3_yhfw1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gv0v2"]
 
@@ -19,10 +18,8 @@ radius = 0.65
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=1102538343]
 script = ExtResource("1_3cn6f")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=78086509]
-mesh = SubResource("CapsuleMesh_gv0v2")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=642985935]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_gv0v2")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=867660188]
@@ -38,6 +35,7 @@ shape = SubResource("SphereShape3D_3cn6f")
 [node name="Area3D3" type="Area3D" parent="." unique_id=1709938098]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D3" unique_id=413437677]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_3cn6f")
 
 [node name="BruitRobot" type="AudioStreamPlayer3D" parent="." unique_id=1052473452]
@@ -50,6 +48,42 @@ stream = ExtResource("2_0m4qx")
 volume_db = -4.0
 max_distance = 35.0
 
+[node name="LEROBOT" parent="." unique_id=540689249 instance=ExtResource("3_yhfw1")]
+transform = Transform3D(-0.7, 0, -6.119594e-08, 0, 0.7, 0, 6.119594e-08, 0, -0.7, 0.102440834, -1.842168, 0.120419025)
+
+[node name="Skeleton3D" parent="LEROBOT/Armature" parent_id_path=PackedInt32Array(540689249, 52237329) index="0" unique_id=1663025085]
+bones/0/position = Vector3(0.033180714, -0.08364213, -1.4572376)
+bones/0/rotation = Quaternion(0.6709489, -0.05479244, -0.01908561, -0.73923004)
+bones/1/rotation = Quaternion(-0.09789248, 0.028147824, -0.003969671, 0.994791)
+bones/2/rotation = Quaternion(0.1036632, 0.059032764, -0.012238135, 0.99278367)
+bones/3/rotation = Quaternion(0.10363957, 0.059106253, -0.012075249, 0.9927837)
+bones/4/rotation = Quaternion(0.09891322, -0.022349259, -0.01579178, 0.9947198)
+bones/5/rotation = Quaternion(-0.18347873, -0.13344748, 0.023789711, 0.97363317)
+bones/7/rotation = Quaternion(-0.5309396, -0.45332634, 0.5866691, -0.4103873)
+bones/8/rotation = Quaternion(0.23949085, 0.052220482, 0.106110364, 0.9636689)
+bones/9/rotation = Quaternion(-0.2731158, 0.62019014, 0.3678856, 0.6367357)
+bones/10/rotation = Quaternion(-0.18044576, 0.9491757, -0.16982743, -0.19407086)
+bones/11/rotation = Quaternion(0.2381448, 0.95117474, 0.17859797, -0.08158703)
+bones/12/rotation = Quaternion(-0.109327964, -0.01559449, -0.002724125, 0.99387974)
+bones/13/rotation = Quaternion(0.15010765, 0.08064988, 0.2797102, 0.9448416)
+bones/15/rotation = Quaternion(0.573699, -0.42308038, 0.5484474, 0.43712476)
+bones/16/rotation = Quaternion(0.28921938, 0.029394409, -0.19956996, 0.93576705)
+bones/17/rotation = Quaternion(-0.15905268, -0.75838286, -0.20344937, 0.5984699)
+bones/18/rotation = Quaternion(-0.052025102, 0.18810964, -0.22564802, 0.95445853)
+bones/19/rotation = Quaternion(0.022789285, -0.041471638, -0.3039073, 0.9515257)
+bones/20/rotation = Quaternion(0.22474103, -0.047047645, -0.13151854, 0.9643552)
+bones/21/rotation = Quaternion(0.13151821, -0.06884239, -0.06538594, 0.9867565)
+bones/23/rotation = Quaternion(0.024199672, 0.43796647, 0.89841014, 0.021427883)
+bones/24/rotation = Quaternion(-0.4628419, -0.05528748, 0.02707172, 0.88430077)
+bones/25/rotation = Quaternion(0.5334645, 0.13520497, -0.043124184, 0.83383185)
+bones/26/rotation = Quaternion(0.3778277, -0.008398841, 0.0033295476, 0.9258319)
+bones/28/rotation = Quaternion(-0.07237197, 0.15331714, 0.98297507, 0.070825785)
+bones/29/rotation = Quaternion(-0.40744364, 0.043199062, -0.059988137, 0.91023356)
+bones/30/rotation = Quaternion(0.66769636, -0.10572944, 0.06668505, 0.7338638)
+bones/31/rotation = Quaternion(0.37216657, 0.0035160128, -0.0014127111, 0.9281583)
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D2" to="." method="_on_area_3d_2_body_exited"]
 [connection signal="body_entered" from="Area3D3" to="." method="_on_area_3d_3_body_entered"]
+
+[editable path="LEROBOT"]

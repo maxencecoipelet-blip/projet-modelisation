@@ -12,33 +12,24 @@ var speed := 3.0
 
 # ═══════════════════════════════════════════════════════════════════════════════
 #  SYSTÈME DE WAYPOINTS
-#
-#  Dans la scène, créez un Node3D "Waypoints" et ajoutez des Node3D enfants
-#  positionnés dans les lieux clés : paliers d'escalier, couloirs, entrées
-#  d'amphis, sous-sol… Le graphe de connexions est calculé automatiquement.
-#
-#  Conseil escalier : placez un waypoint tous les 2-3 marches pour que
-#  le robot monte/descende proprement via la physique.
 # ═══════════════════════════════════════════════════════════════════════════════
 @export var waypoints_parent_path : NodePath = NodePath("../waypoints")
-## Distance max en mètres pour relier deux waypoints entre eux
 @export var connection_radius     : float    = 16.0
 
-const WP_REACH      := 1.4   # distance pour considérer un WP comme atteint
-const CHASE_CLOSE   := 4.0   # en dessous : le robot fonce direct sans passer par WP
-const STUCK_TIMEOUT := 1.8   # secondes immobile avant de recalculer un chemin
+const WP_REACH      := 1.4
+const CHASE_CLOSE   := 4.0
+const STUCK_TIMEOUT := 1.8
 
-var _wps  : Array = []   # Array[Node3D]  — liste des waypoints
-var _adj  : Array = []   # Array[Array[int]] — graphe d'adjacence
-var _path : Array = []   # indices des WP restant à traverser
-var _cur  : int   = -1   # dernier WP atteint
+var _wps  : Array = []
+var _adj  : Array = []
+var _path : Array = []
+var _cur  : int   = -1
 
-# ─── Stuck detection ───────────────────────────────────────────────────────────
 var _stuck_timer    : float   = 0.0
 var _last_pos       : Vector3 = Vector3.ZERO
-var _stuck_attempts : int     = 0        # nb de fois coincé d'affilée
-const STUCK_CHECK   := 0.8              # vérifie toutes les X secondes
-const STUCK_DIST    := 0.3              # doit avoir bougé au moins 30 cm
+var _stuck_attempts : int     = 0
+const STUCK_CHECK   := 0.8
+const STUCK_DIST    := 0.3
 var _stuck_check_timer : float = 0.0
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -48,10 +39,10 @@ var player        : Node3D = null
 var chasing       := false
 var last_known    := Vector3.ZERO
 var _search_timer := 0.0
-const SEARCH_DUR  := 9.0   # secondes de recherche au dernier endroit connu
+const SEARCH_DUR  := 9.0
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  ÉTAT GÉNÉRAL (inchangé)
+#  ÉTAT GÉNÉRAL
 # ═══════════════════════════════════════════════════════════════════════════════
 var is_active     := false
 var has_activated := false
@@ -61,9 +52,18 @@ var robot_move_threshold := 0.15
 var robot_stop_delay     := 0.6
 var robot_stop_timer     := 0.0
 
-@onready var bruit_robot    = $BruitRobot
-@onready var shutdown_sound = get_node_or_null("ShutdownSound")
-@onready var mesh_instance  : MeshInstance3D = $MeshInstance3D
+@onready var bruit_robot      = $BruitRobot
+@onready var shutdown_sound   = get_node_or_null("ShutdownSound")
+@onready var mesh_instance    : MeshInstance3D = get_node_or_null("MeshInstance3D")
+
+# ── ANIMATION ──────────────────────────────────────────────────────────────────
+# On cherche l'AnimationPlayer dans le GLB importé (LEROBOT/AnimationPlayer)
+@onready var anim_player : AnimationPlayer = get_node_or_null("LEROBOT/AnimationPlayer")
+
+## Mets ici le nom EXACT de ton animation de marche tel qu'il apparaît
+## dans l'AnimationPlayer (ex: "mixamo_com", "walk", "Armature|walk"…)
+@export var anim_walk : String = "mixamo_com"
+@export var anim_idle : String = ""   # laisse vide si t'as pas d'idle
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -71,6 +71,8 @@ var robot_stop_timer     := 0.0
 # ═══════════════════════════════════════════════════════════════════════════════
 func _ready() -> void:
 	_restore_default_visual()
+	if anim_player:
+		anim_player.stop()   
 	if robot_id.is_empty():
 		robot_id = name
 	if GameState.is_robot_disabled(robot_id):
@@ -100,7 +102,6 @@ func _build_waypoint_graph() -> void:
 	for i in _wps.size():
 		_adj[i] = []
 
-	# Connexion automatique par proximité
 	for i in _wps.size():
 		for j in range(i + 1, _wps.size()):
 			if _wps[i].global_position.distance_to(_wps[j].global_position) <= connection_radius:
@@ -109,7 +110,7 @@ func _build_waypoint_graph() -> void:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  ACTIVATION (identique à l'original)
+#  ACTIVATION
 # ═══════════════════════════════════════════════════════════════════════════════
 func _process(delta: float) -> void:
 	if is_disabled:
@@ -142,9 +143,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0.0
 		velocity.z = 0.0
 		move_and_slide()
+		_play_anim(false)   # arrêt animation si inactif
 		return
 
-	# ── Détection de blocage (par snapshot toutes les 0.8s) ───────────────────
 	_stuck_check_timer += delta
 	if _stuck_check_timer >= STUCK_CHECK:
 		_stuck_check_timer = 0.0
@@ -156,7 +157,6 @@ func _physics_process(delta: float) -> void:
 			_stuck_attempts = 0
 		_last_pos = global_position
 
-	# ── Cible et vitesse ──────────────────────────────────────────────────────
 	var target_pos : Vector3
 	var cur_speed  : float
 
@@ -183,7 +183,6 @@ func _physics_process(delta: float) -> void:
 		target_pos = _patrol_next()
 		cur_speed  = speed * 0.5
 
-	# ── Mouvement ─────────────────────────────────────────────────────────────
 	var to_target := target_pos - global_position
 	to_target.y   = 0.0
 
@@ -195,75 +194,85 @@ func _physics_process(delta: float) -> void:
 		if look_pos.distance_to(global_position) > 0.01:
 			var t := transform.looking_at(look_pos, Vector3.UP)
 			transform.basis = transform.basis.slerp(t.basis, delta * 8.0)
+		_play_anim(true)    # ← MARCHE
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
+		_play_anim(false)   # ← ARRÊT
 
 	move_and_slide()
 	_update_robot_audio(delta)
 
 
+# ═══════════════════════════════════════════════════════════════════════════════
+#  ANIMATION  (nouvelle fonction)
+# ═══════════════════════════════════════════════════════════════════════════════
+func _play_anim(walking: bool) -> void:
+	if not anim_player:
+		return
+	if walking:
+		if anim_player.current_animation != anim_walk:
+			anim_player.play(anim_walk)
+	else:
+		if anim_idle != "" and anim_player.current_animation != anim_idle:
+			anim_player.play(anim_idle)
+		elif anim_idle == "" and anim_player.is_playing():
+			anim_player.stop()
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  STUCK
+# ═══════════════════════════════════════════════════════════════════════════════
 func _try_unstuck() -> void:
 	match _stuck_attempts:
 		1:
-			# Tentative 1 : sauter le WP actuel et viser le suivant
 			if _path.size() > 1:
 				_path.pop_front()
 			else:
 				_go_to_random_wp()
-
 		2:
-			# Tentative 2 : impulsion aléatoire + nouveau chemin
 			var rng_dir := Vector3(randf_range(-1.0, 1.0), 0.0, randf_range(-1.0, 1.0)).normalized()
 			velocity.x = rng_dir.x * speed * 2.0
 			velocity.z = rng_dir.z * speed * 2.0
-			velocity.y = 4.0   # petit saut pour passer une arête
+			velocity.y = 4.0
 			_go_to_random_wp()
-
 		3:
-			# Tentative 3 : se téléporter au WP le plus proche accessible
 			var nearest := _nearest_wp(global_position)
 			if nearest >= 0 and nearest < _wps.size():
 				global_position = _wps[nearest].global_position + Vector3(0, 0.2, 0)
 			_go_to_random_wp()
-			_stuck_attempts = 0   # reset après téléport
-
+			_stuck_attempts = 0
 		_:
-			# Trop coincé : téléport forcé
 			var nearest := _nearest_wp(global_position)
 			if nearest >= 0 and nearest < _wps.size():
 				global_position = _wps[nearest].global_position + Vector3(0, 0.2, 0)
 			_go_to_random_wp()
 			_stuck_attempts = 0
 
+
 # ═══════════════════════════════════════════════════════════════════════════════
 #  NAVIGATION WAYPOINTS (BFS)
 # ═══════════════════════════════════════════════════════════════════════════════
-
-## Renvoie la prochaine position à cibler pour aller vers `dest`
 func _next_waypoint_toward(dest: Vector3) -> Vector3:
-	# Avancer dans le chemin existant si on a atteint le prochain WP
 	if not _path.is_empty():
 		var next_pos : Vector3 = _wps[_path[0]].global_position
 		if global_position.distance_to(next_pos) < WP_REACH:
 			_cur = _path[0]
 			_path.pop_front()
 
-	# Recalculer si le chemin est vide
 	if _path.is_empty():
 		var from_idx := _nearest_wp(global_position)
 		var to_idx   := _nearest_wp(dest)
 		_path = _bfs(from_idx, to_idx)
 		if not _path.is_empty():
-			_path.pop_front()   # on enlève le point de départ
+			_path.pop_front()
 
 	if not _path.is_empty():
 		return _wps[_path[0]].global_position
 
-	return dest   # aucun chemin → direction directe
+	return dest
 
 
-## Avance dans le chemin de patrouille, en choisit un nouveau si fini
 func _patrol_next() -> Vector3:
 	if _path.is_empty():
 		_go_to_random_wp()
@@ -277,12 +286,11 @@ func _patrol_next() -> Vector3:
 		_path.pop_front()
 
 	if _path.is_empty():
-		return global_position   # arrivé → prochain tick choisira un nouveau
+		return global_position
 
 	return _wps[_path[0]].global_position
 
 
-## Choisit un waypoint aléatoire et calcule le chemin BFS
 func _go_to_random_wp() -> void:
 	if _wps.is_empty():
 		return
@@ -297,7 +305,6 @@ func _go_to_random_wp() -> void:
 		_path.pop_front()
 
 
-## Trouve l'index du waypoint le plus proche d'une position donnée
 func _nearest_wp(pos: Vector3) -> int:
 	var best_idx  := 0
 	var best_dist := INF
@@ -309,7 +316,6 @@ func _nearest_wp(pos: Vector3) -> int:
 	return best_idx
 
 
-## BFS : renvoie la liste d'indices de waypoints du chemin le plus court
 func _bfs(from_idx: int, to_idx: int) -> Array:
 	if from_idx == to_idx or _adj.is_empty():
 		return [from_idx]
@@ -327,12 +333,11 @@ func _bfs(from_idx: int, to_idx: int) -> Array:
 				visited[neighbor] = true
 				queue.append(path + [neighbor])
 
-	# Pas de chemin trouvé → rester sur place
 	return [from_idx]
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  ZONES DE DÉTECTION (inchangé)
+#  ZONES DE DÉTECTION
 # ═══════════════════════════════════════════════════════════════════════════════
 func _on_area_3d_body_entered(body) -> void:
 	if is_disabled:
@@ -351,7 +356,6 @@ func _on_area_3d_2_body_exited(body: Node3D) -> void:
 		if chasing:
 			chasing = false
 			AudioManager.notify_robot_stopped_chase()
-		# Démarre la recherche au dernier endroit connu
 		_path.clear()
 		player = null
 
@@ -372,7 +376,7 @@ func triggerMort() -> void:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  AUDIO (inchangé)
+#  AUDIO
 # ═══════════════════════════════════════════════════════════════════════════════
 func _update_robot_audio(delta: float) -> void:
 	if not is_active:
@@ -393,7 +397,7 @@ func _update_robot_audio(delta: float) -> void:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  DÉSACTIVATION (inchangé)
+#  DÉSACTIVATION
 # ═══════════════════════════════════════════════════════════════════════════════
 func disable_robot() -> void:
 	if is_disabled:
@@ -412,6 +416,8 @@ func disable_robot() -> void:
 		bruit_robot.stop()
 	if shutdown_sound:
 		shutdown_sound.play()
+	if anim_player and anim_player.is_playing():   # ← stop animation aussi
+		anim_player.stop()
 	for area_name in ["Area3D", "Area3D2", "Area3D3"]:
 		var area = get_node_or_null(area_name)
 		if area:

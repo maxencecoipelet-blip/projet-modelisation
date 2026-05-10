@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _gerer_conduite(delta: float) -> void:
-	if GameState.IGV:
 		# === Inputs ===
 		var input_avant := Input.get_action_strength("ui_up")
 		var input_arriere := Input.get_action_strength("ui_down")

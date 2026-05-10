@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cmyufcwuppvt4"]
+
+[ext_resource type="PackedScene" uid="uid://chhsngxx6xevj" path="res://MJ/jeu_cultureG/pastoucher.tscn" id="1_bl1w3"]
+
+[node name="Node3D" type="Node3D" unique_id=1819507674]
+
+[node name="Main" parent="." unique_id=1819274864 instance=ExtResource("1_bl1w3")]

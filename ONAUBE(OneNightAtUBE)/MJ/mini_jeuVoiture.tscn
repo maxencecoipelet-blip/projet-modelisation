@@ -1,75 +1,9 @@
 [gd_scene format=3 uid="uid://dcn6epxvxjunb"]
 
-[ext_resource type="Script" uid="uid://c5lcrebwyr8qf" path="res://MJ/voituredeplacement.gd" id="1_g8ucr"]
-[ext_resource type="PackedScene" uid="uid://bnj5jye1sls2o" path="res://MJ/jeu course/villecircuit.glb" id="2_g8ucr"]
-[ext_resource type="PackedScene" uid="uid://ciblvknrc5qjt" path="res://MJ/jeu course/voiture.glb" id="2_wl8ts"]
-[ext_resource type="PackedScene" uid="uid://twysdcyf1du5" path="res://Bombe.tscn" id="4_o8oxu"]
-[ext_resource type="PackedScene" uid="uid://dkv6bi6qy43y7" path="res://triggerDesacRobot.tscn" id="5_ksxgp"]
-
-[sub_resource type="Environment" id="Environment_mrmgt"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_2tm7w"]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6wvun"]
-data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o8oxu"]
-radius = 5.519043
-height = 12.329147
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wl8ts"]
-points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+[ext_resource type="PackedScene" uid="uid://bvnejwhf4ouin" path="res://MJ/mini_jeuVoiturepastoiucher.tscn" id="1_kkuv8"]
 
 [node name="Node3D" type="Node3D" unique_id=1819507674]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=704198207]
-environment = SubResource("Environment_mrmgt")
+[node name="jeuvoiture" parent="." unique_id=695732037 instance=ExtResource("1_kkuv8")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=975759067]
-transform = Transform3D(0.92696726, -0.3730397, -0.039661996, 0.12497647, 0.20739725, 0.9702409, -0.35371262, -0.9043384, 0.23887168, 0, 9.623073, -0.7078806)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2126606590]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=567793872]
-mesh = SubResource("PlaneMesh_2tm7w")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=730086449]
-shape = SubResource("ConcavePolygonShape3D_6wvun")
-
-[node name="voiture" type="CharacterBody3D" parent="." unique_id=588228740 groups=["voiture"]]
-transform = Transform3D(0.008376563, 0, -0.29988304, 0, 0.3, 0, 0.29988304, 0, 0.008376563, 0, -49.064552, -61.491936)
-script = ExtResource("1_g8ucr")
-
-[node name="model3Dvoiture" parent="voiture" unique_id=1835502264 instance=ExtResource("2_wl8ts")]
-transform = Transform3D(4.5237126e-08, 0.017452395, 0.9998477, 8.740946e-08, 0.9998477, -0.017452395, -1, 8.8185644e-08, 4.370473e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="voiture" unique_id=1246442858]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0, 4.9020615, 0)
-shape = SubResource("CapsuleShape3D_o8oxu")
-
-[node name="Camera3D" type="Camera3D" parent="voiture" unique_id=572820141]
-transform = Transform3D(3.3112488, 0.16161193, -0.34731147, -2.4560073e-05, 3.0222547, 1.40609, 0.38307133, -1.3967713, 3.0022323, -0.9312897, 12.975479, 14.772259)
-
-[node name="villecircuit" parent="." unique_id=1699691149 instance=ExtResource("2_g8ucr")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -49.802246, 0)
-
-[node name="sol" parent="villecircuit" index="0" unique_id=1741527745]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.05001068, 0)
-
-[node name="route1avectrotoire" parent="villecircuit" index="1" unique_id=1114712382]
-transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, -0.053085327, 0.13436127, 0.005241393)
-
-[node name="solpourvoiture" type="StaticBody3D" parent="." unique_id=1928213622]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="solpourvoiture" unique_id=1743057242]
-transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, -49.608757, 0)
-shape = SubResource("ConvexPolygonShape3D_wl8ts")
-
-[node name="Bombe" parent="." unique_id=1821413447 instance=ExtResource("4_o8oxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.48083, -49.09303, -60.524914)
-
-[node name="triggerdesacrobot" parent="." unique_id=816027573 instance=ExtResource("5_ksxgp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.385682, -47.320915, -59.142)
-minigame_id = "voiture"
-
-[editable path="villecircuit"]
+[editable path="jeuvoiture"]

@@ -7,7 +7,7 @@ func open_minigame():
 	if mini_game_instance == null:
 		mini_game_instance = scene.instantiate()
 		$SubViewport.add_child(mini_game_instance)
-	
+
 	_activate_only_this()
 	
 	

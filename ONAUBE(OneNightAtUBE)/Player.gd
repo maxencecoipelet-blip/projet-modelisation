@@ -32,24 +32,24 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
-	if GameState.IGC:
-		# gravité
-		if not is_on_floor():
-			velocity.y -= 9.8 * delta
+	
+	# gravité
+	if not is_on_floor():
+		velocity.y -= 9.8 * delta
 
-		# déplacements
-		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	# déplacements
+	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-		if direction:
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
-		else:
-			velocity.x = move_toward(velocity.x, 0, speed)
-			velocity.z = move_toward(velocity.z, 0, speed)
+	if direction:
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 
-		move_and_slide()
-		_handle_footsteps(delta)
+	move_and_slide()
+	_handle_footsteps(delta)
 
 func reset_position():
 	global_position = Vector3(0, 1, 0)

@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var position_respawn := Vector3(0, -49, -61)
+@export var position_respawn := Vector3(5.897, -46.149, -61.492)
 @export var rotation_respawn_y := -90.0
 
 func _ready() -> void:

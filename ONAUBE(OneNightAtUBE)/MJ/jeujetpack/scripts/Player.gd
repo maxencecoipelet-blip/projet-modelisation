@@ -59,12 +59,11 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if GameState.IGJ:
-		if JetpackManager.game_over: return
-		_move(delta)
-		_jetpack(delta)
-		_animate()
-		move_and_slide()
+	if JetpackManager.game_over: return
+	_move(delta)
+	_jetpack(delta)
+	_animate()
+	move_and_slide()
 
 
 func _move(delta: float) -> void:
