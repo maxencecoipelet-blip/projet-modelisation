@@ -40,6 +40,8 @@ var chasing       := false
 var last_known    := Vector3.ZERO
 var _search_timer := 0.0
 const SEARCH_DUR  := 9.0
+var _repath_timer : float = 0.0
+const REPATH_INTERVAL := 0.4
 
 # ═══════════════════════════════════════════════════════════════════════════════
 #  ÉTAT GÉNÉRAL
@@ -164,6 +166,19 @@ func _physics_process(delta: float) -> void:
 		last_known    = player.global_position
 		_search_timer = SEARCH_DUR
 		var dist = global_position.distance_to(player.global_position)
+		
+
+		_repath_timer -= delta                # ← AJOUT
+		if _repath_timer <= 0.0:              # ← AJOUT
+			_path.clear()                     # ← AJOUT : force BFS frais
+			_repath_timer = REPATH_INTERVAL   # ← AJOUT
+
+		if dist <= CHASE_CLOSE:
+			target_pos = player.global_position
+			_path.clear()
+		else:
+			target_pos = _next_waypoint_toward(player.global_position)
+			cur_speed = speed
 		if dist <= CHASE_CLOSE:
 			target_pos = player.global_position
 			_path.clear()
@@ -346,6 +361,7 @@ func _on_area_3d_body_entered(body) -> void:
 		player = body
 		if not chasing:
 			chasing = true
+			_path.clear()
 			AudioManager.notify_robot_started_chase()
 
 

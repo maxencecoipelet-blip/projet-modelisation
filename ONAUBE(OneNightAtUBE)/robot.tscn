@@ -5,12 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://b2qbfiw4pomw8" path="res://LEROBOT.glb" id="3_yhfw1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gv0v2"]
+radius = 0.42041016
+height = 1.4707031
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gv0v2"]
-radius = 6.0
+radius = 7.818
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3cn6f"]
-radius = 10.0
+radius = 15.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3cn6f"]
 radius = 0.65
@@ -19,7 +21,7 @@ radius = 0.65
 script = ExtResource("1_3cn6f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=642985935]
-transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, -0.44990236, 0)
 shape = SubResource("CapsuleShape3D_gv0v2")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=867660188]
@@ -51,7 +53,7 @@ max_distance = 35.0
 [node name="LEROBOT" parent="." unique_id=540689249 instance=ExtResource("3_yhfw1")]
 transform = Transform3D(-0.7, 0, -6.119594e-08, 0, 0.7, 0, 6.119594e-08, 0, -0.7, 0.102440834, -1.842168, 0.120419025)
 
-[node name="Skeleton3D" parent="LEROBOT/Armature" parent_id_path=PackedInt32Array(540689249, 52237329) index="0" unique_id=1663025085]
+[node name="Skeleton3D" parent="LEROBOT/Armature" parent_id_path=PackedInt32Array(540689249, 257582004) index="0" unique_id=1414591196]
 bones/0/position = Vector3(0.033180714, -0.08364213, -1.4572376)
 bones/0/rotation = Quaternion(0.6709489, -0.05479244, -0.01908561, -0.73923004)
 bones/1/rotation = Quaternion(-0.09789248, 0.028147824, -0.003969671, 0.994791)
