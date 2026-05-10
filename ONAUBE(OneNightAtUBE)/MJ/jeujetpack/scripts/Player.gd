@@ -69,12 +69,12 @@ func _physics_process(delta: float) -> void:
 func _move(delta: float) -> void:
 	if not is_on_floor() and not _jetpack_on:
 		velocity.y -= gravity * delta
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = jump_velocity
 
 	var raw := Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
+		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
+		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	).limit_length(1.0)
 
 	var forward := -cam_root.global_transform.basis.z
@@ -98,7 +98,7 @@ func _move(delta: float) -> void:
 
 
 func _jetpack(delta: float) -> void:
-	var trying := Input.is_action_pressed("jetpack") and not is_on_floor()
+	var trying := Input.is_action_pressed("ui_accept") and not is_on_floor()
 	if trying and _fuel > 0.0:
 		_jetpack_on = true
 		velocity.y  = move_toward(velocity.y, jetpack_force * 0.75, jetpack_force * delta)
@@ -115,10 +115,10 @@ func _jetpack(delta: float) -> void:
 
 func _animate() -> void:
 	if not anim_player: return
-	var is_moving := Input.is_action_pressed("move_forward") or \
-					 Input.is_action_pressed("move_backward") or \
-					 Input.is_action_pressed("move_left") or \
-					 Input.is_action_pressed("move_right")
+	var is_moving := Input.is_action_pressed("ui_up") or \
+					 Input.is_action_pressed("ui_down") or \
+					 Input.is_action_pressed("ui_left") or \
+					 Input.is_action_pressed("ui_right")
 
 	var in_air := not is_on_floor() or velocity.y > 0.5
 

@@ -17,11 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://c44ej3w7dm3wo" path="res://MJ/jump.tscn" id="11_3fwds"]
 [ext_resource type="Script" uid="uid://cvvc0fwmjkjdt" path="res://ordiSecondaire.gd" id="11_i6nld"]
 [ext_resource type="Script" uid="uid://cvealnp2qgajv" path="res://sub_viewport_container.gd" id="12_i6nld"]
-[ext_resource type="PackedScene" uid="uid://b8h30rfig0361" path="res://MJ/mini_jeuJetpack.tscn" id="13_572a1"]
 [ext_resource type="PackedScene" uid="uid://dcn6epxvxjunb" path="res://MJ/mini_jeuVoiture.tscn" id="13_m4l06"]
 [ext_resource type="PackedScene" uid="uid://cmyufcwuppvt4" path="res://MJ/jeu_cultureG/mini_jeuCulture.tscn" id="15_3fwds"]
 [ext_resource type="PackedScene" uid="uid://ulbomcb5wbwx" path="res://assets/projet.glb" id="21_0n1jq"]
 [ext_resource type="Texture2D" uid="uid://d2dae7ggb2pfj" path="res://assets/concrete_floor_worn_001_diff_4k.jpg" id="22_mlydm"]
+[ext_resource type="PackedScene" uid="uid://dsiyo5re5lc55" path="res://MJ/jeujetpack/scenes/Main.tscn" id="22_q7g7n"]
 [ext_resource type="Texture2D" uid="uid://ikuy0p01qcmc" path="res://assets/concrete_floor_worn_001_rough_4k.jpg" id="23_qw832"]
 [ext_resource type="Texture2D" uid="uid://c1ecdh0iti0tg" path="res://assets/projet_marble01_diffuse.jpg" id="24_y4b80"]
 [ext_resource type="Texture2D" uid="uid://bdolq04xpwf5d" path="res://assets/white_plaster_02_diff_4k.jpg" id="25_8qthc"]
@@ -1091,21 +1091,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2184653, 2.8021662, 6.3129
 
 [node name="robot" parent="." unique_id=538969851 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.092857, 1.9373345, 8.578706)
-time_active = 3
 
 [node name="BruitRobot" parent="robot" index="5" unique_id=1052473452]
 stream = ExtResource("4_77v52")
 
 [node name="robot2" parent="." unique_id=538969852 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.12223, -3.3486233, -1.734194)
-time_active = 2
 
 [node name="BruitRobot" parent="robot2" index="5" unique_id=1052473452]
 stream = ExtResource("5_ijprh")
 
 [node name="robot3" parent="." unique_id=538969853 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.298988, 1.7587683, 0.238698)
-time_active = 3
 
 [node name="BruitRobot" parent="robot3" index="5" unique_id=1052473452]
 stream = ExtResource("6_0n1jq")
@@ -1115,7 +1112,6 @@ max_distance = 16.0
 
 [node name="robot4" parent="." unique_id=538969854 instance=ExtResource("2_tvybu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.053348, 2.4596322, -4.360953)
-time_active = 1
 
 [node name="BruitRobot" parent="robot4" index="5" unique_id=1052473452]
 stream = ExtResource("6_tc1ei")
@@ -1281,7 +1277,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_i6nld")
-scene = ExtResource("13_572a1")
+scene = ExtResource("22_q7g7n")
 
 [node name="SubViewport" type="SubViewport" parent="ordinateur2/MJ/SubViewportContainer" unique_id=1972315506]
 own_world_3d = true

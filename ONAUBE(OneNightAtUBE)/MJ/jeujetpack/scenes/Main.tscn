@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b10pjfe7blb7g" path="res://MJ/jeujetpack/scripts/Main.gd" id="1_mainscr"]
 [ext_resource type="PackedScene" uid="uid://jfu3euodrbvv" path="res://MJ/jeujetpack/scenes/Player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://MJ/jeujetpack/scenes/Collectible.tscn" id="3_collect"]
-[ext_resource type="PackedScene" path="res://MJ/jeujetpack/scenes/HUD.tscn" id="4_hud"]
+[ext_resource type="PackedScene" uid="uid://i7wigf6cjfrk" path="res://MJ/jeujetpack/scenes/HUD.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://c413mdvcmtgk5" path="res://MJ/jeujetpack/assets/models/bonjetpackcity.glb" id="5_vcsgt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
@@ -47,7 +47,7 @@ transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 6.137436, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.566185, -9.466959, 43.799088)
 
 [node name="Collectible1" parent="Collectibles" unique_id=730436534 instance=ExtResource("3_collect")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.32924, -9.005625, -11.97231)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.32924, -3.9264796, -11.97231)
 collectible_index = 1
 
 [node name="Collectible2" parent="Collectibles" unique_id=862785107 instance=ExtResource("3_collect")]
@@ -55,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0110526085, 24.357695, -0.5
 collectible_index = 2
 
 [node name="Collectible3" parent="Collectibles" unique_id=2025679560 instance=ExtResource("3_collect")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.51531, -7.8656526, -19.785221)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.51531, -1.508719, -19.785221)
 collectible_index = 3
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1811504611]
