@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dvgg1rpdy0m7f"]
+
+[ext_resource type="PackedScene" uid="uid://bg0ll5sv12v2a" path="res://assets/models/Lebonjetpack.glb" id="1_2wk13"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wk13"]
+albedo_color = Color(0.17254902, 0.17254902, 0.17254902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bh4t5"]
+albedo_color = Color(1, 0.54901963, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wsis"]
+albedo_color = Color(0.17254902, 0.17254902, 0.17254902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_547im"]
+albedo_color = Color(1, 0.54901963, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ddnwg"]
+albedo_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1yd4"]
+albedo_color = Color(1, 0.84313726, 0, 1)
+
+[node name="Lebonjetpack" unique_id=96052418 instance=ExtResource("1_2wk13")]
+
+[node name="corpdujetpack" parent="." index="0" unique_id=1723304331]
+surface_material_override/0 = SubResource("StandardMaterial3D_2wk13")
+
+[node name="Objet" parent="." index="1" unique_id=1667241365]
+transform = Transform3D(0.04, 0, 0, 0, 0.47999996, 0, 0, 0, 0.01, 0, 4.0693407, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_bh4t5")
+
+[node name="reacteur_001" parent="." index="2" unique_id=901793612]
+surface_material_override/0 = SubResource("StandardMaterial3D_6wsis")
+
+[node name="anneaux" parent="." index="3" unique_id=257630212]
+surface_material_override/0 = SubResource("StandardMaterial3D_547im")
+
+[node name="reacteur" parent="." index="5" unique_id=399571633]
+surface_material_override/0 = SubResource("StandardMaterial3D_ddnwg")
+
+[node name="flamme" parent="." index="6" unique_id=2114019835]
+surface_material_override/0 = SubResource("StandardMaterial3D_t1yd4")

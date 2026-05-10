@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://jfu3euodrbvv"]
+
+[ext_resource type="Script" uid="uid://ddlocv31luhe2" path="res://scripts/Player.gd" id="1_plscr"]
+[ext_resource type="PackedScene" uid="uid://4pu2homr1d7n" path="res://assets/models/aniamtionBien.glb" id="2_v6fml"]
+[ext_resource type="PackedScene" uid="uid://dvgg1rpdy0m7f" path="res://assets/models/lebonjetpack.tscn" id="3_3li8b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.4
+height = 1.3249023
+
+[node name="Player" type="CharacterBody3D" unique_id=1084438150]
+script = ExtResource("1_plscr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1533200489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0400636, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="ModelPivot" type="Node3D" parent="." unique_id=1266315191]
+
+[node name="aniamtionBien" parent="ModelPivot" unique_id=364609451 instance=ExtResource("2_v6fml")]
+
+[node name="Armature" parent="ModelPivot/aniamtionBien" index="0" unique_id=840944767]
+transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 0, 0.37586802, 0)
+
+[node name="Lebonjetpack" parent="ModelPivot/aniamtionBien/Armature/Skeleton3D/Spalla" parent_id_path=PackedInt32Array(364609451, 1117531828) index="0" unique_id=96052418 instance=ExtResource("3_3li8b")]
+transform = Transform3D(-0.6, 0, -9.059749e-08, 9.059749e-08, -2.6226834e-08, -0.6, -3.960142e-15, -0.6, 2.6226834e-08, 0, -0.20295127, 0.5178449)
+
+[node name="JetpackParticles" type="CPUParticles3D" parent="." unique_id=330208246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3406984, -0.18688762)
+emitting = false
+amount = 40
+lifetime = 0.4
+direction = Vector3(0, -1, 0)
+spread = 25.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+color = Color(1, 0.45, 0.1, 1)
+
+[node name="JetpackLight" type="OmniLight3D" parent="." unique_id=1955406308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0.25)
+visible = false
+light_color = Color(1, 0.45, 0.1, 1)
+light_energy = 2.5
+omni_range = 3.0
+
+[node name="CamRoot" type="Node3D" parent="." unique_id=1421987931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamRoot" unique_id=938929493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="CamRoot/SpringArm3D" unique_id=1530039582]
+
+[editable path="ModelPivot/aniamtionBien"]

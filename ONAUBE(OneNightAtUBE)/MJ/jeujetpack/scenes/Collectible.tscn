@@ -1,0 +1,42 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://cxb7b8ed0aw0d" path="res://MJ/jeujetpack/scripts/Collectible.gd" id="1_colscr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1"]
+radius = 0.9
+
+[sub_resource type="SphereMesh" id="SphereMesh_1"]
+radius = 0.45
+height = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_1"]
+albedo_color = Color(1, 1, 1, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy = 0.8
+
+[node name="Collectible" type="Area3D"]
+script = ExtResource("1_colscr")
+collision_layer = 4
+collision_mask = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_1")
+surface_material_override/0 = SubResource("Mat_1")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 2.5
+omni_range = 4.0
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.8
+one_shot = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 7.0
